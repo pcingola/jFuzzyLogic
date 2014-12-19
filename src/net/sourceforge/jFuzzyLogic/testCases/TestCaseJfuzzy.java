@@ -1,8 +1,8 @@
 /**
- * 
+ *
  * JUnit test for jFuzzyLogic
- * 
- * 
+ *
+ *
  * @author pcingola@users.sourceforge.net
  */
 package net.sourceforge.jFuzzyLogic.testCases;
@@ -16,40 +16,21 @@ import net.sourceforge.jFuzzyLogic.Gpr;
 import net.sourceforge.jFuzzyLogic.rule.Rule;
 import net.sourceforge.jFuzzyLogic.rule.RuleBlock;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Main testing class 
- * 
+ * Main testing class
+ *
  * @author pcingola@users.sourceforge.net
  *
  */
 public class TestCaseJfuzzy extends TestCase {
 
-	// A small number
-	static double EPSILON = 0.000001;
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+	static double EPSILON = 0.000001; // A small number
+	static boolean verbose = false; // Verbose?
 
 	/**
 	 * Verify that De Morgan's laws are OK
-	 * @param fis
 	 */
 	void checkDeMorgan(FIS fis) {
 		// De Morgan's laws test
@@ -85,9 +66,58 @@ public class TestCaseJfuzzy extends TestCase {
 	}
 
 	/**
+	 * Test method for membership function
+	 */
+	public void checkMembershipFunction(String title, FIS fis, String membershipFunctionFile) {
+		Gpr.debug("Test");
+
+		int mem[][] = loadMembershipFile(membershipFunctionFile);
+
+		if (verbose) System.out.println(fis);
+		FunctionBlock fb = fis.getFunctionBlock(null);
+
+		for (int ind = 1; ind < mem.length; ind++) {
+			double value = int100ToDOuble(mem[ind][0]);
+
+			fb.setVariable("inVar", value);
+
+			int poor = doubleToInt100(fb.getVariable("inVar").getMembership("poor"));
+			int good = doubleToInt100(fb.getVariable("inVar").getMembership("good"));
+			int excellent = doubleToInt100(fb.getVariable("inVar").getMembership("excellent"));
+
+			if (poor != mem[ind][1]) fail("Membership function " + title + ", poor(" + value + ") should be " + int100ToDOuble(mem[ind][1]) + ", but it is " + int100ToDOuble(poor));
+			if (good != mem[ind][2]) fail("Membership function " + title + ", good(" + value + ") should be " + int100ToDOuble(mem[ind][2]) + ", but it is " + int100ToDOuble(good));
+			if (excellent != mem[ind][3]) fail("Membership function " + title + ", excellent(" + value + ") should be " + int100ToDOuble(mem[ind][3]) + ", but it is " + int100ToDOuble(excellent));
+		}
+	}
+
+	/**
+	 * Test method for membership function
+	 */
+	public void checkMembershipFunction(String title, String fclFile, String membershipFunctionFile) {
+		int mem[][] = loadMembershipFile(membershipFunctionFile);
+
+		FIS fis = FIS.load(fclFile);
+		if (verbose) System.out.println(fis);
+		FunctionBlock fb = fis.getFunctionBlock(null);
+
+		for (int ind = 1; ind < mem.length; ind++) {
+			double value = int100ToDOuble(mem[ind][0]);
+
+			fb.setVariable("inVar", value);
+
+			int poor = doubleToInt100(fb.getVariable("inVar").getMembership("poor"));
+			int good = doubleToInt100(fb.getVariable("inVar").getMembership("good"));
+			int excellent = doubleToInt100(fb.getVariable("inVar").getMembership("excellent"));
+
+			if (poor != mem[ind][1]) fail("Membership function " + title + ", poor(" + value + ") should be " + int100ToDOuble(mem[ind][1]) + ", but it is " + int100ToDOuble(poor));
+			if (good != mem[ind][2]) fail("Membership function " + title + ", good(" + value + ") should be " + int100ToDOuble(mem[ind][2]) + ", but it is " + int100ToDOuble(good));
+			if (excellent != mem[ind][3]) fail("Membership function " + title + ", excellent(" + value + ") should be " + int100ToDOuble(mem[ind][3]) + ", but it is " + int100ToDOuble(excellent));
+		}
+	}
+
+	/**
 	 * Round a double to an integer (time 100)
-	 * @param d
-	 * @return
 	 */
 	int doubleToInt100(double d) {
 		return ((int) Math.round(d * 100));
@@ -99,8 +129,6 @@ public class TestCaseJfuzzy extends TestCase {
 
 	/**
 	 * Read a table of numbers as an array of integers
-	 * @param fileName
-	 * @return
 	 */
 	int[][] loadMembershipFile(String fileName) {
 		String file = Gpr.readFile(fileName);
@@ -124,23 +152,7 @@ public class TestCaseJfuzzy extends TestCase {
 	 * Show a 'separator' line
 	 */
 	public void separator() {
-		System.out.println("-------------------------------------------------------------------------------");
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Override
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Override
-	@After
-	public void tearDown() throws Exception {
+		if (verbose) System.out.println("-------------------------------------------------------------------------------");
 	}
 
 	/**
@@ -148,34 +160,36 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testDeMorgan() {
-		System.out.println("Testing De Morgan's law: AND=MIN / OR=MAX");
+		Gpr.debug("Test");
+
+		if (verbose) System.out.println("Testing De Morgan's law: AND=MIN / OR=MAX");
 		FIS fis = FIS.load("fcl/testDeMorgan_1.fcl");
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
-		System.out.println("Testing De Morgan's law: AND=PROD / OR=ASUM (a.k.a. PROB_OR)");
+		if (verbose) System.out.println("Testing De Morgan's law: AND=PROD / OR=ASUM (a.k.a. PROB_OR)");
 		fis = FIS.load("fcl/testDeMorgan_2.fcl");
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
-		System.out.println("Testing De Morgan's law: AND=BDIF / OR=BSUM");
+		if (verbose) System.out.println("Testing De Morgan's law: AND=BDIF / OR=BSUM");
 		fis = FIS.load("fcl/testDeMorgan_3.fcl");
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
-		System.out.println("Testing De Morgan's law: AND=DMIN / OR=DMAX");
+		if (verbose) System.out.println("Testing De Morgan's law: AND=DMIN / OR=DMAX");
 		fis = FIS.load("fcl/testDeMorgan_4.fcl");
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
-		System.out.println("Testing De Morgan's law: AND=NIPMIN / OR=NIPMAX");
+		if (verbose) System.out.println("Testing De Morgan's law: AND=NIPMIN / OR=NIPMAX");
 		fis = FIS.load("fcl/testDeMorgan_5.fcl");
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
-		System.out.println("Testing De Morgan's law: AND=HAMACHER / OR=EINSTEIN");
+		if (verbose) System.out.println("Testing De Morgan's law: AND=HAMACHER / OR=EINSTEIN");
 		fis = FIS.load("fcl/testDeMorgan_6.fcl");
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 	}
 
@@ -184,8 +198,10 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testFileParsing1() {
+		Gpr.debug("Test");
+
 		FIS fis = FIS.load("./tests/junit1.fcl", true);
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		separator();
 	}
 
@@ -194,8 +210,10 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testFileParsing2() {
+		Gpr.debug("Test");
+
 		FIS fis = FIS.load("./tests/junit2.fcl", true);
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		separator();
 	}
 
@@ -204,8 +222,10 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testFileParsing3() {
+		Gpr.debug("Test");
+
 		FIS fis = FIS.load("./tests/junit3.fcl", true);
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		separator();
 	}
 
@@ -214,8 +234,10 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testFileParsing4() {
+		Gpr.debug("Test");
+
 		FIS fis = FIS.load("./tests/junit4.fcl", true);
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 		separator();
 	}
 
@@ -224,6 +246,8 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testFunctions() {
+		Gpr.debug("Test");
+
 		// Load tipper fuzzy system
 		FIS fis = FIS.load("./tests/junit_functions.fcl", true);
 		FunctionBlock fb = fis.getFunctionBlock(null);
@@ -231,7 +255,7 @@ public class TestCaseJfuzzy extends TestCase {
 		// Load stored results
 		int mem[][] = loadMembershipFile("./tests/junit_functions.txt");
 
-		// Compare running the system vs. stored results 
+		// Compare running the system vs. stored results
 		for (int ind = 0; ind < mem.length; ind++) {
 			// Get input variables from stores results
 			double inVar = int100ToDOuble(mem[ind][0]);
@@ -251,58 +275,11 @@ public class TestCaseJfuzzy extends TestCase {
 	/**
 	 * Test method for membership function
 	 */
-	public void testMembershipFunction(String title, FIS fis, String membershipFunctionFile) {
-		int mem[][] = loadMembershipFile(membershipFunctionFile);
-
-		System.out.println(fis);
-		FunctionBlock fb = fis.getFunctionBlock(null);
-
-		for (int ind = 1; ind < mem.length; ind++) {
-			double value = int100ToDOuble(mem[ind][0]);
-
-			fb.setVariable("inVar", value);
-
-			int poor = doubleToInt100(fb.getVariable("inVar").getMembership("poor"));
-			int good = doubleToInt100(fb.getVariable("inVar").getMembership("good"));
-			int excellent = doubleToInt100(fb.getVariable("inVar").getMembership("excellent"));
-
-			if (poor != mem[ind][1]) fail("Membership function " + title + ", poor(" + value + ") should be " + int100ToDOuble(mem[ind][1]) + ", but it is " + int100ToDOuble(poor));
-			if (good != mem[ind][2]) fail("Membership function " + title + ", good(" + value + ") should be " + int100ToDOuble(mem[ind][2]) + ", but it is " + int100ToDOuble(good));
-			if (excellent != mem[ind][3]) fail("Membership function " + title + ", excellent(" + value + ") should be " + int100ToDOuble(mem[ind][3]) + ", but it is " + int100ToDOuble(excellent));
-		}
-	}
-
-	/**
-	 * Test method for membership function
-	 */
-	public void testMembershipFunction(String title, String fclFile, String membershipFunctionFile) {
-		int mem[][] = loadMembershipFile(membershipFunctionFile);
-
-		FIS fis = FIS.load(fclFile);
-		System.out.println(fis);
-		FunctionBlock fb = fis.getFunctionBlock(null);
-
-		for (int ind = 1; ind < mem.length; ind++) {
-			double value = int100ToDOuble(mem[ind][0]);
-
-			fb.setVariable("inVar", value);
-
-			int poor = doubleToInt100(fb.getVariable("inVar").getMembership("poor"));
-			int good = doubleToInt100(fb.getVariable("inVar").getMembership("good"));
-			int excellent = doubleToInt100(fb.getVariable("inVar").getMembership("excellent"));
-
-			if (poor != mem[ind][1]) fail("Membership function " + title + ", poor(" + value + ") should be " + int100ToDOuble(mem[ind][1]) + ", but it is " + int100ToDOuble(poor));
-			if (good != mem[ind][2]) fail("Membership function " + title + ", good(" + value + ") should be " + int100ToDOuble(mem[ind][2]) + ", but it is " + int100ToDOuble(good));
-			if (excellent != mem[ind][3]) fail("Membership function " + title + ", excellent(" + value + ") should be " + int100ToDOuble(mem[ind][3]) + ", but it is " + int100ToDOuble(excellent));
-		}
-	}
-
-	/**
-	 * Test method for membership function
-	 */
 	@Test
 	public void testMembershipFunctionCosine() {
-		testMembershipFunction("Cosine", "./tests/junit_cosine.fcl", "./tests/junit_cosine.txt");
+		Gpr.debug("Test");
+
+		checkMembershipFunction("Cosine", "./tests/junit_cosine.fcl", "./tests/junit_cosine.txt");
 	}
 
 	/**
@@ -310,7 +287,9 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionDsigm() {
-		testMembershipFunction("Dsigm", "./tests/junit_dsigm.fcl", "./tests/junit_dsigm.txt");
+		Gpr.debug("Test");
+
+		checkMembershipFunction("Dsigm", "./tests/junit_dsigm.fcl", "./tests/junit_dsigm.txt");
 	}
 
 	/**
@@ -318,7 +297,9 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionGauss() {
-		testMembershipFunction("Gauss", "./tests/junit_gauss.fcl", "./tests/junit_gauss.txt");
+		Gpr.debug("Test");
+
+		checkMembershipFunction("Gauss", "./tests/junit_gauss.fcl", "./tests/junit_gauss.txt");
 	}
 
 	/**
@@ -326,7 +307,9 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionGbell() {
-		testMembershipFunction("Gbell", "./tests/junit_gbell.fcl", "./tests/junit_gbell.txt");
+		Gpr.debug("Test");
+
+		checkMembershipFunction("Gbell", "./tests/junit_gbell.fcl", "./tests/junit_gbell.txt");
 	}
 
 	/**
@@ -334,6 +317,8 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionOnLine4() {
+		Gpr.debug("Test");
+
 		FIS fis = FIS.load("./tests/on_line_variable.fcl");
 
 		double i = 4.0;
@@ -341,7 +326,7 @@ public class TestCaseJfuzzy extends TestCase {
 		fis.setVariable("inputZeroMed", i);
 		fis.setVariable("inputZeroMax", i + 1.0);
 
-		testMembershipFunction("Online", fis, "./tests/on_line_variable_4.txt");
+		checkMembershipFunction("Online", fis, "./tests/on_line_variable_4.txt");
 	}
 
 	/**
@@ -349,6 +334,8 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionOnLine5() {
+		Gpr.debug("Test");
+
 		FIS fis = FIS.load("./tests/on_line_variable.fcl");
 
 		double i = 5.0;
@@ -356,7 +343,7 @@ public class TestCaseJfuzzy extends TestCase {
 		fis.setVariable("inputZeroMed", i);
 		fis.setVariable("inputZeroMax", i + 1.0);
 
-		testMembershipFunction("Online", fis, "./tests/on_line_variable_5.txt");
+		checkMembershipFunction("Online", fis, "./tests/on_line_variable_5.txt");
 	}
 
 	/**
@@ -364,6 +351,8 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionOnLine6() {
+		Gpr.debug("Test");
+
 		FIS fis = FIS.load("./tests/on_line_variable.fcl");
 
 		double i = 6.0;
@@ -371,7 +360,7 @@ public class TestCaseJfuzzy extends TestCase {
 		fis.setVariable("inputZeroMed", i);
 		fis.setVariable("inputZeroMax", i + 1.0);
 
-		testMembershipFunction("Online", fis, "./tests/on_line_variable_6.txt");
+		checkMembershipFunction("Online", fis, "./tests/on_line_variable_6.txt");
 	}
 
 	/**
@@ -379,7 +368,9 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionPiecewiseLinear() {
-		testMembershipFunction("Piecewise_linear", "./tests/junit_piecewise_linear.fcl", "./tests/junit_piecewise_linear.txt");
+		Gpr.debug("Test");
+
+		checkMembershipFunction("Piecewise_linear", "./tests/junit_piecewise_linear.fcl", "./tests/junit_piecewise_linear.txt");
 	}
 
 	/**
@@ -387,7 +378,9 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionSigmoid() {
-		testMembershipFunction("Sigmoid", "./tests/junit_sigmoid.fcl", "./tests/junit_sigmoid.txt");
+		Gpr.debug("Test");
+
+		checkMembershipFunction("Sigmoid", "./tests/junit_sigmoid.fcl", "./tests/junit_sigmoid.txt");
 	}
 
 	/**
@@ -395,7 +388,9 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionSingletons() {
-		testMembershipFunction("Singleton", "./tests/junit_singletons.fcl", "./tests/junit_singletons.txt");
+		Gpr.debug("Test");
+
+		checkMembershipFunction("Singleton", "./tests/junit_singletons.fcl", "./tests/junit_singletons.txt");
 	}
 
 	/**
@@ -403,7 +398,9 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionTrapezoid() {
-		testMembershipFunction("Trapezoid", "./tests/junit_trape.fcl", "./tests/junit_trape.txt");
+		Gpr.debug("Test");
+
+		checkMembershipFunction("Trapezoid", "./tests/junit_trape.fcl", "./tests/junit_trape.txt");
 	}
 
 	/**
@@ -411,7 +408,9 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testMembershipFunctionTriangular() {
-		testMembershipFunction("Triangular", "./tests/junit_triang.fcl", "./tests/junit_triang.txt");
+		Gpr.debug("Test");
+
+		checkMembershipFunction("Triangular", "./tests/junit_triang.fcl", "./tests/junit_triang.txt");
 	}
 
 	/**
@@ -420,9 +419,11 @@ public class TestCaseJfuzzy extends TestCase {
 	 */
 	@Test
 	public void testNAmembership() {
+		Gpr.debug("Test");
+
 		// FCL.debug = true;
 		FIS fis = FIS.load("./tests/junit_shashankrao.fcl", true);
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 
 		// This set of values used to produce a 'NaN' output
 		double ra = 0.5;
@@ -438,8 +439,10 @@ public class TestCaseJfuzzy extends TestCase {
 
 	@Test
 	public void testNoRule() {
+		Gpr.debug("Test");
+
 		// FCL.debug = true;
 		FIS fis = FIS.load("tests/noRules.fcl", true);
-		System.out.println(fis);
+		if (verbose) System.out.println(fis);
 	}
 }

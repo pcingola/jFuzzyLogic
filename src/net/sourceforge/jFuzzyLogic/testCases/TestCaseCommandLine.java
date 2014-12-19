@@ -2,6 +2,7 @@ package net.sourceforge.jFuzzyLogic.testCases;
 
 import junit.framework.TestCase;
 import net.sourceforge.jFuzzyLogic.FIS;
+import net.sourceforge.jFuzzyLogic.Gpr;
 import net.sourceforge.jFuzzyLogic.JFuzzyLogic;
 
 import org.junit.Assert;
@@ -13,6 +14,8 @@ public class TestCaseCommandLine extends TestCase {
 
 	@Test
 	public void test() {
+		Gpr.debug("Test");
+
 		// Prepare command line
 		String fileName = "tests/tipper.fcl";
 		String args[] = { "-noCharts", "-e", fileName, "8.5", "9" };

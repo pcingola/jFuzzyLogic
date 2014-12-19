@@ -7,12 +7,12 @@ import net.sourceforge.jFuzzyLogic.Gpr;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 public class TestCaseTipper extends TestCase {
 
 	public static final double EPSILON = 0.001; // Error tolerated
+	static boolean verbose = false; // Verbose?
 
 	public void createTxtFile() {
 		// Load from 'FCL' file
@@ -42,8 +42,6 @@ public class TestCaseTipper extends TestCase {
 
 	/**
 	 * Round a double to an integer (time 100)
-	 * @param d
-	 * @return
 	 */
 	int doubleToInt100(double d) {
 		return ((int) Math.round(d * 100));
@@ -55,8 +53,6 @@ public class TestCaseTipper extends TestCase {
 
 	/**
 	 * Read a table of numbers as an array of integers
-	 * @param fileName
-	 * @return
 	 */
 	int[][] loadMembershipFile(String fileName) {
 		String file = Gpr.readFile(fileName);
@@ -76,13 +72,10 @@ public class TestCaseTipper extends TestCase {
 		return vals;
 	}
 
-	@Override
-	@Before
-	public void setUp() throws Exception {
-	}
-
 	@Test
 	public void test() {
+		Gpr.debug("Test");
+
 		// Load from 'FCL' file
 		String fileName = "tests/tipper.fcl";
 		FIS fis = FIS.load(fileName, true);
@@ -122,6 +115,8 @@ public class TestCaseTipper extends TestCase {
 	 */
 	@Test
 	public void testStringParsing() {
+		Gpr.debug("Test");
+
 		String fcl = "FUNCTION_BLOCK tipper_parsed_from_string  // Block definition (there may be more than one block per file)\n" + //
 				"\n" + //
 				"VAR_INPUT              // Define input variables\n" + //
@@ -166,7 +161,7 @@ public class TestCaseTipper extends TestCase {
 
 		try {
 			FIS fis = FIS.createFromString(fcl, true);
-			System.out.println(fis);
+			if (verbose) System.out.println(fis);
 		} catch (RecognitionException e) {
 			fail("RecognitionException:" + e);
 		}
@@ -177,6 +172,8 @@ public class TestCaseTipper extends TestCase {
 	 */
 	@Test
 	public void testTipper() {
+		Gpr.debug("Test");
+
 		// Load tipper fuzzy system
 		FIS fis = FIS.load("./tests/junit_tipper.fcl", true);
 		FunctionBlock fb = fis.getFunctionBlock(null);
@@ -208,6 +205,8 @@ public class TestCaseTipper extends TestCase {
 	 */
 	@Test
 	public void testToString() {
+		Gpr.debug("Test");
+
 		// Load system
 		String fileName = "tests/tipper.fcl";
 		FIS fis = FIS.load(fileName, true);
@@ -222,9 +221,8 @@ public class TestCaseTipper extends TestCase {
 
 		// Compare both fis (should be identical)
 		boolean ok = fis.toString().equals(fis2.toString());
-		System.out.println("Are both fis equal?: " + ok);
+		if (verbose) System.out.println("Are both fis equal?: " + ok);
 		if (!ok) throw new RuntimeException("FCL code for both fis is not the same.");
-
 	}
 
 }
