@@ -100,7 +100,7 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 
 	/** Estimate universe */
 	public void estimateUniverse() {
-		// Are universeMin and universeMax already setted? => nothing to do
+		// Are universeMin and universeMax already set? => nothing to do
 		if ((!Double.isNaN(universeMin)) && (!Double.isNaN(universeMax))) return;
 
 		// Calculate max / min on every membership function
@@ -121,7 +121,7 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 			else umin = umax = 0;
 		}
 
-		// Set parameters (if not setted)
+		// Set parameters (if not set)
 		if (Double.isNaN(universeMin)) universeMin = umin;
 		if (Double.isNaN(universeMax)) universeMax = umax;
 	}

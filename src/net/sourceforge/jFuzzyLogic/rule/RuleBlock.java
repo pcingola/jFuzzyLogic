@@ -363,7 +363,7 @@ public class RuleBlock extends FclObject implements Iterable<Rule>, Comparable<R
 				// Not already resetted?
 				if (resetted.get(var) == null) {
 					// Sanity check
-					if (var.getDefuzzifier() == null) throw new RuntimeException("Defuzzifier not setted for output variable '" + var.getName() + "'");
+					if (var.getDefuzzifier() == null) throw new RuntimeException("Defuzzifier not set for output variable '" + var.getName() + "'");
 					var.reset(true); // Reset variable
 					resetted.put(var, var); // Mark it as 'resetted' so we don't reset it again
 				}

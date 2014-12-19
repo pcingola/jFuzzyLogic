@@ -114,7 +114,7 @@ public abstract class Parameter {
 	/**
 	 * Sets parameter to 'value'
 	 * @param value
-	 * @return 'true' if setted ok, 'false if can't be setted (e.g. due to consistenci errors, out of range, etc.)
+	 * @return 'true' if set ok, 'false if can't be set (e.g. due to consistenci errors, out of range, etc.)
 	 */
 	public abstract boolean set(double value);
 

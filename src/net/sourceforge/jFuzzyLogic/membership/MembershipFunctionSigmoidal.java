@@ -33,7 +33,7 @@ public class MembershipFunctionSigmoidal extends MembershipFunctionContinuous {
 
 	@Override
 	public void estimateUniverse() {
-		// Are universeMin and universeMax already setted? => nothing to do
+		// Are universeMin and universeMax already set? => nothing to do
 		if ((!Double.isNaN(universeMin)) && (!Double.isNaN(universeMax))) return;
 		universeMin = parameters[1].getValue() - 9.0 / Math.abs(parameters[0].getValue());
 		universeMax = parameters[1].getValue() + 9.0 / Math.abs(parameters[0].getValue());

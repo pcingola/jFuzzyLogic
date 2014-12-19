@@ -578,7 +578,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	/**
 	 * Set a variable
 	 * @param variableName : Variable's name
-	 * @param value : variable's value to be setted
+	 * @param value : variable's value to be set
 	 * @return this
 	 */
 	public void setVariable(String variableName, double value) {

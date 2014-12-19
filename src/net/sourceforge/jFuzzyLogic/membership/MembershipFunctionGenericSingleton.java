@@ -57,7 +57,7 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 
 	@Override
 	public void estimateUniverse() {
-		// Are universeMin and universeMax already setted? => nothing to do
+		// Are universeMin and universeMax already set? => nothing to do
 		if( (!Double.isNaN(universeMin)) && (!Double.isNaN(universeMax)) ) return;
 		universeMin = x[0].getValue();
 		universeMax = x[x.length - 1].getValue();

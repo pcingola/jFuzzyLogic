@@ -27,7 +27,7 @@ public abstract class MembershipFunction extends FclObject {
 
 	public abstract boolean checkParamters(StringBuffer errors);
 
-	/** Try to guess the universe (if not setted) */
+	/** Try to guess the universe (if not set) */
 	public abstract void estimateUniverse();
 
 	/** Short name */

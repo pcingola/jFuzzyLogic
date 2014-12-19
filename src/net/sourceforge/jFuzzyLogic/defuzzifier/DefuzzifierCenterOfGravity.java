@@ -12,7 +12,7 @@ public class DefuzzifierCenterOfGravity extends DefuzzifierContinuous {
 		super(variable);
 	}
 
-	/** Deffuzification function */
+	/** Defuzification function */
 	@Override
 	public double defuzzify() {
 		double x = min, sum = 0, weightedSum = 0;

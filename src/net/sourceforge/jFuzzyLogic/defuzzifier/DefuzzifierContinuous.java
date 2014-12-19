@@ -96,7 +96,7 @@ public abstract class DefuzzifierContinuous extends Defuzzifier {
 	private void init(double min, double max, int numberOfPoints) {
 		values = new double[numberOfPoints];
 
-		// Go on only if min & max are setted
+		// Go on only if min & max are set
 		if (Double.isNaN(min) || Double.isNaN(max)) return;
 
 		// Check parameters
