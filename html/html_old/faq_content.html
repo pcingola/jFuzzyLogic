@@ -1,0 +1,161 @@
+
+<center><h3> FCL example explained </h3></center>
+
+<p style="font-size: 16pt"> <b> What is jFuzzyLogic?</b></p>
+jFuzzyLogic is a <b>fuzzy logic</b> package written in java (as you might have guessed). It implements Fuzzy control language (FCL) specification (IEC 61131 part 7)<p>
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> How is it licensed? </b></p>
+jFuzzyLogic is open source. It is released mainly as "LGPLv3".<br>
+If you prefer another open source license, just contact me and I'll try to add your preferred license as well (e.g. this is usualy done for companies using jFuzzyLogic in their commercial products).
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> I'm getting an error "class file has wrong version ..." </b></p>
+That means your java version is too old and you should update it.
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> How do I run the program? </b></p>
+
+Running the JAR file will show help:<p>
+
+<table border=0 bgcolor=#dddddd width=100%><tr><td><small><pre>
+java -jar jFuzzyLogic.jar
+
+
+Usage: java -jar jFuzzyLogic.jar [options]
+Options:
+	 file.fcl                      : Load FCL file and show memebership functions (default, when no option is provided).
+	-c file.fcl                    : Compile. Generate C++ code from FCL file (to STDOUT)
+	-e file.fcl in_1 in_2 ... in_n : Evaluate. Load FCL file, assign inputs i_1, i_2, ..., i_n and evaluate.
+	demo                           : Run a demo exmaple (tipper.fcl)
+</pre></small></td></tr></table>
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> How do I run the program demo? </b></p>
+In order to run a simple demo, you can run:<p>
+
+<table border=0 bgcolor=#dddddd width=100%><tr><td><pre>
+java -jar jFuzzyLogic.jar demo
+</pre></td></tr></table>
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> How do I run an FCL file? </b></p>
+Running jFuzzyLogic.jar using an FCL file as argument, will show all the membership functions defined in the FCL file (assuming that the file has no errors, of course):<p>
+
+<table border=0 bgcolor=#dddddd width=100%><tr><td><pre>
+java -jar jFuzzyLogic.jar myfile.fcl
+</pre></td></tr></table>
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> How do I run an FCL file for a given input? </b></p>
+Using the '-e' command line option, followed by the input variables values, will parse the FCL and run the fuzzy system usgin the input values provided.<p>
+E.g.: 
+<table border=0 bgcolor=#dddddd width=100%><tr><td><small><pre>
+java -jar jFuzzyLogic.jar -e tipper.fcl 8.5 9
+
+FUNCITON_BLOCK tipper
+	VAR_INPUT 	      food = 8.500000
+	VAR_INPUT 	   service = 9.000000
+	VAR_OUTPUT	       tip = 24.999984
+	RULE_BLOCK No1
+		Support  	Rule name 	Rule
+		0.000000	1         	IF (service IS poor) OR (food IS rancid) THEN tip IS cheap;
+		0.000000	2         	IF service IS good THEN tip IS average;
+		0.750000	3         	IF (service IS excellent) AND (food IS delicious) THEN tip IS generous;
+
+</pre></small></td></tr></table>
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> How do I get the system's output programatically? </b></p>
+Using Fis.evaluate() you evaluate the FIS and returns void. In order to get any output variable, you can use  fis.getVariable("variableName"). Here is a simple code
+snippet from TestTipper.java example (slightly modified):<p>
+
+<table border=0 bgcolor=#ccfccc width=100%><tr><td><pre>
+public class TestTipper {
+  public static void main(String[] args) throws Exception {
+    FIS fis = FIS.load("fcl/tipper.fcl", true); // Load from 'FCL' file
+    fis.setVariable("service", 3); // Set inputs
+    fis.setVariable("food", 7);
+    fis.evaluate(); // Evaluate
+    System.out.println("Output value:" + fis.getVariable("tip").getValue()); // Show output variable
+  }
+}
+</pre></td></tr></table>
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> How can I know which rules are used ? </b></p>
+  You just need to take a look at the rule's "degree of support" (by default is printed when you print the rule).
+For instance here is a small example (it uses "tipper.fcl" file from the 'fcl' examples directory in the package): <p>
+
+<table border=0 bgcolor=#ccfccc width=100%><tr><td><pre>
+package net.sourceforge.jFuzzyLogic;
+import net.sourceforge.jFuzzyLogic.rule.Rule;
+public class Zzz {
+
+  public static void main(String[] args) throws Exception {
+    FIS fis = FIS.load("fcl/tipper.fcl", true); // Load from 'FCL' file
+    fis.setVariable("service", 3); // Set inputs
+    fis.setVariable("food", 7);
+    fis.evaluate(); // Evaluate
+    System.out.println("Output value:" + fis.getVariable("tip").getValue()); // Show output variable
+
+    // Show each rule (and degree of support)
+    for( Rule r : fis.getFunctionBlock("tipper").getFuzzyRuleBlock("No1").getRules() )
+      System.out.println(r);
+  }
+}
+</pre></td></tr></table>
+
+<p>
+The output is:
+
+<table border=0 bgcolor=#ccfccc width=100%><tr><td><pre>
+Output value:11.701603788948043
+1       (0.25)  if (service IS poor) OR (food IS rancid) then tip IS cheap [weight: 1.0]
+2       (0.6666666666666666)    if service IS good then tip IS average [weight: 1.0]
+3       (0.0)   if (service IS excellent) AND (food IS delicious) then tip IS generous [weight: 1.0]
+</pre></td></tr></table>
+
+which shows the degree of support for each rule (0.25, 0.666666 and 0)
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> How can I programatically add rules with three or more antecedents? </b></p>
+ First of all, I have to tell you that hard-coding the rules is highly discouraged (pretty much like hard-coding values). If you absolutely must do it for
+whatever reason, here is an example on how to do it:<p>
+
+<table border=0 bgcolor=#ccfccc width=100%><tr><td><pre>
+//  RULE 3 : IF ((service IS good) OR (service IS excellent)) AND food IS delicious THEN tip is generous;
+Rule rule3 = new Rule("Rule3", ruleBlock);
+
+RuleTerm term1 = new RuleTerm(service, "good", false);
+RuleTerm term2 = new RuleTerm(service, "excellent", false);
+RuleTerm term3 = new RuleTerm(food, "delicious", false);
+
+RuleExpression antecedentOr = new RuleExpression(term1, term2, new RuleConnectionMethodOrMax());
+RuleExpression antecedentAnd = new RuleExpression(antecedentOr, term3, new RuleConnectionMethodAndMin());
+
+rule3.setAntecedents(antecedentAnd);
+rule3.addConsequent(tip, "generous", false);
+ruleBlock.add(rule3);
+</pre></td></tr></table><p>
+
+Remember that a rule antecedent is just a RuleExpression. A RuleExpression can be either a combination of RuleExpressions or RuleTerms. In your case, you'll have
+to use two RuleExpressions combined by a RuleConnectionMethodAndMin, i.e.:<p>
+
+<table border=0 bgcolor=#ccfccc width=100%><tr><td><pre>
+  IF (var1 IS low) AND ( (var2 IS medium) AND (var3 IS high) ) THEN ....
+</pre></td></tr></table><p>
+
+This is because 'AND' accepts only 2 terms (all RuleExpressions accept
+one only or 2 terms).
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> Where is the source code and where are the FCL examples? </b></p>
+
+The source code and the examples are in the JAR file. You can open it using WinZip (in windows) or 'unzip' command (in Unix and OsX). <p>
+
+<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+<p style="font-size: 16pt"> <b> How do I create an Eclipse project that uses jFuzzyLogic? </b></p>
+<a class="body" href="./videos/jFuzzyProject_example.swf">Here</a> is a video showing a step by step example of a project.<br>
+<b>Note:</b> the java code is from TestTipper.java and the FCL code is from tipper.fcl file.<p>
+

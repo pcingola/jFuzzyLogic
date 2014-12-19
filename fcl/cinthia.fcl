@@ -1,0 +1,36 @@
+/*
+	Example: Changing a GAUSS membership function (fuzzifier) and output defuzzifier
+
+									Pablo Cingolani 
+									pcingola@users.sourceforge.net
+*/
+
+FUNCTION_BLOCK testVariables
+
+VAR_INPUT				// Define input variables
+	meanGood : REAL;
+	stdGood : REAL;
+	inVar : REAL;
+END_VAR
+
+VAR_OUTPUT
+	outVar : REAL;
+END_VAR
+
+FUZZIFY inVar   
+	TERM poor := GAUSS 1 2;
+    TERM good := GAUSS meanGood stdGood ; // Using variables for thIS fuzzifier
+    TERM excellent := GAUSS 9 1;
+END_FUZZIFY
+
+DEFUZZIFY outVar
+    TERM low := FUNCTION (inVar * 3.5);
+	METHOD : COGS;
+END_DEFUZZIFY
+
+RULEBLOCK
+	ACT : MIN;
+	RULE 1 : IF inVar IS poor THEN outVar IS low;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

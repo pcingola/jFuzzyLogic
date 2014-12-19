@@ -1,0 +1,44 @@
+
+\begin{figure}[htb!]
+\centering
+{\bf (a)} Data base\\[2mm]
+\includegraphics[width=.32\textwidth]{figures/corw-bd-1}\hfill
+\includegraphics[width=.32\textwidth]{figures/corw-bd-2}\hfill
+\includegraphics[width=.32\textwidth]{figures/corw-bd-3}\\[3mm]
+\includegraphics[width=.32\textwidth]{figures/corw-bd-4}\hfill
+\includegraphics[width=.32\textwidth]{figures/corw-bd-5}\hfill
+\includegraphics[width=.32\textwidth]{figures/corw-bd-6}\\
+\medskip
+{\bf (b)} Rule base\\[1mm]{%\scriptsize
+\setlength{\tabcolsep}{0.19cm}\setlength{\fboxsep}{0.5mm}
+\begin{tabular}{l|llll|ll|c||l|llll|ll|c}
+\hline %-----------------------------------------------------------------------------------------------------------
+\hfil\it Rule\hfil&\hfil\it RD\hfil&\hfil\it DQ&\hfil\it OR\hfil&\hfil\it V\hfil&\hfil\it LA\hfil&\hfil\it AV\hfil&\it Weight&
+\hfil\it Rule\hfil&\hfil\it RD\hfil&\hfil\it DQ&\hfil\it OR\hfil&\hfil\it V\hfil&\hfil\it LA\hfil&\hfil\it AV\hfil&\it Weight\\
+\hline %----------------------------------------------------------------------------------------------------------
+R$_{ 1}$ & L  & L & LL & L & VHB & VHR & \peson{0.5390}{0.4610} & R$_{22}$ & H  & L & Z  & L & HA  & VHR & \pesob{0.4242}{0.5758}\\[-0.2mm]
+R$_{ 2}$ & L  & L & LL & H & VHB & VHR & \peson{0.5104}{0.4896} & R$_{23}$ & H  & L & LR & H & SA  & MR  & \peson{0.7487}{0.2513}\\[-0.2mm]
+R$_{ 3}$ & L  & L & Z  & L & Z   & MR  & \pesob{0.3336}{0.6664} & R$_{24}$ & H  & L & HR & L & HA  & VHL & \pesob{0.4529}{0.5471}\\[-0.2mm]
+R$_{ 4}$ & L  & L & Z  & H & HB  & SR  & \pesob{0.4565}{0.5435} & R$_{25}$ & H  & L & HR & H & SA  & HL  & \pesob{0.4405}{0.5595}\\[-0.2mm]
+R$_{ 5}$ & L  & H & LL & L & MA  & HR  & \pesob{0.2724}{0.7276} & R$_{26}$ & H  & H & HL & L & VHB & VHR & \pesob{0.0001}{0.9999}\\[-0.2mm]
+R$_{ 6}$ & L  & H & Z  & L & MA  & HL  & \peson{0.5155}{0.4845} & R$_{27}$ & H  & H & HL & H & VHB & VHR & \pesob{0.0437}{0.9563}\\[-0.2mm]
+R$_{ 7}$ & L  & H & Z  & H & HB  & ML  & \pesob{0.4977}{0.5023} & R$_{28}$ & H  & H & LL & L & HA  & VHR & \pesob{0.0494}{0.9506}\\[-0.2mm]
+R$_{ 8}$ & L  & H & LR & H & VHB & VHL & \pesob{0.2637}{0.7363} & R$_{29}$ & H  & H & Z  & L & HA  & VHR & \peson{0.5471}{0.4529}\\[-0.2mm]
+R$_{ 9}$ & L  & H & HR & L & VHB & VHL & \pesob{0.0559}{0.9441} & R$_{30}$ & H  & H & Z  & H & SA  & VHR & \peson{0.7790}{0.2210}\\[-0.2mm]
+R$_{10}$ & M  & L & Z  & H & SA  & HR  & \peson{0.6598}{0.3402} & R$_{31}$ & H  & H & LR & L & HA  & MR  & \peson{0.6388}{0.3612}\\[-0.2mm]
+R$_{11}$ & M  & L & LR & H & Z   & VHL & \peson{0.5756}{0.4244} & R$_{32}$ & H  & H & LR & H & SA  & MR  & \peson{0.7878}{0.2122}\\[-0.2mm]
+R$_{12}$ & M  & L & HR & L & SA  & HL  & \pesob{0.4528}{0.5472} & R$_{33}$ & H  & H & HR & L & HA  & HL  & \pesob{0.2122}{0.7878}\\[-0.2mm]
+R$_{13}$ & M  & L & HR & H & MB  & VHL & \peson{0.5631}{0.4369} & R$_{34}$ & H  & H & HR & H & SA  & VHL & \peson{0.6141}{0.3859}\\[-0.2mm]
+R$_{14}$ & M  & H & HL & L & Z   & VHR & \peson{0.8230}{0.1770} & R$_{35}$ & VH & L & LR & L & HA  & VHR & \pesob{0.4470}{0.5530}\\[-0.2mm]
+R$_{15}$ & M  & H & HL & H & VHB & VHR & \peson{0.5474}{0.4526} & R$_{36}$ & VH & L & HR & L & HA  & HR  & \peson{0.5777}{0.4223}\\[-0.2mm]
+R$_{16}$ & M  & H & LL & H & SA  & VHR & \peson{0.7452}{0.2548} & R$_{37}$ & VH & L & HR & H & SA  & HR  & \peson{0.6146}{0.3854}\\[-0.2mm]
+R$_{17}$ & M  & H & Z  & L & HA  & Z   & \peson{0.7916}{0.2084} & R$_{38}$ & VH & H & LL & L & HA  & VHR & \peson{0.9064}{0.0936}\\[-0.2mm]
+R$_{18}$ & M  & H & LR & L & HA  & VHL & \pesob{0.3758}{0.6242} & R$_{39}$ & VH & H & LR & L & HA  & VHR & \pesob{0.2675}{0.7325}\\[-0.2mm]
+R$_{19}$ & M  & H & LR & H & SA  & VHL & \peson{0.6221}{0.3779} & R$_{40}$ & VH & H & LR & H & SA  & VHR & \pesob{0.4369}{0.5631}\\[-0.2mm]
+R$_{20}$ & M  & H & HR & L & Z   & VHL & \pesob{0.3069}{0.6931} & R$_{41}$ & VH & H & HR & L & HA  & HR  & \pesob{0.4854}{0.5146}\\[-0.2mm]
+R$_{21}$ & M  & H & HR & H & VHB & VHL & \pesob{0.2420}{0.7580} &          &    &   &    &   &     &     & \\[-0.2mm]
+\hline %-----------------------------------------------------------------------------------------------------------
+\end{tabular}
+} %footnotesize
+\caption{Knowledge base generated}\label{BC_WCOR}
+\end{figure}

@@ -1,0 +1,185 @@
+<header>
+	<title> jFuzzyLogic: Open Source Fuzzy Logic (Java) </title>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="all">
+		body { background: url(./images/bg_gradient.jpg) repeat-x; }
+	</style>    
+</header>
+
+<div align="center">
+	<div id="wrap">
+		<div id="header">
+			<div class="logo">
+					<a href="http://jfuzzylogic.sourceforge.net/">jFuzzyLogic</a>
+					<p style="font-size: 12pt" align=right><b>Open Source Fuzzy Logic library and FCL language implementation</b></p>
+			</div>
+		</div>
+		<div id="menu">
+			<ul>
+			<li><a href="http://jfuzzylogic.sourceforge.net/">Home</a></li>
+			<li class="page_item"><a href="example_java.html" title="Documentation">Examples</a></li>
+			<li class="page_item"><a href="classes.html" title="Documentation">Documentation</a></li>
+			<li class="page_item"><a href="faq.html" title="FAQ">FAQ</a></li>
+			<li class="page_item"><a href="http://sourceforge.net/projects/jfuzzylogic/files/jfuzzylogic/jFuzzyLogic_v3.0.jar/download" title="Download">Download</a></li>
+			<li class="page_item"><a href="about.html" title="About">About</a></li>
+			</ul>
+		</div>
+
+
+	<div id="content"> 
+		<div id="right">  
+			<div class="ltop"></div> 
+			<div class="lmid">
+				<b>
+				<center><h2>jFuzzyLogic</h2></center>
+				<a href="http://sourceforge.net/projects/jfuzzylogic">Download</a><br>
+				<a href="plugin.html">Eclipse plugin</a><br>
+				<center>Examples</center>
+				<a href=example_java.html>Java example</a><br>
+				<a href=java.html>Java detailed example</a><br>
+				<a href=example_fcl.html>FCL example</a><br>
+				<a href=fcl.html>FCL detailed example</a><br>
+				<a href=example_parametric_optimization.html>Optimization example</a><br>
+				<center> Documentation </center>
+				<a href=faq.html>Faq</a><br>
+				<a href=classes.html>Classes</a><br>
+				<a href=membership.html>Membership functions</a><br>
+				<a href="../doc/iec_1131_7_cd1.pdf">FCL (pdf)</a><br>
+				<a href="about.html">About</a><br>
+				</b>
+			</div> 
+			<div class="lbot"></div> 
+
+		</div>
+
+			<div class="entry">
+
+
+<center><h3> Java Classes </h3></center>
+
+How this package works and how classes are organized is briefly explained here.<p>
+
+	<ul>
+		<li> A fuzzy inference system (<i><b>FIS</b></i>) is composed by one or more <i><b>FuncionBlock</b></i> class, like in FCL. E.g.:
+<table border=0 bgcolor=#ccfccc><tr><td> <pre>
+FUNCTION_BLOCK functionBlock1
+...
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK functionBlock2
+...
+END_FUNCTION_BLOCK
+</pre> </td></tr></table><p>
+
+		<li> Each <i><b>FuncionBlock</b></i> is composed by one or more <i><b>RuleBlock</b></i> class and some <i><b>Variables</b></i>, as well as <i><b>Fuzzyfiers</b></i> and <i><b>Defuzzifiers</b></i>. Again, like in FCL, e.g.:
+<table border=0 bgcolor=#ccfccc><tr><td> <pre>
+FUNCTION_BLOCK functionBlockName
+VAR_INPUT
+...
+END_VAR
+
+VAR_OUTPUT
+...
+END_VAR
+
+FUZZIFY inputVariable
+...
+END_FUZZIFY
+
+DEFUZZIFY outputVariable
+...
+END_DEFUZZIFY
+
+RULEBLOCK No1
+...
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+</pre> </td></tr></table><p>
+
+		<li> Each <i><b>Rule</b></i> class is composed by an antecedent (<b>IF</b> part) and a consequent (<b>THEN</b> part), e.g.:<br>
+			<table border=0 bgcolor=#ccfccc><tr><td> RULE 1 : IF service IS poor OR food IS rancid THEN tip IS cheap;<br> </td></tr></table>
+				<ul>
+					<li> Antecedent: <i>"service IS poor OR food IS rancid"</i>
+					<li> Consequent: <i>"tip IS cheap"</i>. Note that there may be more than one consequent.
+					<li> A rule implication (or activation) method can be defined (althought FCL does not allow different implication method for each rule, it can be defined at RULEBLOCK level).
+				e.g.: <table border=0 bgcolor=#ccfccc><tr><td> ACT : MIN;            // Use 'min' activation method </td></tr></table>
+				</ul>
+			<p>
+		<li> Consequents are a 'collection' of <i><b>RuleTerms</b></i> classes (e.g. <i>"tip IS cheap"</i> is a RuleTerm)
+			<p>
+		<li> An Antecedent is represented by a <i><b>RuleExpression</b></i> class. A <i><b>RuleExpression</b></i> is just two terms connected by one <i><b>RuleConnectionMethod</b></i> (rule conectors are 'AND', 'OR' and 'NOT')<br>
+				e.g.: <table border=0 bgcolor=#ccfccc><tr><td> service IS poor OR food IS rancid <br> </td></tr></table>
+				<ul>
+					<li> First term: <i>"service IS poor"</i>
+					<li> Second term: <i>"food IS rancid"</i>
+					<li> RuleConnectionMethod is <i>'OR'</i>
+				</ul>
+				<b>Note:</b> Each term can be either a <i><b>RuleTerm</b></i> or a <i><b>RuleExpression</b></i>, this definition is recursive, so arbitrarly complex expressions can be created.
+			<p>
+		<li> Each <i><b>RuleTerm</b></i> is defined by a <i><b>Variable</b></i> and a <i><b>LinguisticTermName</b></i>.
+				e.g.: <table border=0 bgcolor=#ccfccc><tr><td> service IS poor </td></tr></table>
+				<ul>
+					<li> <i><b>Variable</b></i>: service
+					<li> <i><b>LinguisticTermName</b></i>: 'poor'
+					<li> Connector: 'IS'
+				</ul>
+				It can also be 'negated' e.g.: <table border=0 bgcolor=#ccfccc><tr><td> service IS NOT excellent<br> </td></tr></table>
+			<p>
+		<li> Each <i><b>Variable</b></i> has a <i><b>name</b></i> and some <i><b>LinguisticTerms</b></i>
+				e.g.: For an input variable: <table border=0 bgcolor=#ccfccc><tr><td><pre>
+FUZZIFY service            // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+    TERM poor := (0, 1) (4, 0) ; 
+    TERM good := (1, 0) (4,1) (6,1) (9,0);
+    TERM excellent := (6, 0) (9, 1);
+END_FUZZIFY
+</pre></td></tr></table><p>
+
+				e.g.: For an output variable: <table border=0 bgcolor=#ccfccc><tr><td><pre>
+DEFUZZIFY tip            // Defzzzify output variable 'tip' : {'cheap', 'average', 'generous' }
+    TERM cheap := (0,0) (5,1) (10,0);
+    TERM average := (10,0) (15,1) (20,0);
+    TERM generous := (20,0) (25,1) (30,0);
+    METHOD : COG;        // Use 'Center Of Gravity' defuzzification method
+    DEFAULT := 0;        // Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+</pre></td></tr></table>
+			As you can see, for an output variable you need to specify an accumulation (or <i><b>RuleAgrregationMethod</b></i>) and a <i><b>Defuzzifier</b></i>.
+				e.g.: <table border=0 bgcolor=#ccfccc><tr><td><pre>
+    ACCU : MAX;            // Use 'max' accumulation method
+    METHOD : COG;        // Use 'Center Of Gravity' defuzzification method
+</pre></td></tr></table>
+	</ul>
+</td></tr></table>
+
+
+
+				<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+					<center><b>Author: <a class="body" href="http://www.mcb.mcgill.ca/~pcingola/">Pablo Cingolani</a> (pcingola@users.sourceforge.net</a>)</b></center>
+			</div>
+		</div>
+	</div>
+</div>
+
+<center>
+<font color=ffffff>
+Key words (for search engines): <br>
+	Fuzzy logic <br>
+	Fuzzy logic software <br>
+	Fuzzy logic package <br>
+	Fuzzy logic library <br>
+	Fuzzy logic sourceforge sf.net <br>
+	Open source <br>
+	GNU <br>
+	GPL LGPL <br>
+	java <br>
+	Windows Linux OSX <br>
+	FCL <br>
+	IEC 1131 <br>
+	IEC 61131 <br>
+	IEC 61131 part 7 <br>
+	IEC 61131-7 <br>
+	<a href="http://en.wikipedia.org/wiki/Fuzzy_logic">Fuzzy logic Wikipedia</a> <br>
+</font>
+</center>

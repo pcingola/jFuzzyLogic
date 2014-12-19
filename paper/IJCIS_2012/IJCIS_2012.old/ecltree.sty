@@ -1,0 +1,150 @@
+% ecltree.sty (C) hideki isozaki Nov. 12, 1990
+% FMi fix: use \protected@edef instead of \edef (2002/11)
+%
+% It may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX
+% version 1999/12/01 or later.
+% 
+% In this style file, I intentionally didn't use ordinary 
+% terms such as \tree, \subtree, \leaf etc.
+% because I will use different tree macros in one file.
+%
+% This macro needs epic.sty
+% Confirm your epic.sty does not contain \makeatother at EOF.
+%
+
+\makeatletter
+\typeout{ECL Tree graph macro by isozaki, Nov. 12, 1990 + 2e FIX}
+
+% Ignore End Of Line
+
+\endlinechar=-1\relax
+
+% Dimensions and Boxes : See below
+
+\newdimen\@BundleWidth
+\newdimen\@BundleDepth
+\newdimen\@BundleHeight
+\newbox\@NodeBox
+\newdimen\GapDepth
+\GapDepth=15\p@
+\newdimen\GapWidth
+\GapWidth=4\p@
+\newdimen\EdgeLabelSep
+\EdgeLabelSep=7\p@
+
+%
+%          ---------------                          -
+%          | \@TopLabel  |                          |
+%          ---------------         -                |
+%     (\@SupportX,\@SupportY)      |                |
+%              /   \               |                |
+%             /     \              |                |
+%            /       \             | \GapDepth      | \@BundleHeight
+%           /         \            |                |
+%          /           \           |                |
+%(\@HandleX,0)          \          |                |
+% --------------   --------------  -                -
+% | \@NodeBox  |   | \@NodeBox  |  | \@BundleDepth  
+% |            |   --------------  |                
+% --------------                   -                
+%              |---|
+%            \GapWidth
+%
+% |-----------------------------|
+%           \@PicWidth
+
+%
+% The main environment to make a (sub)tree: bundle
+% \begin{bundle} \chunk_1 \chunk_2 ... \chunk_n \end{bundle}
+%
+\def\bundle#1{\leavevmode\hbox\bgroup
+	\endlinechar=-1
+	\def\@TopLabel{#1}
+	\def\@HandleList{}
+	\def\@EdgeLabels{}
+	\protected@edef\@EdgeLabelsY{\expandafter\@RemoveDim\the\EdgeLabelSep}
+	\unitlength=\p@
+	\@BundleWidth=\z@
+	\@BundleHeight=\z@
+	\@BundleDepth=\z@
+	\ignorespaces}
+
+\def\endbundle{
+	\advance\@BundleWidth by -\GapWidth
+	\hskip-\GapWidth
+	\setbox\@NodeBox=\hbox{\vbox{\null\@TopLabel}}
+	\advance\@BundleHeight by \GapDepth
+	\advance\@BundleHeight by \ht\@NodeBox
+	\advance\@BundleHeight by \dp\@NodeBox
+	\vrule\@height\@BundleHeight\@width\z@\@depth\@BundleDepth
+	\protected@edef\@SupportY{\expandafter\@RemoveDim\the\GapDepth}
+	\protected@edef\@SupportX{\expandafter\@RemoveDim\the\@BundleWidth}
+	\setbox\@NodeBox=\hbox to \z@{\hss\@TopLabel\hss}
+	\hskip-\@BundleWidth
+	\protected@edef\@EdgeLabels{\@EdgeLabels{}}
+	\protected@edef\@PicWidth{\expandafter\@RemoveDim\the\@BundleWidth}
+	\@BundleWidth=0.5\@BundleWidth
+	\protected@edef\@SupportX{\expandafter\@RemoveDim\the\@BundleWidth}
+	\@DrawBundle}
+
+
+\def\@DrawBundle{
+	\begin{picture}(\@PicWidth,0)(0,0)
+	\protected@edef\@HandleList{\expandafter\@cdr\@HandleList\@nil}
+	\@for\@HandleX:=\@HandleList\do{
+		\@DrawLine(\@SupportX,\@SupportY)(\@HandleX,0)
+		\put(\@HandleX,\@EdgeLabelsY){
+			\makebox(0,0){\expandafter\@car\@EdgeLabels\@nil}}
+		\protected@edef\@EdgeLabels{\expandafter\@cdr\@EdgeLabels\@nil}}
+	\put(\@SupportX,\@SupportY){\raise\dp\@NodeBox\box\@NodeBox}
+	\end{picture}\egroup}
+
+
+%
+%  \chunk[#1]{#2} means a leaf or a subtree.
+%   #1  ... Label for the edge which connects the leaf or the subtree
+%           with its parent node. (optional argument)
+%   #2  ... Label for the leaf or the subtree 
+%
+
+\def\chunk{\@ifnextchar[{\@chunk}{\@chunk[]}}
+
+\def\@chunk[#1]#2{\protected@edef\@EdgeLabels{\@EdgeLabels{#1}}
+	\setbox\@NodeBox=\vtop{\null\hbox{#2}}
+	\advance\@BundleWidth by 0.5\wd\@NodeBox
+	\ifnum\@BundleDepth<\dp\@NodeBox
+		\@BundleDepth=\dp\@NodeBox\fi
+	\protected@edef\@HandleList{\@HandleList,
+		\expandafter\@RemoveDim\the\@BundleWidth}
+	\advance\@BundleWidth by 0.5\wd\@NodeBox
+	\advance\@BundleWidth by \GapWidth
+	\box\@NodeBox\hskip\GapWidth
+	\ignorespaces}
+
+%  To change line attribute
+%  ex.
+%  \drawwith{\path}        ... efficient solid line defined by eepic.sty
+%  \drawwith{\dashline{2}} 
+
+\def\drawwith#1{\def\@DrawLine{#1}}
+
+% Default
+\drawwith{\drawline}
+
+%  Ordinary catcode for p and t is 11
+%  Application of \the to dimen generates text such as 1.0pt.
+%  This pt's catcode is 12.
+
+{\catcode`\p=12 \catcode`\t=12
+\gdef\@RemoveDim#1pt{#1}}
+
+% Restore original End Of Line
+
+\endlinechar=13\relax
+
+\endinput

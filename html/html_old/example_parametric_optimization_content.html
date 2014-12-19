@@ -1,0 +1,65 @@
+
+<center><h3> Optimization example </h3></center>
+
+Java code to optimize fuzzy sets' parameters and fuzzy rule's weights<p>
+
+<table border=0 bgcolor=#ccfccc><tr><td>
+<pre>
+//---
+// Load FIS (Fuzzy Inference System)
+//---
+FIS fis = FIS.load("fcl/qualify.fcl");
+RuleBlock ruleBlock = fis.getFunctionBlock().getRuleBlock();
+
+//---
+// Create a list of parameter to optimize
+//---
+ArrayList<Parameter> parameterList = new ArrayList<Parameter>();
+
+// Add variables. 
+// Note: Fuzzy sets' parameters for these 
+// variables will be optimized
+Parameter.parameterListAddVariable(parameterList
+                                    , fis.getVariable("scoring"));
+Parameter.parameterListAddVariable(parameterList
+                                    , fis.getVariable("credLimMul"));
+
+// Add every rule's weight
+for( Rule rule = ruleBlock ) 
+    Parameter.parameterListAddRule(parameterList, rule);
+
+//---
+// Create an error function to be 
+// optimzed (i.e. minimized)
+//---
+ErrorFunctionQualify errorFunction = new ErrorFunctionQualify();
+
+//---
+// Optimize (using 'Delta jump optimization')
+//---
+OptimizationDeltaJump optimizationDeltaJump = 
+        new OptimizationDeltaJump(ruleBlock
+                , errorFunction, parameterList);
+
+// Number optimization of iterations
+optimizationDeltaJump.setMaxIterations(20);
+
+optimizationDeltaJump.optimize(true);
+</pre>
+</td></tr></table>
+
+<p>
+The error funcion (in this particular case, ErrorFunctionQualify) can be just any error function, the structure for the code should be like this:
+
+<table border=0 bgcolor=#ccfccc><tr><td>
+<pre>
+public class ErrorFunctionQualify extends ErrorFunction {
+    public double evaluate(RuleBlock ruleBlock) {
+        double error;
+        // Caculate your desired error here...
+        return error;
+    }
+}    
+</pre>
+</td></tr></table>
+        

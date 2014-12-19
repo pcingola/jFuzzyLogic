@@ -1,0 +1,80 @@
+FUNCTION_BLOCK MamdaniQoSFewRules
+
+VAR_INPUT
+	commitment : REAL;
+	clarity : REAL;
+	influence : REAL;
+END_VAR
+
+VAR_OUTPUT
+	service_quality : REAL;
+END_VAR
+
+FUZZIFY commitment
+	TERM nothing := GAUSS 0 1;
+	TERM minimal := GAUSS 1 1;
+	TERM partially := GAUSS 2 1;
+	TERM satISfactory := GAUSS 3 1;
+	TERM largely := GAUSS 4 1;
+	TERM fully := GAUSS 5 1;
+END_FUZZIFY
+
+FUZZIFY clarity
+	TERM low := GAUSS 0 1;
+	TERM medium := GAUSS 2.5 1;
+	TERM high:= GAUSS 5 1;
+END_FUZZIFY
+
+FUZZIFY influence
+	TERM low := GAUSS 0 1;
+	TERM medium := GAUSS 2.5 1;
+	TERM high:= GAUSS 5 1;
+END_FUZZIFY
+
+DEFUZZIFY service_quality
+	TERM inadequate := GAUSS 0 1;
+	TERM sufficient := GAUSS 2.5 1;
+	TERM excellent := GAUSS 5 1;
+	METHOD : COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	ACCU : MAX;
+	AND : MIN;
+	
+	RULE 1 : 	IF commitment IS fully 			AND influence IS high 							THEN service_quality IS excellent;
+	RULE 2 : 	IF commitment IS fully 			AND influence IS medium 						THEN service_quality IS excellent WITH 0.8;
+	RULE 3 : 	IF commitment IS fully 			AND influence IS low 							THEN service_quality IS excellent WITH 0.6;
+	RULE 4 : 	IF commitment IS largely 		AND influence IS high 	AND clarity IS NOT high THEN service_quality IS excellent;
+	RULE 5 : 	IF commitment IS largely 		AND influence IS medium AND clarity IS NOT high THEN service_quality IS excellent WITH 0.66;
+	RULE 6 : 	IF commitment IS largely 		AND influence IS low 	AND clarity IS NOT high THEN service_quality IS excellent WITH 0.33;
+	RULE 7 : 	IF commitment IS largely 		AND influence IS high 	AND clarity IS high 	THEN service_quality IS sufficient WITH 0.66;
+	RULE 8 : 	IF commitment IS largely 		AND influence IS medium AND clarity IS high 	THEN service_quality IS sufficient WITH 0.33;
+	RULE 9 : 	IF commitment IS largely 		AND influence IS low 	AND clarity IS high 	THEN service_quality IS sufficient WITH 0.1;
+	RULE 10 : 	IF commitment IS satISfactory 	AND influence IS high 							THEN service_quality IS sufficient;
+	RULE 11 : 	IF commitment IS satISfactory 	AND influence IS medium 						THEN service_quality IS sufficient WITH 0.66;
+	RULE 12 : 	IF commitment IS satISfactory 	AND influence IS low 							THEN service_quality IS sufficient WITH 0.33;
+	RULE 13 : 	IF commitment IS satISfactory 	AND influence IS high 	AND clarity IS high 	THEN service_quality IS sufficient;
+	RULE 14 : 	IF commitment IS satISfactory 	AND influence IS medium AND clarity IS high 	THEN service_quality IS sufficient WITH 0.66;
+	RULE 15 : 	IF commitment IS satISfactory 	AND influence IS low 	AND clarity IS high 	THEN service_quality IS sufficient WITH 0.33;
+	RULE 16 : 	IF commitment IS satISfactory 	AND influence IS high 	AND clarity IS NOT high THEN service_quality IS sufficient WITH 0.5;
+	RULE 17 : 	IF commitment IS satISfactory 	AND influence IS medium AND clarity IS NOT high THEN service_quality IS sufficient WITH 0.3;
+	RULE 18 : 	IF commitment IS satISfactory 	AND influence IS low 	AND clarity IS NOT high THEN service_quality IS sufficient WITH 0.1;
+	RULE 19 : 	IF commitment IS partially 		AND influence IS high 	AND clarity IS high		THEN service_quality IS sufficient;
+	RULE 20 : 	IF commitment IS partially 		AND influence IS medium	AND clarity IS high		THEN service_quality IS sufficient WITH 0.66;
+	RULE 21 : 	IF commitment IS partially 		AND influence IS low	AND clarity IS high		THEN service_quality IS sufficient WITH 0.33;
+	RULE 22 : 	IF commitment IS partially 		AND influence IS high	AND clarity IS NOT high	THEN service_quality IS sufficient WITH 0.4;
+	RULE 23 : 	IF commitment IS partially 		AND influence IS medium	AND clarity IS NOT high	THEN service_quality IS sufficient WITH 0.25;
+	RULE 24 : 	IF commitment IS partially 		AND influence IS low	AND clarity IS NOT high	THEN service_quality IS sufficient WITH 0.1;
+	RULE 25 : 	IF commitment IS minimal 		AND influence IS high 	AND clarity IS high		THEN service_quality IS inadequate WITH 0.5;
+	RULE 26 : 	IF commitment IS minimal 		AND influence IS medium	AND clarity IS high		THEN service_quality IS inadequate WITH 0.3;
+	RULE 27 : 	IF commitment IS minimal 		AND influence IS low	AND clarity IS high		THEN service_quality IS inadequate WITH 0.1;
+	RULE 28 : 	IF commitment IS minimal 		AND influence IS high	AND clarity IS NOT high	THEN service_quality IS inadequate WITH 0.4;
+	RULE 29 : 	IF commitment IS minimal 		AND influence IS medium	AND clarity IS NOT high	THEN service_quality IS inadequate WITH 0.2;
+	RULE 30 : 	IF commitment IS minimal 		AND influence IS low	AND clarity IS NOT high	THEN service_quality IS inadequate WITH 0.05;
+	RULE 31 : 	IF commitment IS nothing 														THEN service_quality IS inadequate;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+

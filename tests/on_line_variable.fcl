@@ -1,0 +1,25 @@
+/*
+	Example: Variable membership functions
+	Membership function varies using input variables 'inputZeroMin' and 'inputZeroMax'
+
+									Pablo Cingolani 
+									pcingola@users.sourceforge.net
+*/
+
+FUNCTION_BLOCK testVariables
+
+VAR_INPUT				// Define input variables
+	inputZeroMin : REAL;
+	inputZeroMed : REAL;
+	inputZeroMax : REAL;
+	inVar : REAL;
+END_VAR
+
+FUZZIFY inVar
+    TERM poor := (0, 1) (2.50, 1) (inputZeroMin,0); 
+    TERM good := (inputZeroMin, 0) (inputZeroMed, 1) (inputZeroMax,0);
+    TERM excellent := (inputZeroMax, 0) (7.50, 1) (10.0, 1);
+END_FUZZIFY
+
+END_FUNCTION_BLOCK
+

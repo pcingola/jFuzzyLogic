@@ -1,0 +1,113 @@
+  Dear Pablo.
+
+  Next December 1st is the deadline of the Special Issue. We should work strong this month in order to finish the paper.   
+
+  I have modified our conference contribution in order to use the journal styles (I have attached the zip file). These styles are unfriendly and I have spoken a lot of time with this task. Moreover, I have removed a lot of typos that I have found.
+
+  Well, I send you the scheme for this paper/extension. The main idea is to show more and better jFuzzyLogic reusing the material of our conference contribution and adding new material (for instance, optimization API, etc). I have detailed a lot the content for each section. I think you can write/extend section 3 and 4 and I can write/extend the rest of the paper (and I have modified our contribution in order to use the journal styles and I have written the scheme). 
+  
+  Is that Ok?
+
+
+  All the best,
+  Jesus
+
+
+Abstract. We should rewrite the abstract for this paper
+1. Introduction. We should rewrite the introduction for this paper
+2. Preliminaries
+  We should add a new section with preliminaries:
+    a) A new subsection about FLC. This subsection will not be added if we expend the number of pages (the limit is 15 pages) with the rest of the paper. If we can add this subsection, subsection 2.c will move to a new Section (not subsection).
+    b) IEC-61131 languages. In this subsection we should indice the advantage of the standars and then we should introduce IEC-61131 and FCL. This subsection will extend the introduction of Section 3 and subsection 3.A of our conference contribution. This section will not include the corresponding Java code to run the FCL
+code of the example, we should show this information in the case study.
+    c) Comparison of fuzzy logic software. This section will be extend with other softwares. 
+
+3. jFuzzyLogic Implementation
+  In this section we should sell more and better jFuzzyLogic, adding subsections in order to introduce better the different components of jFuzzyLogic. In our conference contribution we explain how we can write the FCL file, but we can find the FCL syntax in internet (for instance, http://www.fuzzytech.com/binaries/ieccd1.pdf) and this syntax is not jFuzzyLogic. jFuzzyLogic is a library and we should speak about this library, describing its components.
+
+  To do that, we will use this scheme:
+
+  Section 3.
+  At the begging, we say what is jFuzzyLogic (is an open source library....), adding the URL where we can download jFuzzyLogic and an image of the webpage. Then we speak about ANTLR, AST, etc but we don't speak about FIS because this comment will be moved to subsection 2.b. This part consist of the bellow 2 paragraphs modified /extended with this idea:
+
+  jFuzzyLogic is fully implemented in Java, thus the
+package is platform independent. ANTLR17 was
+used to generate Java code for a lexer and parser
+based on our FCL grammar definition. This generated
+parser uses a left to right leftmost derivation
+recursive strategy, formally know as “LL(*)”.
+
+Using the lexer and parser created by ANTLR
+we are able to parse FCL files by creating an Abstract
+Syntax Tree (AST), a well known structure
+in compiler design. The AST is converted into
+an Interpreter Syntax Tree (IST), which is capable
+of performing the required computations. This
+means that the IST can represent the grammar, like
+and AST, but it also capable of performing calculations.
+The parsed FIS can be evaluated by recursively
+transversing the IST.
+
+  Then, we speak about how this section is organizate. For instance: In the following subsections we describe in detail the main features, etc...
+
+
+  Subsection 3.1. Main features of jFuzzyLogic.
+  This subsection is more or less subsection 3.C in our conference contribution, but now we should speak briefly of the object tree  and API because we will add two subsections for the object tree and API (Subsection 3.4 and 3.5) and we should speak about other features of jFuzzyLogic. You can read this section in KEEL paper in order to obtain ideas for adding features in this subsection.
+
+  Subsection 3.2. Membership functions. We need to extend those paragraphs.
+
+Only two membership functions are defined in
+the IEC standard: singleton and piece-wise linear.
+jFuzzyLogic also implements other commonly
+used membership functions: trapezoidal, sigmoidal,
+gaussian, generalized bell, difference of sigmoidal,
+and cosine. Furthermore, jFuzzyLogic allows to
+build arbitrary membership functions by combining
+mathematical functions.
+
+Because of the flexibility in defining membership
+functions, we discretize them at a number of points.
+The number of points, by default one thousand, can
+be adjusted according to the precision-speed tradeoff
+required for a particular application. Inference
+is performed by evaluating membership functions at
+these discretization points. In order to perform a discretization,
+the “universe” for each variable, has to
+be estimated. The universe is defined as the range
+where the variable has non-neglectable value. For
+each variable, each membership function and each
+term is taken into account when calculating a universe. Once all rules have been analyzed, the accumulation
+for each variable is complete.
+
+  In those paragraphs is the first time where we speak about jFuzzyLogic in our conference contribution. This is the idea what I want to say you.
+
+
+  Subsection 3.3. Aggregation, Activation, Accumulation, defuzzification methods.
+  Here, we should speak about the Aggregation, Activation, Accumulation and defuzzification methods what we can use in jFuzzyLogic. Moreover, we should remark if you have added more methods to jFuzzyLogic (more than the standar) and how the user can use them.
+  On the other hand, in this susection we should also speak about excecution order, etc
+
+
+  Subsection 3.4. jFuzzyLogic object tree
+  This section introduce the objects available in jFuzzyLogic and how we can add new object to this tree. For instance, can we use a template in order to add new object?, etc.
+
+  Subsection 3.5. Optimization API
+  This subsection is the queen of the crown in this Section. we can speak a lot of this API in this subsection, with figures, etc. We can describe this API, introducing:
+  - How we can modify rules, etc
+  - What tuning methods you can use and how...
+  - etc
+
+  Maybe, we can add other subsections. We can speak about this point. For instance, in these subsection we should explain details as:
+
+    1- Can jFuzzyLogic manage hierarchical controllers? How is one block linked to another one?    
+
+    2- Optimization. Is the specification of the data used for optimizing the membership functions included in the FLC model?
+
+
+
+4. A case study
+  This section should be extended. I will prepare another FLC (in a FCL file) and we will show an example of java API to execute these FCL codes. I have added an example of java API to execute the FCL codes for WCOR in the file attached.
+  Moreover, we should add a example using the optimization API (with figures, etc) with the FLC obtained by WCOR (for example). This part should be very nice because the API is a value very important for jFuzzyLogic.
+
+
+5. Conclusions
+  We should add some commets that people say to me in the conference. And, we should add some ideas/comments of the referees because some of them can be review our paper again and they want to see that we have consider their comments.

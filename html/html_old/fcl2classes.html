@@ -1,0 +1,26 @@
+
+<center><h3> jFuzzyLogic: FCL &lt;-&gt; Classes </h3></center>
+
+<table><tr><td valign=top bgcolor=#f0f0f0>
+		<center><b>Class diagram</b></center><br>
+		<img src="rule.png">
+</td><td>
+		<table align=center>
+			<tr bgcolor=#bbbbbb><td><b> FCL </b></td> <td><b> Java class / method </b></td> <td><b>Comments</b></td> </tr>
+			<tr bgcolor=#eeeeee><td> FUNCTION_BLOCK </td> <td> FuzzyRuleBlock </td> <td>&nbsp;</td> </tr>
+			<tr bgcolor=#dddddd><td> RULE </td> <td> FuzzyRule </td> <td>&nbsp;</td> </tr>
+			<tr bgcolor=#eeeeee><td> RULE: <b>IF</b> ... </td> <td> FuzzyRuleExpression: FuzzyRule.getAntecedents() </td> <td>&nbsp;</td> </tr>
+			<tr bgcolor=#dddddd><td> RULE: <b>THEN</b> ... </td> <td> LinkedList&lt;FuzzyRuleTerm&gt; FuzzyRule.getConsequents() </td> <td>&nbsp;</td> </tr>
+			<tr bgcolor=#eeeeee><td> RULE: <b>WITH</b> ... </td> <td> double FuzzyRule.getWeight() </td> <td>&nbsp;</td> </tr>
+			<tr bgcolor=#dddddd><td> RULEBLOCK ... <b>ACT</b> :</td> <td> RuleImplicationMethod </td> <td>&nbsp;</td> </tr>
+			<tr bgcolor=#eeeeee><td> RULEBLOCK ... <b>AND:</b> / <b>OR:</b></td> <td> RuleConnectionMethod </td> <td>&nbsp;</td> </tr>
+			<tr bgcolor=#dddddd><td> VAR_INPUT ... END_VAR_INPUT</td> <td> Variable </td> <td> We make no distinction between a input and an output Variable</td></tr>
+			<tr bgcolor=#eeeeee><td> VAR_OUTPUT ... END_VAR_OUTPUT</td> <td> Variable </td> <td> Output variables must have a Defuzzifier and a RuleAgrregationMethod</td></tr>
+			<tr bgcolor=#dddddd><td> FUZZIFY ... <b>TERM</b> </td> <td> LinguisticTerm </td>  <td>&nbsp;</td> </tr>
+			<tr bgcolor=#eeeeee><td> DEFUZZIFY ... <b>TERM</b> </td> <td> LinguisticTerm </td>  <td>&nbsp;</td> </tr>
+			<tr bgcolor=#dddddd><td> DEFUZZIFY ... <b>ACCU</b> </td> <td> RuleAccumulationMethod </td>  <td>&nbsp;</td> </tr>
+			<tr bgcolor=#eeeeee><td> FUZZIFY ... TERM <b>:= ...</b> </td> <td> MembershipFunction </td>  <td>&nbsp;</td> </tr>
+			<tr bgcolor=#dddddd><td> DEFUZZIFY ... TERM <b>:= ...</b> </td> <td> MembershipFunction </td>  <td>&nbsp;</td> </tr>
+		</table>
+</td></tr></table>
+

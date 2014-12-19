@@ -1,0 +1,51 @@
+
+<center><h3> Java example </h3></center>
+
+This is a simple java code used to load a fuzzy inference system (FIS), this code available at net.sourceforge.jFuzzyLogic.TestTipper.java<p>
+
+<table border=0 ><tr><td>
+<table border=0 bgcolor=#ccfccc><tr><td>
+<pre>
+package net.sourceforge.jFuzzyLogic.test;
+
+import net.sourceforge.jFuzzyLogic.FIS;
+import net.sourceforge.jFuzzyLogic.rule.FuzzyRuleSet;
+
+/**
+ * Test parsing an FCL file
+ * @author pcingola@users.sourceforge.net
+ */
+public class TestTipper {
+    public static void main(String[] args) throws Exception {
+        // Load from 'FCL' file
+        String fileName = "fcl/tipper.fcl";
+        FIS fis = FIS.load(fileName,true);
+        // Error while loading?
+        if( fis == null ) { 
+            System.err.println("Can't load file: '" 
+                                   + fileName + "'");
+            return;
+        }
+
+        // Show 
+        fis.chart();
+
+        // Set inputs
+        fis.setVariable("service", 3);
+        fis.setVariable("food", 7);
+
+        // Evaluate
+        fis.evaluate();
+
+        // Show output variable's chart 
+        fis.getVariable("tip").chartDefuzzifier(true);
+
+        // Print ruleSet
+        System.out.println(fis);
+    }
+}
+</pre>
+</td></tr></table>
+<table border=0 align=center bgcolor=#aaaaaa><tr><td align=center> See Java code detailed explanation <a href="java.html"><b>here</b></a></td></tr></table>
+</td></tr></table>
+

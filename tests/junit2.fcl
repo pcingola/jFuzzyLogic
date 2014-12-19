@@ -1,0 +1,58 @@
+FUNCTION_BLOCK junit2_1
+
+VAR_INPUT
+	temp : REAL;
+END_VAR
+
+VAR_OUTPUT
+	valve : REAL;
+END_VAR
+
+FUZZIFY temp
+	TERM cold := (0, 1) (30, 0);
+	TERM hot := (0, 0) (30, 1);
+END_FUZZIFY
+
+DEFUZZIFY valve
+	TERM closed := 0;
+	TERM inlet := 1; 
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACCU : MAX;
+	RULE 1 : IF temp IS cold THEN valve IS closed;
+	RULE 2 : IF temp IS hot THEN valve IS inlet;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+
+
+FUNCTION_BLOCK junit2_2
+
+VAR_INPUT
+	temp2 : REAL;
+END_VAR
+
+VAR_OUTPUT
+	valve2 : REAL;
+END_VAR
+
+FUZZIFY temp2
+	TERM cold2 := (0, 1) (30, 0);
+	TERM hot2 := (0, 0) (30, 1);
+END_FUZZIFY
+
+DEFUZZIFY valve2
+	TERM closed2 := 0;
+	TERM inlet2 := 1; 
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACCU : MAX;
+	RULE 1 : IF temp2 IS cold2 THEN valve2 IS closed2;
+	RULE 2 : IF temp2 IS hot2 THEN valve2 IS inlet2;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

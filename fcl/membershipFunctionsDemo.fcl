@@ -1,0 +1,94 @@
+/*
+	Example: Different membership functions
+
+									Pablo Cingolani 
+									pcingola@users.sourceforge.net
+*/
+
+FUNCTION_BLOCK testVariables
+
+VAR_INPUT				// Define input variables
+	inVar1 : REAL;
+	inVar2 : REAL;
+	inVar3 : REAL;
+	inVar4 : REAL;
+	inVar5 : REAL;
+	inVar5_1 : REAL;
+	inVar6 : REAL;
+	inVar7 : REAL;
+	inVar8 : REAL;
+END_VAR
+
+VAR_OUTPUT				// Define output variable
+	outVar : REAL;
+END_VAR
+
+// Pairwise linear
+FUZZIFY inVar1
+	TERM poor := (0,1) (2, 1) (4, 0) ; 
+	TERM good := (1, 0) (2, 0.5) (3, 0.7) (4,1) (4.5, 1) (5, 0.6) (6, 0.3) (7, 0.3) (8, 0.8) (9, 0.8) (10,0);
+	TERM excellent := (6, 0) (9, 1) (10,1);
+END_FUZZIFY
+
+FUZZIFY inVar2
+	TERM poor := TRIAN 0 2.5 5;
+	TERM good := TRIAN 2.5 5 7.5;
+	TERM excellent := TRIAN 5 7.5 10;
+END_FUZZIFY
+
+FUZZIFY inVar3
+	TERM poor := TRAPE 0 2 3 4;
+	TERM good := TRAPE 3 4 5 6;
+	TERM excellent := TRAPE 5 6 7 8;
+END_FUZZIFY
+
+FUZZIFY inVar4
+	TERM poor := GBELL 2 4 2;
+	TERM good := GBELL 2 4 5;
+	TERM excellent := GBELL 2 4 8;
+END_FUZZIFY
+
+FUZZIFY inVar5
+	TERM poor := GAUSS 2 2;
+	TERM good := GAUSS 5 2;
+	TERM excellent := GAUSS 8 2;
+END_FUZZIFY
+
+FUZZIFY inVar5_1
+	TERM poor := GAUSS2 2 2 3 1;
+	TERM good := GAUSS2 5 2 6 3;
+	TERM excellent := GAUSS2 8 2 12 5;
+END_FUZZIFY
+
+FUZZIFY inVar6
+	TERM poor := SIGM -4 3;
+	TERM good := SIGM 4 7;
+END_FUZZIFY
+
+FUZZIFY inVar7
+	TERM poor := 2;
+	TERM good := 5;
+	TERM excellent := 8;
+END_FUZZIFY
+
+// GENERALIZED SINGLETON !!!
+/*
+FUZZIFY inVar7
+	TERM poor := 2;
+	TERM good := 5;
+	TERM excellent := 8;
+END_FUZZIFY
+*/
+
+// Mixed types
+FUZZIFY inVar8
+	TERM t1 := (1, 0) (2, 0.5) (3, 0.7) (4,1) (4.5, 1) (5, 0.6) (6, 0.3) (7, 0.3) (8, 0.8) (9, 0.8) (10,0);
+	TERM t2 := TRIAN 12 14 16;
+	TERM t3 := TRAPE 18 20 24 28;
+	TERM t4 := GBELL 2 4 30;
+	TERM t5 := GAUSS 35 2;
+	TERM t6 := SIGM 4 40;
+END_FUZZIFY
+
+END_FUNCTION_BLOCK
+

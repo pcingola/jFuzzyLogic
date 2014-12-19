@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="jars" name="Create Runnable JARs for Project jFuzzyLogic">
+
+	<target name="jars"  depends="clean,compile,create_jar,create_core_jar">
+	</target>
+	
+    <target name="create_jar" depends="compile">
+        <jar destfile="${user.home}/jFuzzyLogic.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="net.sourceforge.jFuzzyLogic.JFuzzyLogic"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="bin"/>
+            <fileset dir="src"/>
+            <fileset dir="fcl"/>
+            <zipfileset excludes="META-INF/*.SF" src="lib/antlrworks-1.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="lib/jcommon-1.0.14.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="lib/jfreechart-1.0.11.jar"/>
+        </jar>
+    </target>
+
+    <target name="create_core_jar" depends="compile">
+        <jar destfile="${user.home}/jFuzzyLogic_core.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="net.sourceforge.jFuzzyLogic.JFuzzyLogic"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="lib/antlrworks-1.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="lib/jcommon-1.0.14.jar"/>
+        </jar>
+    </target>
+
+    <target name="clean" description="Delete all generated files">
+        <delete dir="bin/net"/>
+        <delete file="${user.home}/jFuzzyLogic.jar"/>
+        <delete file="${user.home}/jFuzzyLogic_core.jar"/>
+    </target>
+
+    <target name="compile">
+        <javac 
+            srcdir="src" 
+            destdir="bin" 
+            debug="true" 
+            source="1.6"
+            target="1.6"
+            includeantruntime="false"
+            classpath="lib/antlrworks-1.2.jar:lib/jcommon-1.0.14.jar:lib/jfreechart-1.0.11.jar:lib/junit_4.11.0.jar"
+        />
+    </target>
+
+</project>

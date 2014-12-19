@@ -1,0 +1,283 @@
+\begin{thebibliography}{10}
+
+\bibitem{Lee90}
+C.C. Lee.
+\newblock Fuzzy logic in control systems: Fuzzy logic controller parts i and
+  ii.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics},
+  20:404--435, 1990.
+
+\bibitem{DHR93}
+H.~Hellendoorn D.~Driankov and M.~Reinfrank.
+\newblock {\em An Introduction to Fuzzy Control}.
+\newblock Springer-Verlag, 1993.
+
+\bibitem{Bon94}
+P.P. Bonissone.
+\newblock Fuzzy logic controllers: An industrial reality.
+\newblock In {\em Computational Intelligence: Imitating Life}, pages 316--327.
+  IEEE Press, 1994.
+
+\bibitem{EH2010}
+B.E. Eskridge and D.F. Hougen.
+\newblock Extending adaptive fuzzy behavior hierarchies to multiple levels of
+  composite behaviors.
+\newblock {\em Robotics And Autonomous Systems}, 58(9):1076--1084, 2010.
+
+\bibitem{JCh2011}
+Ch.-F. Juang and Y.-Ch. Chang.
+\newblock Evolutionary-group-based particle-swarm-optimized fuzzy controller
+  with application to mobile-robot navigation in unknown environments.
+\newblock {\em IEEE Transactions on Fuzzy Systems}, 19(2):379--392, 2011.
+
+\bibitem{Alc09}
+R.~Alcal{\'a}, J.~Alcal{\'a}-Fdez, M.J. Gacto, and F.~Herrera.
+\newblock Improving fuzzy logic controllers obtained by experts: a case study
+  in hvac systems.
+\newblock {\em Applied Intelligence}, 31(1):15--30, 2009.
+
+\bibitem{Cho11}
+E.~Cho, M.~Ha, S.~Chang, and Y.~Hwang.
+\newblock Variable fuzzy control for heat pump operation.
+\newblock {\em Journal of Mechanical Science and Technology}, 25(1):201--208,
+  2011.
+
+\bibitem{Cha12}
+F.~Ch{\'a}vez, F.~Fern{\'a}ndez, R.~Alcal{\'a}, J.~Alcal{\'a}-Fdez, G.~Olague,
+  and F.~Herrera.
+\newblock Hybrid laser pointer detection algorithm based on template matching
+  and fuzzy rule-based systems for domotic control in real home enviroments.
+\newblock {\em Applied Intelligence}, 36(2):407--423, 2012.
+
+\bibitem{AL05}
+G.~Acampora and V.~Loia.
+\newblock Fuzzy control interoperability and scalability for adaptive domotic
+  framework.
+\newblock {\em IEEE Transactions on Industrial Informatics}, 1(2):97 -- 111,
+  2005.
+
+\bibitem{Otero2008}
+J.~Otero, L.~S\'anchez, and J.~Alcal\'a-Fdez.
+\newblock Fuzzy-genetic optimization of the parameters of a low cost system for
+  the optical measurement of several dimensions of vehicles.
+\newblock {\em Soft Computing}, 12(8):751--764, 2008.
+
+\bibitem{Demir12}
+O.~Demir, I.~Keskin, and S.~Cetin.
+\newblock Modeling and control of a nonlinear half-vehicle suspension system: A
+  hybrid fuzzy logic approach.
+\newblock {\em Nonlinear Dynamics}, 67(3):2139--2151, 2012.
+
+\bibitem{ZG2012}
+Y.~Zhao and H.~Gao.
+\newblock Fuzzy-model-based control of an overhead crane with input delay and
+  actuator saturation.
+\newblock {\em IEEE Transactions on Fuzzy Systems}, 20(1):181 --186, 2012.
+
+\bibitem{Sonnenburg07}
+S.~Sonnenburg, M.L. Braun, Ch.S. Ong, S.~Bengio, L.~Bottou, G.~Holmes,
+  Y.~LeCun, K.-R. Muller, F.~Pereira, C.E. Rasmussen, G.~Ratsch, B.~Scholkopf,
+  A.~Smola, P.~Vincent, J.~Weston, and R.~Williamson.
+\newblock The need for open source software in machine learning.
+\newblock {\em Journal of Machine Learning Research}, 8:2443--2466, 2007.
+
+\bibitem{IEC}
+{\em International Electrotechnical Commission technical committee industrial
+  process measurement and control. IEC 61131 - Programmable Controllers}.
+\newblock IEC, 2000.
+
+\bibitem{Mamdani1974}
+E.H. Mamdani.
+\newblock Applications of fuzzy algorithms for control a simple dynamic plant.
+\newblock {\em Proceedings of the Institution of Electrical Engineers},
+  121(12):1585--1588, 1974.
+
+\bibitem{MA1975}
+E.H. Mamdani and S.~Assilian.
+\newblock An experiment in linguistic synthesis with a fuzzy logic controller.
+\newblock {\em International Journal of Man-Machine Studies}, 7:1--13, 1975.
+
+\bibitem{Zadeh1965}
+L.A. Zadeh.
+\newblock Fuzzy sets.
+\newblock {\em Information and Control}, 8:338--353, 1965.
+
+\bibitem{Wan94}
+L.X. Wang.
+\newblock {\em Adaptive Fuzzy Systems and Control. Design and Stability
+  Analysis}.
+\newblock Prentice-Hall, 1994.
+
+\bibitem{CHP97}
+O.~Cord\'on, F.~Herrera, and A.~Peregr\'in.
+\newblock Applicability of the fuzzy operators in the design of fuzzy logic
+  controllers.
+\newblock {\em Fuzzy Sets and Systems}, 86:15--41, 1997.
+
+\bibitem{Kamen1999}
+E.W. Kamen.
+\newblock Ladder logic diagrams and plc implementations.
+\newblock In {\em Industrial Controls and Manufacturing}, pages 141--164.
+  Academic Press, 1999.
+
+\bibitem{Reisig1991}
+W.~Reisig.
+\newblock Petri nets and algebraic specifications.
+\newblock {\em Theoretical Computer Science}, 80(1):1--34, 1991.
+
+\bibitem{Pezzulo2005}
+G.~Pezzulo and G.~Calvi.
+\newblock Designing and implementing mabs in akira.
+\newblock In P.~Davidsson, B.~Logan, and K.~Takadama, editors, {\em Multi-Agent
+  and Multi-Agent-Based Simulation}, volume 3415 of {\em Lecture Notes in
+  Computer Science}, pages 49--64. Springer Berlin Heidelberg, 2005.
+\newblock \url{http://www.akira-project.org/}.
+
+\bibitem{awifuzz2006}
+Awifuzz - fuzzy logic control system.
+\newblock \url{http://awifuzz.sourceforge.net/}, 2006.
+
+\bibitem{DotFuzzy2009}
+Dotfuzzy.
+\newblock \url{http://www.havana7.com/dotfuzzy/}, 2009.
+
+\bibitem{Zarozinski2002}
+M.~Zarozinski.
+\newblock An open source fuzzy logic library.
+\newblock In {\em AI Game Programming Wisdom}, pages 90--103. Charles River
+  Media, 2002.
+\newblock \url{http://ffll.sourceforge.net/}.
+
+\bibitem{Guillaume2011}
+Serge Guillaume and Brigitte Charnomordic.
+\newblock Learning interpretable fuzzy inference systems with fispro.
+\newblock {\em International Journal of Information Sciences},
+  181(20):4409--4427, 2011.
+\newblock \url{http://www.inra.fr/mia/M/fispro/}.
+
+\bibitem{flute2004}
+Flute: Fuzzy logic ultimate engine.
+\newblock \url{http://flute.sourceforge.net/}, 2004.
+
+\bibitem{Hartwig1996}
+Ronald Hartwig, Carsten Labinsky, Sven Nordhoff, Bernd Landorff, Peter Jensch,
+  and Joerg Schwanke.
+\newblock Free fuzzy logic system design tool: Fool.
+\newblock In {\em 4th European congress on intelligent techniques and soft
+  computing (EUFIT)}, volume~3, pages 2274--2277, Aachen (Germany), 1996.
+\newblock \url{http://rhaug.de/fool/}.
+
+\bibitem{Funzy2007}
+Funzy.
+\newblock \url{http://code.google.com/p/funzy/}, 2007.
+
+\bibitem{Barragan2011}
+A.~Barrag\'an and J.M. And\'ujar.
+\newblock {\em Fuzzy Logic Tools. Reference Manual v1.0}.
+\newblock Universidad de Huelva publicaciones, 2011.
+\newblock
+  \url{http://uhu.es/antonio.barragan/category/temas/fuzzy-logic-tools}.
+
+\bibitem{FuzzyBlackBox2011}
+Fuzzyblackbox.
+\newblock \url{http://fuzzyblackbox.sourceforge.net/}, 2011.
+
+\bibitem{togai2004}
+Togai InfraLogic.
+\newblock Fuzzyclips.
+\newblock \url{http://www.ortech-engr.com/fuzzy/fzyclips.html}, 2004.
+
+\bibitem{Orchard2001}
+R.A. Orchard.
+\newblock Fuzzy reasoning in jess: The fuzzyj toolkit and fuzzyjess.
+\newblock In {\em 3rd International Conference on Enterprise Information
+  Systems (ICEIS)}, volume~2, pages 533--542, Setubal (Portugal), 2001.
+\newblock \url{http://ai.iit.nrc.ca/IR_public/fuzzy/fuzzyJDocs/index.html}.
+
+\bibitem{FuzzyPLC2011}
+Fuzzyplc.
+\newblock \url{http://fuzzyplc.sourceforge.net/}, 2011.
+
+\bibitem{Alonso2011}
+J.M. Alonso and L.~Magdalena.
+\newblock Generating understandable and accurate fuzzy rule-based systems in a
+  java environment.
+\newblock In {\em 9th International Workshop on Fuzzy Logic and Applications
+  (WILF)}, number 6857 in Lecture Notes in Artificial Intelligence, pages
+  212--219, Trani (Italy), 2011. Springer-Verlag.
+\newblock \url{http://sourceforge.net/p/guajefuzzy/wiki/Home/}.
+
+\bibitem{javafuzzylogicctrltool2008}
+javafuzzylogicctrltool.
+\newblock \url{http://code.google.com/p/javafuzzylogicctrltool/}, 2008.
+
+\bibitem{JFCM2011}
+Java fuzzy cognitive maps.
+\newblock \url{http://jfcm.megadix.it/}, 2011.
+
+\bibitem{JFuzzinator2010}
+Jfuzzinator.
+\newblock \url{http://jfuzzinator.sourceforge.net/}, 2010.
+
+\bibitem{jFuzzyQt2011}
+jfuzzyqt - c++ fuzzy logic library.
+\newblock \url{http://jfuzzyqt.sourceforge.net/}, 2011.
+
+\bibitem{libai2010}
+libai.
+\newblock \url{http://libai.sourceforge.net/}, 2010.
+
+\bibitem{libFuzzyEngine2010}
+libfuzzyengine.
+\newblock \url{http://libfuzzyengine.git.sourceforge.net/git/gitweb-index.cgi},
+  2010.
+
+\bibitem{Nauck1995}
+Detlef Nauck and Rudolf Kruse.
+\newblock Nefclass - a neuro-fuzzy approach for the classification of data.
+\newblock In {\em ACM Symposium on Applied Computing}, pages 461--465,
+  Tennessee (USA), 1995. ACM Press.
+\newblock \url{http://fuzzy.cs.uni-magdeburg.de/nefclass/}.
+
+\bibitem{nxtfuzzylogic2010}
+nxtfuzzylogic.
+\newblock \url{http://code.google.com/p/nxtfuzzylogic/}, 2010.
+
+\bibitem{OctaveFLT2011}
+Fuzzy logic toolkit for octave.
+\newblock
+  \url{http://pdb.finkproject.org/pdb/package.php/fuzzy-logic-toolkit-oct324},
+  2011.
+
+\bibitem{Baturone2007}
+I.~Baturone, F.J. Moreno-Velo, S.~S\'anchez-Solano, A.~Barriga, P.~Brox,
+  A.~Gersnoviez, and M.~Brox.
+\newblock Using xfuzzy environment for the whole design of fuzzy systems.
+\newblock In {\em IEEE International Conference on Fuzzy Systems}, pages 1--6,
+  London (UK), 2007.
+\newblock \url{http://www2.imse-cnm.csic.es/Xfuzzy/Xfuzzy_3.0/index.html}.
+
+\bibitem{parr2007definitive}
+T.~Parr.
+\newblock {\em The definitive ANTLR reference: building domain-specific
+  languages}.
+\newblock 2007.
+
+\bibitem{Mucientes2010}
+M.~Mucientes, J.~Alcal\'a-Fdez, R.~Alcal\'a, and J.~Casillas.
+\newblock A case study for learning behaviors in mobile robotics by
+  evolutionary fuzzy systems.
+\newblock {\em Expert Systems with Applications}, 37(2):1471--1493, 2010.
+
+\bibitem{Alc06}
+R.~Alcal{\'a}, J.~Alcal{\'a}-Fdez, J.~Casillas, O.~Cord{\'o}n, and F.~Herrera.
+\newblock Hybrid learning models to get the interpretability-accuracy trade-off
+  in fuzzy modelling.
+\newblock {\em Soft Computing}, 10(9):717--734, 2006.
+
+\bibitem{hart2001pattern}
+Peter~E Hart and David~G Stork.
+\newblock Pattern classification.
+\newblock {\em John Willey \& Sons}, 2001.
+
+\end{thebibliography}

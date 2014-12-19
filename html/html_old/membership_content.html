@@ -1,0 +1,108 @@
+
+<center><h3> Membership functions </h3></center>
+
+There are several membership functions. Mainly two sub classes: <i><b>Continuous</b></i> and <i><b>Discrete</b></i>. One variable can only have Continuous or Discrete membership functions.
+<center><img src="images/membership.png"></center><br>
+
+<b>Usage, examples, and FCL:</b>
+<table border=0>
+	<tr> <td> <center><b>Triangular</b></center> <br>
+		<img src="images/inVar2.png"><br> 
+		Usage: <b>trian</b> min mid max
+		<table border=0 bgcolor=#ccfccc><tr><td>
+		<pre>
+FUZZIFY inVar2
+	TERM poor := trian 0 2.5 5;
+	TERM good := trian 2.5 5 7.5;
+	TERM excellent := trian 5 7.5 10;
+END_FUZZIFY
+		</pre></td></tr></table>
+		<p style="font-size: 8" align=center> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </p>
+	</td> </tr>
+
+	<tr> <td> <center><b>Trapetzoidal</b></center> <br>
+		<img src="images/inVar3.png"><br> 
+		Usage: <b>trape</b> min midLow midHigh max
+		<table border=0 bgcolor=#ccfccc><tr><td>
+		 <pre>
+FUZZIFY inVar3
+	TERM poor := trape 0 2 3 4;
+	TERM good := trape 3 4 5 6;
+	TERM excellent := trape 5 6 7 8;
+END_FUZZIFY
+		</pre></td></tr></table>
+		<p style="font-size: 8" align=center> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </p>
+	</td> </tr>
+
+	<tr> <td> <center><b>Gauss</b></center> <br>
+		<img src="images/inVar5.png"><br>
+		Usage: <b>gauss</b> mean stdev
+		<table border=0 bgcolor=#ccfccc><tr><td>
+		 <pre>
+FUZZIFY inVar5
+	TERM poor := gauss 2 2;
+	TERM good := gauss 5 2;
+	TERM excellent := gauss 8 2;
+END_FUZZIFY
+		</pre></td></tr></table>
+		<p style="font-size: 8" align=center> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </p>
+	</td> </tr>
+
+	<tr> <td> <center><b>Generalized bell</b></center> <br>
+		<img src="images/inVar4.png"><br>
+		Usage: <b>gbell</b> a b mean
+		<table border=0 bgcolor=#ccfccc><tr><td>
+		 <pre>
+FUZZIFY inVar4
+	TERM poor := gbell 2 4 2;
+	TERM good := gbell 2 4 5;
+	TERM excellent := gbell 2 4 8;
+END_FUZZIFY
+		</pre></td></tr></table>
+		<p style="font-size: 8" align=center> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </p>
+	</td> </tr>
+
+	<tr> <td> <center><b>Sigmoidal</b></center> <br>
+		<img src="images/inVar6.png"><br>
+		Usage: <b>sigm</b> gain center
+		<table border=0 bgcolor=#ccfccc><tr><td>
+		 <pre>
+FUZZIFY inVar6
+	TERM poor := sigm -4 3;
+	TERM good := sigm 4 7;
+END_FUZZIFY
+		</pre></td></tr></table>
+		<p style="font-size: 8" align=center> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </p>
+	</td> </tr>
+
+	<tr> <td> <center><b>Singleton</b></center> <br>
+		<img src="images/inVar7.png"><br> 
+		Usage: just one number (where singleton value is 1)
+		<table border=0 bgcolor=#ccfccc><tr><td>
+		 <pre>
+FUZZIFY inVar7
+	TERM poor := 2;
+	TERM good := 5;
+	TERM excellent := 8;
+END_FUZZIFY
+		</pre></td></tr></table>
+		<p style="font-size: 8" align=center> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </p>
+	</td> </tr>
+
+	<tr> <td> <center><b>Piece-wise linear</b></center> <br>
+		<img src="images/inVar1.png"><br>
+		Usage: (x_1, y_1) (x_2, y_2) .... (x_n, y_n)
+		<table border=0 bgcolor=#ccfccc><tr><td>
+	<pre>
+FUZZIFY inVar1
+	TERM poor := (0,1) (2, 1) (4, 0) ; 
+	TERM good := (1, 0) (2, 0.5) (3, 0.7) (4,1) (4.5, 1) 
+                 (5, 0.6) (6, 0.3) (7, 0.3) (8, 0.8) (9, 0.8) (10,0);
+	TERM excellent := (6, 0) (9, 1) (10,1);
+END_FUZZIFY
+		</pre></td></tr></table>
+	</td> </tr>
+
+</table>
+
+<table>

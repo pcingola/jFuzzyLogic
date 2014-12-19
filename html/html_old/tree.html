@@ -1,0 +1,13 @@
+
+<center><h3> jFuzzyLogic: Example's parsing tree</h3></center>
+
+<table><tr><td valign=top bgcolor=#f0f0f0>
+	<center><b>Tree diagram</b></center><br>
+	<img src=tree.png><br>
+</td><td valign=top bgcolor=#ccfccc>
+	<center><b>Tree definition</b></center><br>
+	<code>
+Tree:  ( FUNCTION_BLOCK tipper ( VAR_INPUT ( service REAL ) ( food REAL ) ) ( VAR_OUTPUT ( tip REAL ) ) ( FUZZIFY service ( TERM poor ( ( 0 1 ) ( ( 4 0 ) ) ( TERM good ( ( 1 0 ) ( ( 4 1 ) ( ( 6 1 ) ( ( 9 0 ) ) ( TERM excellent ( ( 6 0 ) ( ( 9 1 ) ) ) ( FUZZIFY food ( TERM rancid ( ( 0 1 ) ( ( 1 1 ) ( ( 3 0 ) ) ( TERM delicious ( ( 7 0 ) ( ( 9 1 ) ) ) ( DEFUZZIFY tip ( TERM cheap ( ( 0 0 ) ( ( 5 1 ) ( ( 10 0 ) ) ( TERM average ( ( 10 0 ) ( ( 15 1 ) ( ( 20 0 ) ) ( TERM generous ( ( 20 0 ) ( ( 25 1 ) ( ( 30 0 ) ) ( ACCU MAX ) ( METHOD COG ) ( DEFAULT 0 ) ) ( RULEBLOCK No1 ( AND MIN ) ( ACT MIN ) ( RULE 1 ( IF ( OR ( service poor ) ( food rancid ) ) ) ( THEN ( tip cheap ) ) ) ( RULE 2 ( IF ( service good ) ) ( THEN ( tip average ) ) ) ( RULE 3 ( IF ( AND ( service excellent ) ( food delicious ) ) ) ( THEN ( tip generous ) ) ) ) )
+	</code>
+</td></tr></table>
+

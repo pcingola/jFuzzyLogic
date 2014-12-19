@@ -1,0 +1,16 @@
+%% $Id: pstricks-add.sty,v 1.2 2013/03/01 17:52:03 pcingola Exp $
+%
+\RequirePackage{pstricks}
+\ProvidesPackage{pstricks-add}[2010/02/11 v. 0.14 package wrapper for 
+  pstricks-add.tex (hv)]
+\input{pstricks-add.tex}
+\ProvidesFile{pstricks-add.tex}
+  [\filedate\space v\fileversion\space `PSTricks-add' (hv)]
+\IfFileExists{pstricks-add.pro}{%
+  \ProvidesFile{pstricks-add.pro}
+    [2009/03/17 v. 0.22,  PostScript prologue file (hv)]
+    \@addtofilelist{pstricks-add.pro}}{}%
+\InputIfFileExists{pstricks-add.cfg}{%
+    \PackageInfo{pstricks-add}{Local config file pstricks-add.cfg used}
+}{}
+\endinput

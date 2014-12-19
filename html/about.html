@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>jFuzzyLogic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Styles -->
+	<link href="dist/css/bootstrap.css" rel="stylesheet">
+
+    <!-- hTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="ico/favicon.png">
+
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+<!-- NAVBAR
+================================================== -->
+   <div class="navbar-wrapper">
+     <div class="container">
+       <div class="navbar navbar-inverse navbar-static-top">
+         <div class="container">
+           <div class="navbar-header">
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+             </button>
+             <a class="navbar-brand" href="#">jFuzzyLogic</a>
+           </div>
+           <div class="navbar-collapse collapse">
+             <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="manual.html">Documentation</a></li>
+                <li class="active"><a href="about.html">About</a></li>
+             </ul>
+           </div>
+         </div>
+       </div>
+
+<!-- Subhead
+================================================== -->
+      <div class="jumbotron">
+        <h1>jFuzzyLogic</h1>
+        <p class="lead"> About jFuzzylogic.</p>
+        <p>
+			<a class="btn btn-lg btn-success" href="http://sourceforge.net/projects/jfuzzylogic/files/jfuzzylogic/jFuzzyLogic.jar">Download Full</a>
+			<a class="btn btn-lg btn-success" href="http://sourceforge.net/projects/jfuzzylogic/files/jfuzzylogic/jFuzzyLogic_core.jar">Download Core</a>
+		</p>
+      </div>
+
+
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="nav bs-sidenav">
+          <a class="list-group-item" href="#about">About</a>
+          <a class="list-group-item" href="#ack">  Citing</a>
+          <a class="list-group-item" href="#license"> License </a>
+          <a class="list-group-item" href="#bugs"> Bug reports</a>
+        </ul>
+      </div>
+      <div class="col-md-9" role="main">
+
+
+        <!-- About
+        ================================================== -->
+        <section id="about">
+          <div class="page-header">
+            <h1>1. About</h1>
+          </div>
+				<p class="lead">
+				This project is maintained by <b> <a class="body" href="http://www.linkedin.com/in/pablocingolani">Pablo Cingolani</a></b><p>
+				</p>
+				<p>
+				<b>Contributors:</b>
+				<ul>
+					
+				</ul>
+<table>
+  <tr> <td valign=top> P.L.Leaonard </td> 
+		<td>	Debugging 'NaN' defuzzifier conditions and plot improvements. <br>
+				Inverted pendulum demo. 
+		</td> 
+  </tr>
+  <tr> <td valign=top> Shashank Wankhede </td> <td>  Debugging 'NaN' defuzzifier conditions. </td> </tr>
+  <tr> <td valign=top> Markus Fischer and Yuanhao Li </td> <td>  Membership functions "Cosine" and "Dsigm". </td> </tr>
+  <tr> <td valign=top> Arkadiuz M. </td> <td>  Debugging and IEC compliance (ACCU statement). </td> </tr>
+  <tr> <td valign=top> Carmelo (cswi) </td> <td>  Graphic enhancements. </td> </tr>
+  <tr> <td valign=top> Helano P&oacute;voas de Lima </td> <td>  DefuzzifierContinuous graphic bug. </td> </tr>
+  <tr> <td valign=top> Nikola Nikolovski </td> <td> RuleBlock name bug.</td> </tr>
+  <tr> <td valign=top> Ivan De Falco </td> <td> "AND Bounded Diff" bug. </td> </tr>
+</table>
+				
+				</p>
+				
+        </section>
+
+        <!-- Citing
+        ================================================== -->
+        <section id="bugs">
+          <div class="page-header">
+            <h1>2. Citing</h1>
+          </div>
+				<p class="lead">
+				If you are using jFuzzyLogic in academic environments, please cite our papers
+				</p>
+				<p>
+        <ul>
+          <li> Cingolani, Pablo, and Jesús Alcalá-Fdez. <a href="pdf/Cingolani_Alcala-Fdez_jFuzzyLogic_2013_IJCIS.pdf"><i>"jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the Standard for Fuzzy Control Programming"</i> </a>
+<pre>
+@article{cingolanijfuzzylogic,
+  title={jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the Standard for Fuzzy Control Programming},
+  author={Cingolani, Pablo and Alcal{\'a}-Fdez, Jes{\'u}s}
+  booktitle={International Journal of Computational Intelligence Systems},
+  pages={61--75},
+  year={2013}
+}
+</pre>
+          <li> Cingolani, Pablo, and Jesus Alcala-Fdez. <a href="pdf/jFuzzyLogic.pdf"> <i>"jFuzzyLogic: a robust and flexible Fuzzy-Logic inference system language implementation."</i></a> Fuzzy Systems (FUZZ-IEEE), 2012 IEEE International Conference on. IEEE, 2012.
+<pre>
+@inproceedings{cingolani2012jfuzzylogic,
+  title={jFuzzyLogic: a robust and flexible Fuzzy-Logic inference system language implementation},
+  author={Cingolani, Pablo and Alcala-Fdez, Jesus},
+  booktitle={Fuzzy Systems (FUZZ-IEEE), 2012 IEEE International Conference on},
+  pages={1--8},
+  year={2012},
+  organization={IEEE}
+}
+</pre>
+        </ul>
+				</p>
+        </section>
+
+        <!-- Licence
+        ================================================== -->
+        <section id="license">
+          <div class="page-header">
+            <h1>4. License</h1>
+          </div>
+        <p class="lead">
+        jFuzzyLogic is Open Source.
+        </p>
+        <p>
+        jFuzzyLogic is open source. 
+        It is released mainly as "LGPLv3".
+        <br>
+        Many companies base their products on jFuzzyLogic, so I also license it as "Apache" which is friendlier for business.
+        </p>
+        </section>
+
+
+        <!-- Bug reports
+        ================================================== -->
+        <section id="bugs">
+          <div class="page-header">
+            <h1>3. Bug reports</h1>
+          </div>
+				<p class="lead">
+				Please send any bug reports to <a class="body" href="http://www.linkedin.com/in/pablocingolani">Pablo Cingolani</a> (pcingola@users.sourceforge.net)
+				</p>
+
+				<p>
+				<b>Note:</b> A bug report should include at least
+				<ul>
+					<li> An explanation of the bug condition
+					<li> A minimal bug-demonstrating test case (i.e. include FCL and/or Java source file used to run the test case)
+					<li> The conditions for the bug to occur 
+					<li> jFuzzyLogic version and sub-version numbers you are using
+				</ul>
+				<br>
+				<br>
+				<b>Important:</b> Please do not contact me to do your homework, assignment, thesis or your work. I know this sounds obvious, but I get a lot of emails from people asking me to do/help with their assignments and unfortunately I don't have enough time to help everyone.
+				</p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+
+
+    <!-- Footer
+    ================================================== -->
+      <footer>
+    		<p class="text-center">&copy; <a class="body" href="http://www.linkedin.com/in/pablocingolani">Pablo Cingolani 2013</a></p>
+      </footer>
+  </body>
+</html>

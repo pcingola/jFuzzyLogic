@@ -1,0 +1,13 @@
+%% $Id: pst-coil.sty,v 1.1 2012/11/30 17:08:43 pcingola Exp $
+\RequirePackage{pstricks}
+\ProvidesPackage{pst-coil}[2010/02/01 package wrapper for 
+  pst-coil.tex (hv)]
+\input{pst-coil.tex}
+\IfFileExists{pst-coil.pro}{%
+  \ProvidesFile{pst-coil.pro}
+    [2010/02/01 v. 1.03,  PostScript prologue file (hv)]
+    \@addtofilelist{pst-coil.pro}}{}%
+\ProvidesFile{pst-coil.tex}
+  [\filedate\space v\fileversion\space `PST-coil' (tvz,hv)]
+\endinput
+

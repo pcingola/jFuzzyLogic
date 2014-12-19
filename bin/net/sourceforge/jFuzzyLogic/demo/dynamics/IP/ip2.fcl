@@ -1,0 +1,59 @@
+FUNCTION_BLOCK IPController   // control block for the angle
+
+VAR_OUTPUT           // define output variables
+    force : REAL;
+END_VAR
+
+VAR_INPUT           // inputs
+    phi    : REAL;  // the difference between the requested and real angle. We want this to be zero
+    dphidt : REAL;  // rate of change of the real angle. We also want this to be zero.
+END_VAR
+
+
+FUZZIFY phi            // define the membership functions (see graph tab in the demo)
+    TERM Z   :=  TRIAN -5 0 5;    // zero (ish)
+    TERM PS  :=  TRIAN  0 5 10;   // positive small
+    TERM NS  :=  TRIAN -10 -5 0;  // neg small
+    TERM PB  :=  (5,0)  (10,1) (60,1) (70,0);  // pos big
+    TERM NB  :=  (-70,0) (-60,1) (-10, 1) (-5,0);  // neg big
+    
+END_FUZZIFY
+
+FUZZIFY dphidt            
+    TERM Z    := TRIAN -8 0 8;
+    TERM PS   := TRIAN  0  8 200 ;
+    TERM NS   := TRIAN  -200 -8 0 ;
+    TERM PB   := (8,0) (200,1) (500,1) ;
+    TERM NB   := (-500,1) (-200,1) (-8,0);
+END_FUZZIFY
+
+
+DEFUZZIFY force          
+    TERM Z   :=  0 ;  // TRIAN -20 0 20;
+    TERM PS  :=  50 ;// TRIAN  30 50 70;
+    TERM NS  :=  -50 ;//TRIAN  -70 -50 -30;
+    TERM PB  :=  200 ;// TRIAN  190 200 210;
+    TERM NB  :=  -200 ;// TRIAN  -210 -200 -190;
+
+    METHOD : COGS;        // Use 'Center Of Gravity' defuzzification method
+    DEFAULT := 0;        // Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+
+RULEBLOCK No1     // Rules 
+    AND : MIN;    // defines how we combine sets 
+    ACT : MIN;    // how we activate outputs which have more than 1 rule 
+    ACCU : MAX;   // how we combine the membership functions of the output variables. 
+
+// now the rules . . .
+
+    RULE 1 : IF phi IS PS  AND (dphidt IS PS OR dphidt IS Z) THEN force IS PS;
+    RULE 2 : IF phi IS PS  AND dphidt IS PB  THEN force IS PB ;
+    RULE 3 : IF phi IS NS  AND (dphidt IS NS OR dphidt IS Z) THEN force IS NS;
+    RULE 4 : IF phi IS NS  AND dphidt IS NB  THEN force IS NB ;
+    RULE 5 : IF phi IS PB  AND (dphidt IS NOT NB) AND (dphidt IS NOT NS)  THEN force IS PB ;
+    RULE 6 : IF phi IS NB  AND (dphidt IS NOT PB) AND (dphidt IS NOT PS)  THEN force IS NB ;
+    RULE 7 : IF phi IS Z   AND dphidt IS Z THEN force IS Z;
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

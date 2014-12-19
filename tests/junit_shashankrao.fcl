@@ -1,0 +1,85 @@
+FUNCTION_BLOCK chase
+
+VAR_INPUT
+	ad : REAL;
+	ra :REAL;
+END_VAR
+
+VAR_OUTPUT
+	ta : REAL;
+END_VAR
+
+FUZZIFY ad
+		TERM negsmall := TRIAN -0.4 0 0  ;
+		TERM negmed := TRAPE -0.8 -0.6 -0.4 -0.2;
+		TERM neglar := TRIAN -1 -1 -0.6;
+		TERM possmall :=  TRIAN 0 0 0.4;
+		TERM posmed := TRAPE 0.2 0.4 0.6 0.8;
+		TERM poslar := TRIAN 0.6 1 1;
+END_FUZZIFY
+
+FUZZIFY ra
+		TERM negsmall := TRIAN -0.4 0 0  ;
+		TERM negmed := TRAPE -0.8 -0.6 -0.4 -0.2;
+		TERM neglar := TRIAN -1 -1 -0.6;
+		TERM possmall :=  TRIAN 0 0 0.4;
+		TERM posmed := TRAPE 0.2 0.4 0.6 0.8;
+		TERM poslar := TRIAN 0.6 1 1;
+END_FUZZIFY
+
+DEFUZZIFY ta
+		TERM negsmall := TRIAN -0.4 0 0  ;
+		TERM negmed := TRAPE -0.8 -0.6 -0.4 -0.2;
+		TERM neglar := TRIAN -1 -1 -0.6;
+		TERM possmall :=  TRIAN 0 0 0.4;
+		TERM posmed := TRAPE 0.2 0.4 0.6 0.8;
+		TERM poslar := TRIAN 0.6 1 1;
+		TERM zero := TRIAN 0 0 0;
+		METHOD : COG;
+		DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+		ACCU : MAX;
+		AND : MIN;            // Use 'min' for 'and' (also implicit use 'max' for 'or' to fulfill DeMorgan's Law)
+		ACT : MIN;            // Use 'min' activation method
+
+		RULE 1 : IF ra IS possmall AND ad IS negsmall THEN ta IS possmall;
+		RULE 2 : IF ra IS possmall AND ad IS negmed THEN ta IS negsmall;
+		RULE 3 : IF ra IS possmall AND ad IS neglar THEN ta IS negmed;
+		RULE 4 : IF ra IS possmall AND ad IS possmall THEN ta IS posmed;
+		RULE 5 : IF ra IS possmall AND ad IS posmed THEN ta IS posmed;
+		RULE 6 : IF ra IS possmall AND ad IS poslar THEN ta IS poslar;
+		RULE 7 : IF ra IS posmed AND ad IS negsmall THEN ta IS posmed;
+		RULE 8 : IF ra IS posmed AND ad IS negmed THEN ta IS possmall;
+		RULE 9 : IF ra IS posmed AND ad IS neglar THEN ta IS zero;
+		RULE 10 : IF ra IS posmed AND ad IS possmall THEN ta IS posmed;
+		RULE 11 : IF ra IS posmed AND ad IS posmed THEN ta IS posmed;
+		RULE 12 : IF ra IS posmed AND ad IS poslar THEN ta IS poslar;
+		RULE 13 : IF ra IS poslar AND ad IS negsmall THEN ta IS posmed;
+		RULE 14 : IF ra IS poslar AND ad IS negmed THEN ta IS possmall;
+		RULE 15 : IF ra IS poslar AND ad IS neglar THEN ta IS poslar;
+		RULE 16 : IF ra IS poslar AND ad IS possmall THEN ta IS posmed;
+		RULE 17 : IF ra IS poslar AND ad IS posmed THEN ta IS poslar;
+		RULE 18 : IF ra IS poslar AND ad IS poslar THEN ta IS poslar;
+		RULE 19 : IF ra IS negsmall AND ad IS negsmall THEN ta IS possmall;
+		RULE 20 : IF ra IS negsmall AND ad IS negmed THEN ta IS negsmall;
+		RULE 21 : IF ra IS negsmall AND ad IS neglar THEN ta IS negmed;
+		RULE 22 : IF ra IS negsmall AND ad IS possmall THEN ta IS zero;
+		RULE 23 : IF ra IS negsmall AND ad IS posmed THEN ta IS possmall;
+		RULE 24 : IF ra IS negsmall AND ad IS poslar THEN ta IS possmall;
+		RULE 25 : IF ra IS negmed AND ad IS negsmall THEN ta IS negmed;
+		RULE 26 : IF ra IS negmed AND ad IS negmed THEN ta IS negmed;
+		RULE 27 : IF ra IS negmed AND ad IS neglar THEN ta IS neglar;
+		RULE 28 : IF ra IS negmed AND ad IS possmall THEN ta IS negmed;
+		RULE 29 : IF ra IS negmed AND ad IS posmed THEN ta IS negsmall;
+		RULE 30 : IF ra IS negmed AND ad IS poslar THEN ta IS zero;
+		RULE 31 : IF ra IS neglar AND ad IS negsmall THEN ta IS negmed;
+		RULE 32 : IF ra IS neglar AND ad IS negmed THEN ta IS neglar;
+		RULE 33 : IF ra IS neglar AND ad IS neglar THEN ta IS neglar;
+		RULE 34 : IF ra IS neglar AND ad IS possmall THEN ta IS negmed;
+		RULE 35 : IF ra IS neglar AND ad IS posmed THEN ta IS negmed;
+		RULE 36 : IF ra IS neglar AND ad IS poslar THEN ta IS negsmall;        
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

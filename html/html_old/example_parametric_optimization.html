@@ -1,0 +1,152 @@
+<header>
+	<title> jFuzzyLogic: Open Source Fuzzy Logic (Java) </title>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="all">
+		body { background: url(./images/bg_gradient.jpg) repeat-x; }
+	</style>    
+</header>
+
+<div align="center">
+	<div id="wrap">
+		<div id="header">
+			<div class="logo">
+					<a href="http://jfuzzylogic.sourceforge.net/">jFuzzyLogic</a>
+					<p style="font-size: 12pt" align=right><b>Open Source Fuzzy Logic library and FCL language implementation</b></p>
+			</div>
+		</div>
+		<div id="menu">
+			<ul>
+			<li><a href="http://jfuzzylogic.sourceforge.net/">Home</a></li>
+			<li class="page_item"><a href="example_java.html" title="Documentation">Examples</a></li>
+			<li class="page_item"><a href="classes.html" title="Documentation">Documentation</a></li>
+			<li class="page_item"><a href="faq.html" title="FAQ">FAQ</a></li>
+			<li class="page_item"><a href="http://sourceforge.net/projects/jfuzzylogic/files/jfuzzylogic/jFuzzyLogic_v3.0.jar/download" title="Download">Download</a></li>
+			<li class="page_item"><a href="about.html" title="About">About</a></li>
+			</ul>
+		</div>
+
+
+	<div id="content"> 
+		<div id="right">  
+			<div class="ltop"></div> 
+			<div class="lmid">
+				<b>
+				<center><h2>jFuzzyLogic</h2></center>
+				<a href="http://sourceforge.net/projects/jfuzzylogic">Download</a><br>
+				<a href="plugin.html">Eclipse plugin</a><br>
+				<center>Examples</center>
+				<a href=example_java.html>Java example</a><br>
+				<a href=java.html>Java detailed example</a><br>
+				<a href=example_fcl.html>FCL example</a><br>
+				<a href=fcl.html>FCL detailed example</a><br>
+				<a href=example_parametric_optimization.html>Optimization example</a><br>
+				<center> Documentation </center>
+				<a href=faq.html>Faq</a><br>
+				<a href=classes.html>Classes</a><br>
+				<a href=membership.html>Membership functions</a><br>
+				<a href="../doc/iec_1131_7_cd1.pdf">FCL (pdf)</a><br>
+				<a href="about.html">About</a><br>
+				</b>
+			</div> 
+			<div class="lbot"></div> 
+
+		</div>
+
+			<div class="entry">
+
+
+<center><h3> Optimization example </h3></center>
+
+Java code to optimize fuzzy sets' parameters and fuzzy rule's weights<p>
+
+<table border=0 bgcolor=#ccfccc><tr><td>
+<pre>
+//---
+// Load FIS (Fuzzy Inference System)
+//---
+FIS fis = FIS.load("fcl/qualify.fcl");
+RuleBlock ruleBlock = fis.getFunctionBlock().getRuleBlock();
+
+//---
+// Create a list of parameter to optimize
+//---
+ArrayList<Parameter> parameterList = new ArrayList<Parameter>();
+
+// Add variables. 
+// Note: Fuzzy sets' parameters for these 
+// variables will be optimized
+Parameter.parameterListAddVariable(parameterList
+                                    , fis.getVariable("scoring"));
+Parameter.parameterListAddVariable(parameterList
+                                    , fis.getVariable("credLimMul"));
+
+// Add every rule's weight
+for( Rule rule = ruleBlock ) 
+    Parameter.parameterListAddRule(parameterList, rule);
+
+//---
+// Create an error function to be 
+// optimzed (i.e. minimized)
+//---
+ErrorFunctionQualify errorFunction = new ErrorFunctionQualify();
+
+//---
+// Optimize (using 'Delta jump optimization')
+//---
+OptimizationDeltaJump optimizationDeltaJump = 
+        new OptimizationDeltaJump(ruleBlock
+                , errorFunction, parameterList);
+
+// Number optimization of iterations
+optimizationDeltaJump.setMaxIterations(20);
+
+optimizationDeltaJump.optimize(true);
+</pre>
+</td></tr></table>
+
+<p>
+The error funcion (in this particular case, ErrorFunctionQualify) can be just any error function, the structure for the code should be like this:
+
+<table border=0 bgcolor=#ccfccc><tr><td>
+<pre>
+public class ErrorFunctionQualify extends ErrorFunction {
+    public double evaluate(RuleBlock ruleBlock) {
+        double error;
+        // Caculate your desired error here...
+        return error;
+    }
+}    
+</pre>
+</td></tr></table>
+        
+
+
+				<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+					<center><b>Author: <a class="body" href="http://www.mcb.mcgill.ca/~pcingola/">Pablo Cingolani</a> (pcingola@users.sourceforge.net</a>)</b></center>
+			</div>
+		</div>
+	</div>
+</div>
+
+<center>
+<font color=ffffff>
+Key words (for search engines): <br>
+	Fuzzy logic <br>
+	Fuzzy logic software <br>
+	Fuzzy logic package <br>
+	Fuzzy logic library <br>
+	Fuzzy logic sourceforge sf.net <br>
+	Open source <br>
+	GNU <br>
+	GPL LGPL <br>
+	java <br>
+	Windows Linux OSX <br>
+	FCL <br>
+	IEC 1131 <br>
+	IEC 61131 <br>
+	IEC 61131 part 7 <br>
+	IEC 61131-7 <br>
+	<a href="http://en.wikipedia.org/wiki/Fuzzy_logic">Fuzzy logic Wikipedia</a> <br>
+</font>
+</center>

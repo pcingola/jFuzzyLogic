@@ -1,0 +1,99 @@
+FUNCTION_BLOCK arm    // Block definition (there may be more than one block per file)
+
+VAR_OUTPUT            // Define input variables
+    torque1 : REAL;
+    torque2 : REAL;
+END_VAR
+
+VAR_INPUT           // Define output variables
+    dphi1dt : REAL;
+    dphi2dt : REAL;
+    phi1: REAL;
+    phi2: REAL;
+END_VAR
+
+FUZZIFY phi1           
+    TERM nb    :=  (-2, 1) (-0.5 ,1) (-0.001,0);
+    TERM ns    :=  TRIAN  -0.5 -0.001  0; 
+    TERM ok    :=  TRIAN  -0.001 0 0.001;
+    TERM ps    :=  TRIAN  0 0.001  0.5;
+    TERM pb    :=  (0.001,0) (0.5,1) (2, 1);
+END_FUZZIFY
+
+FUZZIFY phi2     
+    TERM nb    :=  (-2, 1) (-0.5 ,1) (-0.001,0);
+    TERM ns    :=  TRIAN  -0.5 -0.001  0; 
+    TERM ok    :=  TRIAN  -0.001 0 0.01;
+    TERM ps    :=  TRIAN   0 0.001  0.5;
+    TERM pb    :=  (0.001,0) (0.5,1) (2, 1);
+END_FUZZIFY
+
+
+FUZZIFY dphi1dt           
+    TERM nb    :=  (-10, 1) (-1 ,1) (-0.3,0);
+    TERM ns    :=  TRIAN  -1 -0.3  0; 
+    TERM ok    :=  TRIAN  -0.3 0 0.3;
+    TERM ps    :=  TRIAN  0 0.3  1;
+    TERM pb    := (0.3,0) (1,1) (10, 1);
+END_FUZZIFY
+
+FUZZIFY dphi2dt     
+    TERM nb   :=  (-10, 1) (-1 ,1) (-0.3,0);
+    TERM ns   :=  TRIAN  -1 -0.3  0; 
+    TERM ok   :=  TRIAN  -0.3 0 0.3;
+    TERM ps   :=  TRIAN  0 0.3  1;
+    TERM pb   := (0.3,0) (1,1) (10, 1);
+END_FUZZIFY
+
+DEFUZZIFY torque1          
+ 	TERM nb   := -800 ;
+    TERM ns   := -400 ;
+    TERM zero :=    0 ;
+    TERM ps   :=  400 ;
+    TERM pb   :=  800 ;
+    
+    METHOD    : COGS;      
+    DEFAULT   := 0;        
+END_DEFUZZIFY
+
+DEFUZZIFY torque2          
+    TERM nb   :=  -500 ;
+    TERM ns   :=  -200 ;
+    TERM zero :=     0 ;
+    TERM ps   :=   200 ;
+    TERM pb   :=   500 ;
+    
+    METHOD : COGS;       
+    DEFAULT := 0;            
+END_DEFUZZIFY
+
+
+RULEBLOCK No1
+    AND :  MIN;  
+    ACCU : MAX;
+    ACT : MIN;
+   
+    RULE 1 : IF phi1 IS  nb   THEN torque1 IS pb;
+/*
+    RULE 2 : IF phi1 IS  ns   THEN torque1 IS ps;
+    RULE 3 : IF phi1 IS  ok   THEN torque1 IS zero;
+    RULE 4 : IF phi1 IS  ps   THEN torque1 IS ns;
+    RULE 5 : IF phi1 IS  pb   THEN torque1 IS nb;
+    RULE 6 : IF dphi1dt IS nb   THEN torque1 IS pb;
+    RULE 7 : IF dphi1dt IS pb   THEN torque1 IS nb;
+    RULE 8 : IF dphi1dt IS ns AND phi1 is ok  THEN torque1 IS pb;
+    RULE 9 : IF dphi1dt IS ps AND phi1 is ok  THEN torque1 IS nb;
+   RULE 11 : IF phi2 IS  nb   THEN torque2 IS pb;
+    RULE 12 : IF phi2 IS  ns   THEN torque2 IS ps;
+    RULE 13 : IF phi2 IS  ok   THEN torque2 IS zero;
+    RULE 14 : IF phi2 IS  ps   THEN torque2 IS ns;
+    RULE 15 : IF phi2 IS  pb   THEN torque2 IS nb;
+    RULE 16 : IF dphi2dt IS nb   THEN torque2 IS pb;
+    RULE 17 : IF dphi2dt IS pb   THEN torque2 IS nb;
+    RULE 18 : IF dphi2dt IS ns AND phi2 is ok  THEN torque2 IS pb;
+    RULE 19 : IF dphi2dt IS ps AND phi2 is ok  THEN torque2 IS nb;
+*/
+END_RULEBLOCK
+
+
+END_FUNCTION_BLOCK

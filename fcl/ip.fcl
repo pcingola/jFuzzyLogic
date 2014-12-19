@@ -1,0 +1,65 @@
+FUNCTION_BLOCK ip    // Block definition (there may be more than one block per file)
+
+VAR_OUTPUT            // Define input variables
+    force : REAL;
+END_VAR
+
+VAR_INPUT           // Define output variable
+    x : REAL;
+    dxdt : REAL;
+    phi : REAL;
+    dphidt : REAL;
+END_VAR
+
+FUZZIFY x           
+    TERM ok := ( -2, 0) (0,1) (2,0); 
+    TERM left  :=  (-2,1)  (0,0);
+    TERM right := (  0, 0) (2,1) ;
+END_FUZZIFY
+
+FUZZIFY dxdt        
+    TERM  ok :=  (-10, 0) (0, 1) (5,0) ;
+    TERM  left := (-10,1) (0,0);
+    TERM  right := (0,0) (10,1) ;
+END_FUZZIFY
+
+FUZZIFY phi            
+    TERM ok  := (-1,0) (0,1) (1,0);
+    TERM left := (0,0) (1,1) ;
+    TERM right :=  (-1,1) (0,0);
+END_FUZZIFY
+
+FUZZIFY dphidt            
+    TERM ok  := (-10,0) (0,1) (10,0);
+    TERM left := (0,0) (10,1) ;
+    TERM right :=  (-10,1) (0,0);
+END_FUZZIFY
+
+
+DEFUZZIFY force          
+    TERM zero  :=   (-1,0) (0,1) (1,0);
+    TERM left  :=  (-201,0) (-200,1) (-199,0);
+    TERM right :=  (199,0) (200,1) (201,0);
+
+    METHOD : COG;        // Use 'Center Of Gravity' defuzzification method
+    DEFAULT := 0;          // Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+
+RULEBLOCK No1
+    AND : MIN;     
+    ACT : MIN;     
+    ACCU : MAX;    
+
+    RULE 1 : IF phi IS right AND dphidt IS right THEN force IS right ;
+    RULE 2 : IF phi IS left  AND dphidt IS left  THEN force IS left  ;
+    RULE 3 : IF phi IS ok AND dphidt IS ok THEN force IS zero ;
+
+  //  RULE 3 : IF x   IS ok AND dxdt IS ok AND phi IS ok  AND dphidt IS ok    THEN force IS zero  ;
+  //  RULE 4 : IF x   IS  right  AND dxdt IS ok AND phi    IS right THEN force IS right ;
+   // RULE 5 : IF x   IS  left   AND dxdt IS ok AND phi    IS left THEN force IS left  ;
+  //  RULE 6 : IF x   IS  ok AND dxdt IS right THEN force  IS left ;
+   // RULE 7 : IF x   IS  ok AND dxdt IS left THEN force   IS right ;
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

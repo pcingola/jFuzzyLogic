@@ -1,0 +1,52 @@
+FUNCTION_BLOCK SingletonQoSFewRules
+
+VAR_INPUT
+	commitment : REAL;
+	clarity : REAL;
+	influence : REAL;
+END_VAR
+
+VAR_OUTPUT
+	service_quality : REAL;
+END_VAR
+
+FUZZIFY commitment
+	TERM nothing := GAUSS 0 1;
+	TERM minimal := GAUSS 1 1;
+	TERM partially := GAUSS 2 1;
+	TERM satISfactory := GAUSS 3 1;
+	TERM largely := GAUSS 4 1;
+	TERM fully := GAUSS 5 1;
+END_FUZZIFY
+
+FUZZIFY clarity
+	TERM low := GAUSS 0 1;
+	TERM medium := GAUSS 2.5 1;
+	TERM high:= GAUSS 5 1;
+END_FUZZIFY
+
+FUZZIFY influence
+	TERM low := GAUSS 0 1;
+	TERM medium := GAUSS 2.5 1;
+	TERM high:= GAUSS 5 1;
+END_FUZZIFY
+
+DEFUZZIFY service_quality
+	TERM inadequate := 0;
+	TERM sufficient := 2.5;
+	TERM excellent := 5;
+	METHOD : COGS;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACCU : MAX;
+	
+	RULE 1 : IF commitment IS fully AND influence IS high THEN service_quality IS excellent;
+	RULE 2 : IF commitment IS partially AND clarity IS high AND influence IS low THEN service_quality IS sufficient;
+	RULE 3 : IF commitment IS nothing THEN service_quality IS inadequate;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+

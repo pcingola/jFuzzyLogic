@@ -1,0 +1,594 @@
+%% International Journal of Computational Intelligence Systems ---
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[11pt,twoside]{article}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{multicol,multirow,array,psfig,epsf}
+\usepackage{epic,eepic,ecltree}
+\usepackage[pdftex,dvips]{graphicx}
+%\usepackage{pstricks,pstricks-add,pst-all,pst-transform,colortbl,float,longtable}
+\usepackage{enumerate}
+\usepackage{ifthen}
+\usepackage{mathptmx}
+%\usepackage{helvet}%\usepackage{fourier}%\usepackage{lucida}
+\usepackage{lastpage}
+\usepackage{url}
+\usepackage[sf,sl,outermarks]{titlesec}
+%\usepackage{ukdate}
+\columnsep1.15cm  %MEANS GUTTER SPACE BET. TWO COLS.
+%--------------------------------------
+%===========================================================
+%                       Mise en page
+%===========================================================
+\newcommand{\toappear}[1]{\setcounter{page}{#1}}
+\newdimen\mathindent            % Pour ne pas utiliser fleqn.sty
+\newdimen\@bls                  % \@b(ase)l(ine)s(kip)
+\@bls=\baselineskip             % \@bls ~= \baselineskip for \normalsize
+\advance\@bls -1ex              % (fudge term)
+\newdimen\@eps                  %
+\@eps=0.0001pt                  % \eps = very small positive quantity
+
+%===========================================================
+%                               TITRE
+%===========================================================
+\def\labart#1{\@labart{#1}}
+\def\Vol#1{\def\@Vol{#1}}
+\def\Issue#1{\def\@Issue{#1}}
+\def\Month#1{\def\@Month{#1}}
+\def\Year#1{\def\@Year{#1}}
+%\def\received#1{\def\@received{#1}}
+%\def\revised#1{\def\@revised{#1}}
+%\def\email#1{\def\@email{#1}}
+%\def\shortauthors#1{\def\@shortauthors{#1}}
+%\def\shorttitle#1{\def\@shorttitle{#1}}
+\def\addresses#1{\def\@addresses{#1}}
+\newcommand{\shorttitle}[1]{\newcommand{\@shorttitle}{#1}}
+%--------------------------------------------------------------------------------
+\def\@shortauthors{\@authors\@andorcomma\relax\@andorcomma\relax}
+\def\shortauthors#1{\def\@shortauthors{#1}}
+%
+\def\@andorcomma#1#2\@andorcomma#3{%
+  \ifx#3\relax
+    \ifx#1\relax%
+      \let\@tempa\relax
+    \else
+    \def\@tempa{\space\andname\space #2\@gobbletwo}%
+    \fi
+  \else
+    \def\@tempa{#1 #2\@andorcomma#3}%
+  \fi
+  \@tempa}
+
+\def\thanks#1{%
+  \g@addto@macro\@thanks{\footnotetext{#1}}}
+\let\@thanks\@empty
+%
+%----------------------------------------------------------------------------------
+%
+\renewcommand{\maketitle}{\begingroup        % Initialize generation of front-matter
+    \let\thanks\@gobble
+    \def\thefootnote{\fnsymbol{footnote}}%
+    \newpage \global\@topnum\z@
+    \@maketitle %\thispagestyle{crcplain}
+    \@thanks
+  \endgroup
+  \let\maketitle\relax \let\@maketitle\relax
+  \gdef\@thanks{}\let\thanks\relax
+  \gdef\@address{}\gdef\@author{}\gdef\@title{}\gdef\@email{}
+  \let\address\relax}
+
+
+\def\@maketitle{\null             % Actual formatting of \maketitle
+  \markboth{\@shortauthors}{\@shorttitle}
+  \textlineskip
+  %\copyrightheading{Vol.~\@Vol, No.~\@Issue\ (\@Month, \@Year) \pageref{\labart-FirstPage}--\pageref{\labart-LastPage}}
+  %\vspace*{.9truein}
+  \vskip 2ex                     % Vertical space above title.
+  \centering % \raggedright       % Front-matter text is ragged right
+  \hyphenpenalty\@M               % and is not hyphenated.
+  {\bfseries\Large\@title\par     % Title set in larger font.
+  \vspace*{0.2truein}
+  \vskip\@bls                     % One line of vertical space after title.
+  \normalsize\@author\par}        % each author set in the normal typeface size
+  \vskip\@bls                     % One line of vertical space after author.
+  {\itshape\@addresses\par}       % all addresses
+  \vspace*{0.2truein}
+  \normalsize \baselineskip=10pt\small
+  \vspace*{0.6truein}
+  %\@received\par\@revised\par
+  %\vspace*{0.15truein}
+  }
+
+\newcounter{address}
+\def\theaddress{\alph{address}}
+\def\@makeadmark#1{\hbox{$^{\text{#1}}$}}
+
+\def\address#1{\begingroup
+  \xdef\@tempa{\theaddress}\let\\=\relax
+  \def\protect{\noexpand\protect\noexpand}\xdef\@address{\@address
+  \protect\addresstext{#1}}\endgroup}
+\def\@address{}
+
+\def\twoaddress#1{\addressmark\begingroup
+  \xdef\@tempa{\theaddress}\let\\=\relax
+  \def\protect{\noexpand\protect\noexpand}\xdef\@address{\@address
+  \protect\twoaddresstext{\@tempa}{#1}}\endgroup}
+\def\@address{}
+
+\def\addressmark{\stepcounter{address}%
+  \xdef\@tempa{\theaddress}\@makeadmark{\@tempa}}
+
+\def\addresstext#1{\leavevmode \begingroup
+  %\raggedright
+  \centering \hyphenpenalty\@M #1\par \endgroup
+  \vskip\@bls}
+
+\def\twoaddresstext#1#2{\leavevmode \begingroup
+  %\raggedright
+  \centering \hyphenpenalty\@M \@makeadmark{#1}#2\par \endgroup
+  \vskip\@bls}
+%===========================================================
+%                               Fin Titre
+%===========================================================
+%------------------------ NEW ADDITIONS TO EXISTING ARTICLE.STY -----------------
+\catcode`\@=11
+\long\def\@makefntext#1{
+\protect\noindent \hbox to 3.2pt {\hskip-.9pt
+$^{{\footnotesize\@thefnmark}}$\hfil}#1\hfill}      %CAN BE USED
+
+\def\thefootnote{\fnsymbol{footnote}}
+\def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}    %ORIGINAL
+
+%%FOR RHS WITHOUT PAGE NUMBERS ON SECOND PAGE ONWARDS
+\def\ps@myheadings{%
+    \let\@oddfoot\@empty\let\@evenfoot\@empty
+    \def\@evenhead{%\thepage\qquad
+    {\footnotesize\it\leftmark}\hfil}%      %EVEN PAGE
+    \def\@oddhead{\hfil{\footnotesize\it\rightmark}%\qquad\thepage
+    }%    %ODD PAGE
+    \let\@mkboth\@gobbletwo
+    \let\sectionmark\@gobble
+    \let\subsectionmark\@gobble
+    }
+
+\oddsidemargin=\evensidemargin
+%\addtolength{\oddsidemargin}{-30pt}
+%\addtolength{\evensidemargin}{-30pt}
+\addtolength{\oddsidemargin}{-40pt}
+\addtolength{\evensidemargin}{-40pt}
+\headsep=19pt
+
+%---------------------------------------------------------------------------
+\newcommand{\symbolfootnote}{\renewcommand{\thefootnote}
+    {\fnsymbol{footnote}}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\newcommand{\alphfootnote}
+    {\setcounter{footnote}{0}
+     \renewcommand{\thefootnote}{\ninerm\alph{footnote}}}
+
+%---------------------------------------------------------------------------
+% Redefine section, subsection numbering:
+%---------------------------------------------------------------------------
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\titleformat{\section}%[block]
+        {\raggedright\normalfont\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}%[block]
+        {\raggedright\normalfont\bfseries\itshape}{\thesubsection.}{0.9em}{}
+\titleformat{\subsubsection}%[block]
+        {\raggedright\normalfont\itshape}{\thesubsubsection.}{0.8em}{}
+
+
+%---------------------------------------------------------------------------
+%NEW MACRO TO HANDLE APPENDICES
+\newcounter{appendixc}
+\newcounter{subappendixc}[appendixc]
+\newcounter{subsubappendixc}[subappendixc]
+\renewcommand{\thesubappendixc}{\Alph{appendixc}.\arabic{subappendixc}}
+\renewcommand{\thesubsubappendixc}
+    {\Alph{appendixc}.\arabic{subappendixc}.\arabic{subsubappendixc}}
+
+\renewcommand{\appendix}[1] {\vspace{14pt}
+        \refstepcounter{appendixc}
+        \setcounter{section}{0}
+        \setcounter{figure}{0}
+        \setcounter{table}{0}
+        \setcounter{lemma}{0}
+        \setcounter{theorem}{0}
+        \setcounter{corollary}{0}
+        \setcounter{equation}{0}
+        \renewcommand{\thesection}{\Alph{appendixc}.\arabic{section}}
+        \renewcommand{\thefigure}{\Alph{appendixc}.\arabic{figure}}
+        \renewcommand{\thetable}{\Alph{appendixc}.\arabic{table}}
+        \renewcommand{\theappendixc}{\Alph{appendixc}}
+        \renewcommand{\thelemma}{\Alph{appendixc}.\arabic{lemma}}
+        \renewcommand{\thetheorem}{\Alph{appendixc}.\arabic{theorem}}
+        %\renewcommand{\thedefinition}{\Alph{appendixc}.\arabic{definition}}
+        \renewcommand{\thecorollary}{\Alph{appendixc}.\arabic{corollary}}
+        \renewcommand{\theequation}{\Alph{appendixc}.\arabic{equation}}
+        %\noindent{\bf Appendix \theappendixc. #1}\par\vspace{5pt}}
+        \noindent{\bfseries Appendix \theappendixc \quad #1}\par\vspace{5pt}}
+\newcommand{\subappendix}[1] {\vspace{14pt}
+        \refstepcounter{subappendixc}
+        \noindent{\bfseries Appendix \thesubappendixc {\kern1pt \textit{ #1}}}
+    \par\vspace{8pt}}
+\newcommand{\subsubappendix}[1] {\vspace{14pt}
+        \refstepcounter{subsubappendixc}
+        \noindent{\textrm{Appendix \thesubsubappendixc {\kern1pt \textit{#1}}}}
+    \par\vspace{8pt}}
+
+%---------------------------------------------------------------------------
+%FOLLOWING THREE COMMANDS ARE FOR `LIST' COMMAND.
+\topsep=0in\parsep=0in\itemsep=0in
+\parindent=15pt
+
+%---------------------------------------------------------------------------
+\newcommand{\textlineskip}{\baselineskip=13pt}
+\newcommand{\smalllineskip}{\baselineskip=10pt}
+
+%---------------------------------------------------------------------------
+%MACRO FOR COPYRIGHT BLOCK
+\newcommand{\copyrightheading}[1]
+    {\vspace*{-2.5cm}\smalllineskip{\flushleft
+    {\footnotesize International Journal of Computational Intelligence Systems, #1}\\
+    {\footnotesize \copyright\, Atlantis Press
+     }\\
+     }}
+
+%\newcommand{\publisher}[2]{\begin{center}\textrm{\baselineskip=10pt\small
+%    Received #1\\
+%    Revised #2
+%    }\end{center}}
+
+%---------------------------------------------------------------------------
+%MARCO FOR ABSTRACT BLOCK
+\def\abstracts#1{
+        \begin{center}
+        \begin{minipage}{5.8in}\small\baselineskip=11pt
+        \hbox{} \hfill\textbf{Abstract} \hfill \hbox{}
+        \par\medskip
+        \parindent=0pc #1
+        \end{minipage}
+        \end{center}
+        }
+%
+\def\keywords#1{%
+        \begin{center}
+        \begin{minipage}{5.8in}\small\baselineskip=11pt
+        \parindent=0pc\textit{Keywords:}\/ \ignorespaces#1\unskip
+        \end{minipage}
+        \end{center}
+        }
+%
+%---------------------------------------------------------------------------
+%NEW MACRO FOR BIBLIOGRAPHY
+%\newcommand{\bibit}{\small\it}
+%\newcommand{\bibbf}{\small\bf}
+\renewenvironment{thebibliography}[1]       %ALL CHANGES DD 13/3/92
+    {\small\baselineskip=11pt
+     \frenchspacing
+     \begin{list}{\arabic{enumi}.}
+        {\usecounter{enumi}\setlength{\parsep}{0pt}
+     \setlength{\leftmargin 12.7pt}{\rightmargin 0pt}%FOR 1--9 ITEMS
+%    \setlength{\leftmargin 17pt}{\rightmargin 0pt}  %FOR 10--99 ITEMS
+%    \setlength{\leftmargin 22pt}{\rightmargin 0pt}  %FOR 100+ABOVE ITEMS
+         \setlength{\itemsep}{0pt} \settowidth
+    {\labelwidth}{#1.}\sloppy}}
+    {\end{list}}
+
+%---------------------------------------------------------------------------
+%LIST ENVIRONMENTS
+\newcounter{itemlistc}
+\newcounter{romanlistc}
+\newcounter{alphlistc}
+\newcounter{arabiclistc}
+\newenvironment{itemlist}
+        {\setcounter{itemlistc}{0}
+     \begin{list}{$\bullet$}
+    {\usecounter{itemlistc}
+     \setlength{\leftmargin}{0pt}%
+     \setlength{\parsep}{0pt}
+     \setlength{\itemsep}{0pt}}}
+     {\end{list}}
+
+\newenvironment{romanlist}
+    {\setcounter{romanlistc}{0}
+     \begin{list}{$($\roman{romanlistc}$)$}
+    {\usecounter{romanlistc}
+     \setlength{\leftmargin}{0pt}%
+     \setlength{\parsep}{0pt}
+     \setlength{\itemsep}{0pt}}}
+     {\end{list}}
+
+\newenvironment{alphlist}
+    {\setcounter{alphlistc}{0}
+     \begin{list}{$($\alph{alphlistc}$)$}
+    {\usecounter{alphlistc}
+     \setlength{\leftmargin}{0pt}%
+     \setlength{\parsep}{0pt}
+     \setlength{\itemsep}{0pt}}}
+     {\end{list}}
+
+\newenvironment{arabiclist}
+    {\setcounter{arabiclistc}{0}
+     \begin{list}{\arabic{arabiclistc}}
+    {\usecounter{arabiclistc}
+     \setlength{\leftmargin}{0pt}%
+     \setlength{\parsep}{0pt}
+     \setlength{\itemsep}{0pt}}}
+     {\end{list}}
+
+%---------------------------------------------------------------------------
+%FIGURE CAPTION IN TWO COLUMNS
+\newcommand{\fcaption}[1]{
+        \refstepcounter{figure}
+        \setbox\@tempboxa = \hbox{\footnotesize Fig.~\thefigure. #1}
+        %\ifdim \wd\@tempboxa > 5in
+        \ifdim \wd\@tempboxa > 2.95in
+           {\begin{center}
+        %\parbox{5in}{\footnotesize\baselineskip=11pt Fig.~\thefigure. #1}
+        \parbox{2.95in}{\footnotesize\baselineskip=11pt Fig.~\thefigure. #1}
+            \end{center}}
+        \else
+             {\begin{center}
+             {\footnotesize Fig.~\thefigure. #1}
+              \end{center}}
+        \fi}
+%---------------------------------------------------------------------------
+%% FIGURE CAPTION IN 1 COLUMN MODE
+\newcommand{\fcap}[1]{
+        \refstepcounter{figure}
+        \setbox\@tempboxa = \hbox{\footnotesize Fig.~\thefigure. #1}
+        \ifdim \wd\@tempboxa > 5in
+        %\ifdim \wd\@tempboxa > 2.95in
+           {\begin{center}
+        \parbox{5in}{\footnotesize\baselineskip=11pt Fig.~\thefigure. #1}
+        %\parbox{2.95in}{\footnotesize\baselineskip=11pt Fig.~\thefigure. #1}
+            \end{center}}
+        \else
+             {\begin{center}
+             {\footnotesize Fig.~\thefigure. #1}
+              \end{center}}
+        \fi}
+%---------------------------------------------------------------------------
+%TABLE CAPTION
+\newcommand{\tcap}[1]{
+        \refstepcounter{table}
+        \setbox\@tempboxa = \hbox{\footnotesize Table~\thetable. #1}
+        \ifdim \wd\@tempboxa > 3.15in
+           {\begin{center}
+        \parbox{3.15in}{\footnotesize\smalllineskip
+        Table~\thetable. #1}
+            \end{center}}
+        \else
+             {\begin{center}
+             {\footnotesize Table~\thetable. #1}
+              \end{center}}
+        \fi}
+%---------------------------------------------------------------------------
+%TABLE CAPTION IN 1 COLUMN MODE
+\newcommand{\tcaption}[1]{
+        \refstepcounter{table}
+        \setbox\@tempboxa = \hbox{\footnotesize Table~\thetable. #1}
+        \ifdim \wd\@tempboxa > 5in
+           {\begin{center}
+        \parbox{5in}{\footnotesize\smalllineskip
+        Table~\thetable. #1}
+            \end{center}}
+        \else
+             {\begin{center}
+             {\footnotesize Table~\thetable. #1}
+              \end{center}}
+        \fi}
+%---------------------------------------------------------------------------
+%MACROS FOR SETTING \cite{x} OR \citeup{x}
+\def\@citex[#1]#2{\if@filesw\immediate\write\@auxout
+    {\string\citation{#2}}\fi
+\def\@citea{}\@cite{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{,}\@ifundefined
+    {b@\@citeb}{{\bf ?}\@warning
+    {Citation `\@citeb' on page \thepage \space undefined}}
+    {\csname b@\@citeb\endcsname}}}{#1}}
+
+\newif\if@cghi
+\def\cite{\@cghitrue\@ifnextchar [{\@tempswatrue
+    \@citex}{\@tempswafalse\@citex[]}}
+\def\citelow{\@cghifalse\@ifnextchar [{\@tempswatrue
+    \@citex}{\@tempswafalse\@citex[]}}
+\def\@cite#1#2{{$\null^{#1}$\if@tempswa\typeout
+%\def\@cite#1#2{{{#1}\if@tempswa\typeout
+    {IJCGA warning: optional citation argument
+    ignored: `#2'} \fi}}
+\newcommand{\citeup}{\cite}
+
+%---------------------------------------------------------------------------
+%FOR SUB/SUPERSCRIPT BOLDFACED + ITALICS
+\def\pmb#1{\setbox0=\hbox{#1}
+    \kern-.025em\copy0\kern-\wd0
+    \kern.05em\copy0\kern-\wd0
+    \kern-.025em\raise.0433em\box0}
+\def\mbi#1{{\pmb{\mbox{\scriptsize ${#1}$}}}}
+\def\mbr#1{{\pmb{\mbox{\scriptsize{#1}}}}}
+
+%---------------------------------------------------------------------------
+%FOR FNSYMBOL FOOTNOTE AND ALPH{FOOTNOTE}
+\def\fnm#1{$^{\mbox{\scriptsize #1}}$}      %TYPE AS \FNM{A}\FNT{A}
+\def\fnt#1#2{\footnotetext{\kern-.3em
+    {$^{\mbox{\scriptsize #1}}$}{#2}}}
+
+%---------------------------------------------------------------------------
+%FOR CREATING THE OPENING PAGE NUMBER
+\def\fpage#1{\begingroup
+\voffset=.3in
+\thispagestyle{empty}\begin{table}[b]\centerline{\footnotesize #1}
+    \end{table}\endgroup}
+
+%---------------------------------------------------------------------------
+% Theorem, Lemma, Proposition, Corollary environments
+\newcounter{theorem}
+\newcommand{\theorem}{\refstepcounter{theorem}\par\medskip
+        \noindent\textbf{Theorem~\arabic{theorem}.}\ \itshape}
+%OR \newtheorem{theorem}{Theorem}[sectionc] WHICH HAS SECTION NUMBER
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{corollary}[theorem]{Corollary}
+\newcounter{lemma}
+\newcounter{proposition}
+\newcounter{corollary}
+\newcommand{\lemma}{\refstepcounter{theorem}
+        \par\medskip\noindent\textbf{Lemma~\arabic{theorem}.}\ \itshape}
+\newcommand{\proposition}{\refstepcounter{theorem}
+        \par\medskip\noindent\textbf{Proposition~\arabic{theorem}.}\ \itshape}
+\newcommand{\corollary}{\refstepcounter{theorem}
+        \par\medskip\noindent\textbf{Corollary~\arabic{theorem}.}\ \itshape}
+% Definition environment
+\newcounter{definition}
+\newcommand{\definition}{\refstepcounter{definition}\par\medskip
+        \noindent\textbf{Definition~\arabic{definition}.}\ }
+% Example environment
+\newcounter{example}
+\newcommand{\example}{\refstepcounter{example}\par\medskip
+        \noindent\textbf{Example~\arabic{example}.}\ }
+% Remark environment
+\newcounter{remark}
+\newcommand{\remark}{\refstepcounter{remark}\par\medskip
+        \noindent\textbf{Remark~\arabic{remark}.}\ }
+%USERS CAN ADD ON THEIR OWN NEW THEOREM-LIKE ENVIRONMENTS.
+%
+%\newcommand{\definition}{\stepcounter{definition}\par\medskip
+%        \textbf{Definition~\arabic{definition}.}\ }
+
+%\newcommand{\proof}[1]{\par\medskip\noindent\textbf{Proof.\ } #1~\hfill~$\Box$ \par\medskip}
+% this might be already defined
+\newcommand{\qed}{\hfill \mbox{\raggedright \rule{.07in}{.1in}}}
+
+% this might be already defined
+\newenvironment{proof}{\vspace{1ex}\noindent{\bf Proof.}\hspace{0.5em}}
+        {\hfill\qed\vspace{1ex}}
+
+
+%--------------------START OF DATA FILE-------------------------------------
+\textwidth=6.75truein
+%\textheight=8.45truein %VSIZE OF OPENING PAGE
+\textheight=8.40truein  %VSIZE OF OPENING PAGE
+
+\voffset=-0.5cm
+\hoffset=-2cm
+
+%---------------------------------------------------------------------------
+%DEFINITIONS
+%% \def\itlatex{\tenit L\kern-.30em\raise.4ex\hbox{\eightit A}\kern-.14em
+%% T\kern-.1667em\lower.7ex\hbox{E}\kern-.125em X}
+
+%% \def\bsc{{\sc a\kern-7pt\sc a}}
+%% \def\bflatex{\bf L\kern-.30em\raise.3ex\hbox{\bsc}\kern-.18em
+%% T\kern-.1667em\lower.7ex\hbox{E}\kern-.125em X}
+
+\def\qed{\hbox{${\vcenter{\vbox{            %HOLLOW SQUARE
+   \hrule height 0.4pt\hbox{\vrule width 0.4pt height 6pt
+   \kern5pt\vrule width 0.4pt}\hrule height 0.4pt}}}$}}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}  %USE SYMBOLIC FOOTNOTE
+
+%---------------------------------------------------------------------------
+%% DEFINITIONS
+%% Fonts UPSHAPE
+\newcommand{\rA}{\textrm{A}}\newcommand{\rB}{\textrm{B}}\newcommand{\rC}{\textrm{C}}
+\newcommand{\rD}{\textrm{D}}\newcommand{\rE}{\textrm{E}}\newcommand{\rF}{\textrm{F}}
+\newcommand{\rG}{\textrm{G}}\newcommand{\rH}{\textrm{H}}\newcommand{\rI}{\textrm{I}}
+\newcommand{\rJ}{\textrm{J}}\newcommand{\rK}{\textrm{K}}\newcommand{\rL}{\textrm{L}}
+\newcommand{\rM}{\textrm{M}}\newcommand{\rN}{\textrm{N}}\newcommand{\rO}{\textrm{O}}
+\newcommand{\rP}{\textrm{P}}\newcommand{\rQ}{\textrm{Q}}\newcommand{\rR}{\textrm{R}}
+\newcommand{\rS}{\textrm{S}}\newcommand{\rT}{\textrm{T}}\newcommand{\rU}{\textrm{U}}
+\newcommand{\rV}{\textrm{V}}\newcommand{\rW}{\textrm{W}}\newcommand{\rX}{\textrm{X}}
+\newcommand{\rY}{\textrm{Y}}\newcommand{\rZ}{\textrm{Z}}
+%% Fonts MATHCAL
+\newcommand{\cA}{\mathcal{A}}\newcommand{\cB}{\mathcal{B}}\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}\newcommand{\cE}{\mathcal{E}}\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}\newcommand{\cH}{\mathcal{H}}\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}\newcommand{\cK}{\mathcal{K}}\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}\newcommand{\cN}{\mathcal{N}}\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}\newcommand{\cQ}{\mathcal{Q}}\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}\newcommand{\cT}{\mathcal{T}}\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}\newcommand{\cW}{\mathcal{W}}\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}\newcommand{\cZ}{\mathcal{Z}}
+%% Fonts MATHBB
+\newcommand{\IA}{\mathbb{A}}\newcommand{\IB}{\mathbb{B}}\newcommand{\IC}{\mathbb{C}}
+\newcommand{\ID}{\mathbb{D}}\newcommand{\IE}{\mathbb{E}}\newcommand{\IF}{\mathbb{F}}
+\newcommand{\IG}{\mathbb{G}}\newcommand{\IH}{\mathbb{H}}\newcommand{\II}{\mathbb{I}}
+\newcommand{\JJ}{\mathbb{J}}\newcommand{\IK}{\mathbb{K}}\newcommand{\IL}{\mathbb{L}}
+\newcommand{\IM}{\mathbb{M}}\newcommand{\IN}{\mathbb{N}}\newcommand{\IO}{\mathbb{O}}
+\newcommand{\IP}{\mathbb{P}}\newcommand{\IQ}{\mathbb{Q}}\newcommand{\IR}{\mathbb{R}}
+\newcommand{\IS}{\mathbb{S}}\newcommand{\IT}{\mathbb{T}}\newcommand{\IU}{\mathbb{U}}
+\newcommand{\IV}{\mathbb{V}}\newcommand{\IW}{\mathbb{W}}\newcommand{\IX}{\mathbb{X}}
+\newcommand{\IY}{\mathbb{Y}}\newcommand{\IZ}{\mathbb{Z}}
+
+%% RENEW DEF
+\renewcommand{\ge}{\geqslant}   \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant}   \renewcommand{\leq}{\leqslant}
+\renewcommand{\hat}{\widehat}
+\renewcommand{\tilde}{\widetilde}
+\renewcommand{\bar}{\overline}
+%---------------------------------------------------------------------------
+%%%% begin macro %%%%
+\makeatletter
+\def\hlinewd#1{%
+\noalign{\ifnum0=`}\fi\hrule \@height #1 %
+\futurelet\reserved@a\@xhline}
+\makeatother
+%%%% end macro %%%%
+
+\renewenvironment{itemize}%
+{ \begin{list}{%
+        $\scriptstyle\bullet$}{%
+                \setlength{\labelwidth}{10pt}%
+                \setlength{\leftmargin}{10pt}%
+                \setlength{\itemsep}{\parsep}
+        }
+        \itemsep=2pt
+        \topsep=0pt
+        \partopsep=0pt
+        \parskip=0pt
+        \parsep=0pt
+}%
+{ \end{list} }
+
+%%%% begin macro %%%%
+\makeatletter
+%% Bring items closer together in
+%% list environments % Prevent infinite loops
+\let\orig@Itemize =\itemize
+\let\orig@Enumerate =\enumerate
+\let\orig@Description =\description
+% Zero the vertical spacing parameters
+\def\Nospacing{
+        \itemsep=2pt
+        \topsep=0pt
+        \partopsep=0pt
+        \parskip=0pt
+        \parsep=0pt
+    }
+%\leftmargini 1.2em      % 2.5em
+
+\def\noitemsep{
+% Redefine the environments in terms of the original values
+        \renewenvironment{itemize}{\orig@Itemize\Nospacing}{\endlist}
+        \renewenvironment{enumerate}{\orig@Enumerate\Nospacing}{\endlist}
+        \renewenvironment{description}{\orig@Description\Nospacing}{\endlist}
+}
+
+\def\doitemsep{
+% Redefine the environments to the original values
+        \renewenvironment{itemize}{\orig@Itemize}{\endlist}
+        \renewenvironment{enumerate}{\orig@Enumerate}{\endlist}
+        \renewenvironment{description}{\orig@Description}{\endlist}
+}
+\makeatother
+%%%% end macro %%%%
+
+%% Command for references with pages
+\newcommand{\Ref}[1]{%
+        \ifthenelse{\pageref{#1}=\thepage}{\ref{#1}}{\ref{#1}, p.~\pageref{#1}}%
+        }
+\newcommand{\up}[1]{$^{\text{#1}}$}

@@ -1,0 +1,99 @@
+<H1> Fuzzy Control Demo </H1>
+
+
+
+<p> This demo simulates a cart with an inverted pendulum.
+The challenge is to keep the system stable by varying the force applied to the cart.
+This system is just like a unicycle or one of these segway bikes.</p>
+<br>
+
+<img  align="CENTRE" alt="i2.jpg" src="i2.jpg"></p>
+
+<br>
+  
+
+<h2> User control</h2>
+
+<p> 
+The user (that means you) can apply a force by clicking the mouse on the display.
+The force applied is proportional to the distance from the cart
+(like an elastic band). See if you can get home without falling over! </p>
+
+<h2> Fuzzy Logic</h2>
+
+<p> Fuzzy logic can be used for
+a wide range of practical applications ranging from what wash to use in your 
+washing machine to the control of robotic limbs. 
+    In this demo when the fuzzy logic is enabled the program attempts to 
+control the angle using a set of "fuzzy rules".
+
+The inputs are:
+<ul>
+<li> phi --
+the difference between the actual angle
+and the requested angle
+</li>
+<li>
+    dphidt -- rate of change of the angle.
+</li>
+</ul>
+
+
+The ouput of the system is the requested force value.
+
+
+The fuzzy inference system classifies the 
+input values into degree of membership of fuzzy sets.
+In this case the sets have names like
+PB (positive big) PS (positive small) Z (zero) etc.
+Unlike classical "crisp" logic
+which only uses 2 values; true and false, the 
+degree of membership of a fuzzy set can be any value between
+0 (not in the set e.g. false) and 1 (definately in the set e.g. true).</p>
+
+<p> In this demo the fuzzy controller is define by an FCL (fuzzy control logic) file.
+You can examine this in the Fuzzy Control Logic tab.
+In practice this file could be compiled into 
+a program for an embedded micro controller.
+</p>
+
+<h2> Why fuzzy logic</h2>
+
+<p> The big deal with fuzzy logic is that you can define
+your control system using rules that mean something to a human and avoid
+the complex maths required for some types of classical control. It is common
+to create fuzzy controllers by asking experts what rules they use.
+</p>
+
+<p>In this demo the rule. </p>
+
+<code>
+ IF phi IS PS  AND dphidt IS PB  THEN force IS PB ;      
+</code>
+
+ <p> says we should apply a positive big force if the 
+ angle is positive small and the rate of change is positive big. </p>
+ 
+<p> All the rules for the force are combined in a process called defuzzification which
+which creates a final real value for the force from the degree of membership functions.</p
+
+
+<H2> Graphs tab</H2>
+
+<p> The Graphs tab shows an animation of how the fuzzy system is working. The 
+coloured sections are the fuzzy sets which map the crisp value 
+into a degree of membership. The defuzzication of the force is done by taking the 
+centre of gravity of the force graph.
+ </p>
+
+<p> The rule set for this demo was created in a hurry 
+by the author in order to get 
+the demo working. 
+The rules can be edited
+(and possibly saved but this feature is untested on windows) 
+using the Fuzzy Control Logic tab.
+If you manage to create a better system please let me have
+a copy :-)  
+ </p>
+
+<p> PJ.Leonard</p>

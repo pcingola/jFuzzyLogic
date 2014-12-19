@@ -1,0 +1,158 @@
+<header>
+	<title> jFuzzyLogic: Open Source Fuzzy Logic (Java) </title>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="all">
+		body { background: url(./images/bg_gradient.jpg) repeat-x; }
+	</style>    
+</header>
+
+<div align="center">
+	<div id="wrap">
+		<div id="header">
+			<div class="logo">
+					<a href="http://jfuzzylogic.sourceforge.net/">jFuzzyLogic</a>
+					<p style="font-size: 12pt" align=right><b>Open Source Fuzzy Logic library and FCL language implementation</b></p>
+			</div>
+		</div>
+		<div id="menu">
+			<ul>
+			<li><a href="http://jfuzzylogic.sourceforge.net/">Home</a></li>
+			<li class="page_item"><a href="example_java.html" title="Documentation">Examples</a></li>
+			<li class="page_item"><a href="classes.html" title="Documentation">Documentation</a></li>
+			<li class="page_item"><a href="faq.html" title="FAQ">FAQ</a></li>
+			<li class="page_item"><a href="http://sourceforge.net/projects/jfuzzylogic/files/jfuzzylogic/jFuzzyLogic_v3.0.jar/download" title="Download">Download</a></li>
+			<li class="page_item"><a href="about.html" title="About">About</a></li>
+			</ul>
+		</div>
+
+
+	<div id="content"> 
+		<div id="right">  
+			<div class="ltop"></div> 
+			<div class="lmid">
+				<b>
+				<center><h2>jFuzzyLogic</h2></center>
+				<a href="http://sourceforge.net/projects/jfuzzylogic">Download</a><br>
+				<a href="plugin.html">Eclipse plugin</a><br>
+				<center>Examples</center>
+				<a href=example_java.html>Java example</a><br>
+				<a href=java.html>Java detailed example</a><br>
+				<a href=example_fcl.html>FCL example</a><br>
+				<a href=fcl.html>FCL detailed example</a><br>
+				<a href=example_parametric_optimization.html>Optimization example</a><br>
+				<center> Documentation </center>
+				<a href=faq.html>Faq</a><br>
+				<a href=classes.html>Classes</a><br>
+				<a href=membership.html>Membership functions</a><br>
+				<a href="../doc/iec_1131_7_cd1.pdf">FCL (pdf)</a><br>
+				<a href="about.html">About</a><br>
+				</b>
+			</div> 
+			<div class="lbot"></div> 
+
+		</div>
+
+			<div class="entry">
+
+
+<center><h3> FCL Example </h3></center>
+
+This is an example of a Fuzzy Control Language (FCL) program:<p>
+
+<table border=0><tr><td>
+<table border=0 bgcolor=#ccfccc><tr><td>
+<pre>
+// Block definition (there may be more than one block per file)
+FUNCTION_BLOCK tipper
+
+// Define input variables
+VAR_INPUT
+    service : REAL;
+    food : REAL;
+END_VAR
+
+// Define output variable
+VAR_OUTPUT
+    tip : REAL;
+END_VAR
+
+// Fuzzify input variable 'service'
+FUZZIFY service
+    TERM poor := (0, 1) (4, 0) ; 
+    TERM good := (1, 0) (4,1) (6,1) (9,0);
+    TERM excellent := (6, 0) (9, 1);
+END_FUZZIFY
+
+// Fuzzify input variable 'food'
+FUZZIFY food
+    TERM rancid := (0, 1) (1, 1) (3,0) ;
+    TERM delicious := (7,0) (9,1);
+END_FUZZIFY
+
+// Defzzzify output variable 'tip'
+DEFUZZIFY tip
+    TERM cheap := (0,0) (5,1) (10,0);
+    TERM average := (10,0) (15,1) (20,0);
+    TERM generous := (20,0) (25,1) (30,0);
+    // Use 'Center Of Gravity' defuzzification method
+    METHOD : COG;
+    // Default value is 0 (if no rule activates defuzzifier)
+    DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+    // Use 'min' for 'and' (also implicit use 'max'
+    // for 'or' to fulfill DeMorgan's Law)
+    AND : MIN;
+    // Use 'min' activation method
+    ACT : MIN;
+    // Use 'max' accumulation method
+    ACCU : MAX;
+
+    RULE 1 : IF service IS poor OR food IS rancid 
+                THEN tip IS cheap;
+
+    RULE 2 : IF service IS good 
+                THEN tip IS average; 
+
+    RULE 3 : IF service IS excellent AND food IS delicious 
+                THEN tip is generous;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+</pre>
+</td></tr></table>
+<table border=0 align=center bgcolor=#aaaaaa><tr><td align=center> See FCL code detailed explanation <a href="fcl.html"><b>here</b></a></td></tr></table>
+</td></tr></table>
+
+
+
+				<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+					<center><b>Author: <a class="body" href="http://www.mcb.mcgill.ca/~pcingola/">Pablo Cingolani</a> (pcingola@users.sourceforge.net</a>)</b></center>
+			</div>
+		</div>
+	</div>
+</div>
+
+<center>
+<font color=ffffff>
+Key words (for search engines): <br>
+	Fuzzy logic <br>
+	Fuzzy logic software <br>
+	Fuzzy logic package <br>
+	Fuzzy logic library <br>
+	Fuzzy logic sourceforge sf.net <br>
+	Open source <br>
+	GNU <br>
+	GPL LGPL <br>
+	java <br>
+	Windows Linux OSX <br>
+	FCL <br>
+	IEC 1131 <br>
+	IEC 61131 <br>
+	IEC 61131 part 7 <br>
+	IEC 61131-7 <br>
+	<a href="http://en.wikipedia.org/wiki/Fuzzy_logic">Fuzzy logic Wikipedia</a> <br>
+</font>
+</center>

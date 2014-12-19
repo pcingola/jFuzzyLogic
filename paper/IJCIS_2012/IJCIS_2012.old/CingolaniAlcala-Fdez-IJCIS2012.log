@@ -1,0 +1,721 @@
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2012.1.8)  1 MAR 2013 08:24
+entering extended mode
+ %&-line parsing enabled.
+**CingolaniAlcala-Fdez-IJCIS2012.tex
+(./CingolaniAlcala-Fdez-IJCIS2012.tex
+LaTeX2e <2005/12/01>
+Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
+erman, danish, esperanto, spanish, catalan, galician, estonian, farsi, finnish,
+ french, greek, monogreek, ancientgreek, croatian, hungarian, interlingua, ibyc
+us, indonesian, icelandic, italian, latin, mongolian, dutch, norsk, polish, por
+tuguese, pinyin, romanian, russian, slovenian, uppersorbian, serbian, swedish, 
+turkish, ukenglish, ukrainian, loaded.
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size11.clo
+File: size11.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (./ijcis.sty
+(/usr/share/texmf/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks14
+\ex@=\dimen103
+))
+(/usr/share/texmf/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen104
+)
+(/usr/share/texmf/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count87
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count88
+\leftroot@=\count89
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count90
+\DOTSCASE@=\count91
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count92
+\c@MaxMatrixCols=\count93
+\dotsspace@=\muskip10
+\c@parentequation=\count94
+\dspbrk@lvl=\count95
+\tag@help=\toks15
+\row@=\count96
+\column@=\count97
+\maxfields@=\count98
+\andhelp@=\toks16
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks17
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/share/texmf/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2002/01/22 v2.2d
+
+(/usr/share/texmf/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2001/10/25 v2.2f
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
+))
+(/usr/share/texmf/tex/latex/tools/multicol.sty
+Package: multicol 2006/05/18 v1.6g multicolumn formatting (FMi)
+\c@tracingmulticols=\count99
+\mult@box=\box28
+\multicol@leftmargin=\dimen112
+\c@unbalance=\count100
+\c@collectmore=\count101
+\doublecol@number=\count102
+\multicoltolerance=\count103
+\multicolpretolerance=\count104
+\full@width=\dimen113
+\page@free=\dimen114
+\premulticols=\dimen115
+\postmulticols=\dimen116
+\multicolsep=\skip46
+\multicolbaselineskip=\skip47
+\partial@page=\box29
+\last@line=\box30
+\mult@rightbox=\box31
+\mult@grightbox=\box32
+\mult@gfirstbox=\box33
+\mult@firstbox=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\c@columnbadness=\count105
+\c@finalcolumnbadness=\count106
+\last@try=\dimen117
+\multicolovershoot=\dimen118
+\multicolundershoot=\dimen119
+\mult@nat@firstbox=\box52
+\colbreak@box=\box53
+)
+(/usr/share/texmf/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen120
+)
+(/usr/share/texmf/tex/latex/tools/array.sty
+Package: array 2005/08/23 v2.4b Tabular extension package (FMi)
+\col@sep=\dimen121
+\extrarowheight=\dimen122
+\NC@list=\toks19
+\extratabsurround=\skip48
+\backup@length=\skip49
+) (./psfig.sty
+\@unused=\write3
+\ps@stream=\read1
+\p@intvaluex=\dimen123
+\p@intvaluey=\dimen124
+) (./epsf.sty
+This is `epsf.tex' v2.7.3 <23 July 2005>
+\epsffilein=\read2
+\epsfframemargin=\dimen125
+\epsfframethickness=\dimen126
+\epsfrsize=\dimen127
+\epsftmp=\dimen128
+\epsftsize=\dimen129
+\epsfxsize=\dimen130
+\epsfysize=\dimen131
+\pspoints=\dimen132
+) (./epic.sty
+Enhancements to Picture Environment. Version 1.2 - Released June 1, 1986
+\@@multicnt=\count107
+\d@lta=\count108
+\@delta=\dimen133
+\@@delta=\dimen134
+\@gridcnt=\count109
+\@joinkind=\count110
+\@dotgap=\dimen135
+\@ddotgap=\dimen136
+\@x@diff=\count111
+\@y@diff=\count112
+\x@diff=\dimen137
+\y@diff=\dimen138
+\@dotbox=\box54
+\num@segments=\count113
+\num@segmentsi=\count114
+\@datafile=\read3
+) (/usr/share/texmf/tex/latex/eepic/eepic.sty
+Extension to Epic and LaTeX. Version 1.1e - Released Dec 21, 1999
+\@gphlinewidth=\count115
+\@eepictcnt=\count116
+\@tempdimc=\dimen139
+\maxovaldiam=\dimen140
+\@filltype=\box55
+) (./ecltree.sty
+ECL Tree graph macro by isozaki, Nov. 12, 1990 + 2e FIX
+\@BundleWidth=\dimen141
+\@BundleDepth=\dimen142
+\@BundleHeight=\dimen143
+\@NodeBox=\box56
+\GapDepth=\dimen144
+\GapWidth=\dimen145
+\EdgeLabelSep=\dimen146
+) (/usr/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks20
+)
+(/usr/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 90.
+
+(/usr/share/texmf/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
+\Gread@gobject=\count117
+))
+\Gin@req@height=\dimen147
+\Gin@req@width=\dimen148
+)
+(/usr/share/texmf/tex/latex/tools/enumerate.sty
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks21
+)
+(/usr/share/texmf/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf/tex/latex/psnfss/mathptmx.sty
+Package: mathptmx 2005/04/12 PSNFSS-v9.2a Times w/ Math, improved (SPQR, WaS) 
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+\symbold=\mathgroup6
+\symitalic=\mathgroup7
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
+LaTeX Info: Redefining \hbar on input line 50.
+) (./lastpage.sty
+Package: lastpage 2010/09/24 v1.2f Refers to last page's name (HMM; JPG)
+)
+(/usr/share/texmf/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip11
+Package: url 2005/06/27  ver 3.2  Verb mode for urls, etc.
+) (./titlesec.sty
+Package: titlesec 2007/08/12 v2.8 Sectioning titles
+\ttl@box=\box57
+\beforetitleunit=\skip50
+\aftertitleunit=\skip51
+\ttl@plus=\dimen149
+\ttl@minus=\dimen150
+\ttl@toksa=\toks22
+\titlewidth=\dimen151
+\titlewidthlast=\dimen152
+\titlewidthfirst=\dimen153
+)
+\mathindent=\dimen154
+\@bls=\dimen155
+\@eps=\dimen156
+\c@address=\count118
+\c@appendixc=\count119
+\c@subappendixc=\count120
+\c@subsubappendixc=\count121
+\c@itemlistc=\count122
+\c@romanlistc=\count123
+\c@alphlistc=\count124
+\c@arabiclistc=\count125
+\c@theorem=\count126
+\c@lemma=\count127
+\c@proposition=\count128
+\c@corollary=\count129
+\c@definition=\count130
+\c@example=\count131
+\c@remark=\count132
+)
+(/usr/share/texmf/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+(/usr/share/texmf/tex/latex/oberdiek/pdflscape.sty
+Package: pdflscape 2006/04/24 v0.6 Landscape pages in PDF (HO)
+Package pdflscape Info: Auto-detected driver: `pdftex' on input line 70.
+)
+(/usr/share/texmf/tex/latex/setspace/setspace.sty
+Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
+
+Package: `setspace' 6.7 <2000/12/01>
+) (/usr/share/texmf/tex/latex/tools/afterpage.sty
+Package: afterpage 1995/10/27 v1.08 After-Page Package (DPC)
+\AP@output=\toks23
+\AP@partial=\box58
+\AP@footins=\box59
+)
+(/usr/share/texmf/tex/latex/base/alltt.sty
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+)
+(./CingolaniAlcala-Fdez-IJCIS2012.aux
+
+LaTeX Warning: Label `f:acumulation' multiply defined.
+
+)
+\openout1 = `CingolaniAlcala-Fdez-IJCIS2012.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 58.
+ (/usr/share/texmf/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+Package lastpage Info: Have a look at the pagesLTS package at
+(lastpage)             http://www.ctan.org/tex-archive/ 
+(lastpage)             macros/latex/contrib/pagesLTS/ 
+(lastpage)             or
+(lastpage)             http://www.ctan.org/tex-archive/ 
+(lastpage)             install/macros/latex/contrib/pagesLTS.tds.zip
+(lastpage)             ! on input line 58.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 61.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 61.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 61
+.
+
+(/usr/share/texmf/tex/latex/psnfss/ot1ztmcm.fd
+File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 61
+.
+
+(/usr/share/texmf/tex/latex/psnfss/omlztmcm.fd
+File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 61
+.
+
+(/usr/share/texmf/tex/latex/psnfss/omsztmcm.fd
+File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 61
+.
+
+(/usr/share/texmf/tex/latex/psnfss/omxztmcm.fd
+File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 61.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 61.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+ [1
+
+{/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 391.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 409.
+ [3]
+<./figs/tipper_MF.png, id=18, 780.9175pt x 395.4775pt>
+File: ./figs/tipper_MF.png Graphic file (type png)
+
+<use ./figs/tipper_MF.png> [4 <./figs/tipper_MF.png>]
+Underfull \hbox (badness 5847) in paragraph at lines 539--540
+\OML/ztmcm/m/it/10.95 s\OT1/ztmcm/m/n/10.95 (\OML/ztmcm/m/it/10.95 x; []; ^^L[
+]\OT1/ztmcm/m/n/10.95 ) \OMS/ztmcm/m/n/10.95 ^^@ \OML/ztmcm/m/it/10.95 s\OT1/zt
+mcm/m/n/10.95 (\OML/ztmcm/m/it/10.95 x; []; ^^L[]\OT1/ztmcm/m/n/10.95 )$\OT1/p
+tm/m/n/10.95 , where $\OML/ztmcm/m/it/10.95 s\OT1/ztmcm/m/n/10.95 (\OML/ztmcm/m
+/it/10.95 x; ; ^^L\OT1/ztmcm/m/n/10.95 ) =
+ []
+
+[5]
+Overfull \hbox (10.48256pt too wide) in paragraph at lines 589--607
+ [] 
+ []
+
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+<./figs/MaxProd.png, id=29, 992.70876pt x 213.79875pt>
+File: ./figs/MaxProd.png Graphic file (type png)
+
+<use ./figs/MaxProd.png>
+<./figs/accumulation.png, id=30, 391.4625pt x 161.60374pt>
+File: ./figs/accumulation.png Graphic file (type png)
+
+<use ./figs/accumulation.png>
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ˜ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ˜ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+ [6 <./figs/MaxProd.png (PNG copy)>]
+<./figs/jFuzzy_object_tree.png, id=36, 349.305pt x 827.09pt>
+File: ./figs/jFuzzy_object_tree.png Graphic file (type png)
+
+<use ./figs/jFuzzy_object_tree.png> [7 <./figs/accumulation.png (PNG copy)>]
+[8 <./figs/jFuzzy_object_tree.png (PNG copy)>]
+<./figs/plugin_edit.png, id=45, 1092.08pt x 744.7825pt>
+File: ./figs/plugin_edit.png Graphic file (type png)
+
+<use ./figs/plugin_edit.png>
+<./figs/plugin_run.png, id=46, 1284.8pt x 1007.765pt>
+File: ./figs/plugin_run.png Graphic file (type png)
+
+<use ./figs/plugin_run.png>
+<./figs/robot_vars_2.png, id=47, 967.615pt x 622.325pt>
+File: ./figs/robot_vars_2.png Graphic file (type png)
+
+<use ./figs/robot_vars_2.png> [9 <./figs/plugin_edit.png> <./figs/plugin_run.pn
+g>] [10 <./figs/robot_vars_2.png (PNG copy)>]
+Overfull \hbox (6.20236pt too wide) in paragraph at lines 885--885
+[]            \OT1/cmtt/m/n/8 //'max' for 'or' to fulfill DeMorgan's Law)[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 890--890
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is VHB , av is VHR with 0.4610;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 892--892
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is VHB , av is VHR with 0.4896;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 894--894
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is   Z , av is  MR with 0.6664;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 896--896
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  HB , av is  SR with 0.5435;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 898--898
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  MA , av is  HR with 0.7276;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 900--900
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  MA , av is  HL with 0.4845;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 902--902
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  HB , av is  ML with 0.5023;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 904--904
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is VHB , av is VHL with 0.7363;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 906--906
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is VHB , av is VHL with 0.9441;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 908--908
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is  HR with 0.3402;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 910--910
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is   Z , av is VHL with 0.4244;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 912--912
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  SA , av is  HL with 0.5472;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 914--914
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  MB , av is VHL with 0.4369;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 916--916
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is   Z , av is VHR with 0.1770;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 918--918
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is VHB , av is VHR with 0.4526;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 920--920
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is VHR with 0.2548;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 922--922
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is   Z with 0.2084;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 924--924
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is VHL with 0.6242;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 926--926
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is VHL with 0.3779;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 928--928
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is   Z , av is VHL with 0.6931;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 930--930
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is VHB , av is VHL with 0.7580;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 932--932
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is VHR with 0.5758;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 934--934
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is  MR with 0.2513;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 936--936
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is VHL with 0.5471;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 938--938
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is  HL with 0.5595;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 940--940
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is VHB , av is VHR with 0.9999;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 942--942
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is VHB , av is VHR with 0.9563;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 944--944
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is VHR with 0.9506;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 946--946
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is VHR with 0.4529;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 948--948
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is VHR with 0.2210;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 950--950
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is  MR with 0.3612;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 952--952
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is  MR with 0.2122;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 954--954
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is  HL with 0.7878;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 956--956
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is VHL with 0.3859;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 958--958
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is VHR with 0.5530;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 960--960
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is  HR with 0.4223;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 962--962
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is  HR with 0.3854;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 964--964
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is VHR with 0.0936;[] 
+ []
+
+[11]
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 966--966
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is VHR with 0.7325;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 968--968
+[]    \OT1/cmtt/m/n/8 and v is H THEN la is  SA , av is VHR with 0.5631;[] 
+ []
+
+
+Overfull \hbox (1.9523pt too wide) in paragraph at lines 970--970
+[]    \OT1/cmtt/m/n/8 and v is L THEN la is  HA , av is  HR with 0.5146;[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 977--980
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 981
+.
+(/usr/share/texmf/tex/latex/R/omscmtt.fd
+File: omscmtt.fd 
+)
+LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 981.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1002--1007
+
+ []
+
+<./figs/robot_out2.png, id=59, 853.1875pt x 599.23875pt>
+File: ./figs/robot_out2.png Graphic file (type png)
+
+<use ./figs/robot_out2.png> (./CingolaniAlcala-Fdez-IJCIS2012.bbl [12 <./figs/r
+obot_out2.png>]) AED: lastpage setting LastPage 
+[13] (./CingolaniAlcala-Fdez-IJCIS2012.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3052 strings out of 256216
+ 35155 string characters out of 1917073
+ 107778 words of memory out of 1500000
+ 6224 multiletter control sequences out of 10000+200000
+ 48668 words of font info for 105 fonts, out of 1200000 for 2000
+ 645 hyphenation exceptions out of 8191
+ 34i,10n,28p,535b,530s stack positions out of 5000i,500n,6000p,200000b,15000s
+{/usr/share/texmf/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/b
+luesky/cm/cmex10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></usr/
+share/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/blue
+sky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy8.pfb></usr/shar
+e/texmf/fonts/type1/bluesky/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/bluesky
+/cm/cmtt8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmtt9.pfb></usr/share/te
+xmf/fonts/type1/bluesky/ams/msam10.pfb></usr/share/texmf/fonts/type1/urw/symbol
+/usyr.pfb></usr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf/f
+onts/type1/urw/times/utmb8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmbi8a
+.pfb></usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on CingolaniAlcala-Fdez-IJCIS2012.pdf (13 pages, 710083 bytes).
+PDF statistics:
+ 118 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 131072)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+

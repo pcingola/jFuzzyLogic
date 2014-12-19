@@ -1,0 +1,9 @@
+net.sourceforge.jFuzzyLogic
+net.sourceforge.jFuzzyLogic.defuzzifier
+net.sourceforge.jFuzzyLogic.fcl
+net.sourceforge.jFuzzyLogic.membership
+net.sourceforge.jFuzzyLogic.rule
+net.sourceforge.jFuzzyLogic.ruleAggregation
+net.sourceforge.jFuzzyLogic.ruleConnection
+net.sourceforge.jFuzzyLogic.ruleImplication
+net.sourceforge.jFuzzyLogic.test

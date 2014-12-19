@@ -1,0 +1,144 @@
+\csname PSTtransformLoaded\endcsname
+\let\PSTtransformLoaded\endinput
+%
+\ifx\PSTricksLoaded\endinput\else\input pstricks \fi
+\ifx\PSTthreeDLoaded\endinput\else\input pst-3d.tex\fi
+\ifx\PSTNodeLoaded\endinput\else\input pst-node.tex\fi
+\ifx\PSTXKeyLoaded\endinput\else\input pst-xkey.tex\fi
+%
+\def\fileversion{1.0}
+\def\filedate{07/09/01}
+%
+%% COPYRIGHT 2007 by Manuel Luque
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN
+%% archives in directory macros/latex/base/lppl.txt.
+%
+\message{`PST-transform' v\fileversion, \filedate\space (ML)}
+
+\edef\PstAtCode{\the\catcode`\@} \catcode`\@=11\relax
+
+
+\def\pstranslate{\pst@object{pstranslate}}
+\def\pstranslate@i(#1)(#2){\begingroup\use@par\pst@makebox{\pstranslate@ii(#1)(#2)}}
+\def\pstranslate@ii(#1)(#2){%
+  \pst@getcoor{#1}\pst@tempA
+  \pst@getcoor{#2}\pst@tempB
+  \leavevmode
+\pnode(!\pst@tempA /y0 ED /x0 ED
+        \pst@tempB /y1 ED /x1 ED
+        0 0){factice}%
+   \hbox{%
+  \pst@Verb{%
+    {[1 0 0 1 x1 x0 sub y1 y0 sub]
+     concat } \tx@TMChange }%
+    \box\pst@hbox%
+\pst@Verb{\tx@TMRestore}}\endgroup}
+
+\def\psHomothetie{\pst@object{psHomothetie}}
+\def\psHomothetie@i(#1)#2{\begingroup\use@par\pst@makebox{\psHomothetie@ii(#1){#2}}}
+\def\psHomothetie@ii(#1)#2{%
+  \pst@getcoor{#1}\pst@tempa
+  \leavevmode
+\pnode(! \pst@tempa /yH ED /xH ED /K #2 def 0 0){factice}%
+   \hbox{%
+  \pst@Verb{%
+    {[K 0 0 K K xH mul neg xH add K yH mul neg yH add]
+     concat } \tx@TMChange }%
+    \box\pst@hbox%
+\pst@Verb{\tx@TMRestore}}\endgroup}
+
+\def\psrotate{\pst@object{psrotate}}
+\def\psrotate@i(#1)#2{\begingroup\use@par\pst@makebox{\psrotate@ii(#1){#2}}}
+\def\psrotate@ii(#1)#2{%
+  \pst@getcoor{#1}\pst@tempa
+  \pst@getangle{#2}\pst@tempb
+  \leavevmode
+\pnode(!\pst@tempa /yRot ED /xRot ED 0 0){factice}%
+  \hbox{%
+    \pst@Verb{%
+      \pst@tempb dup cos /cosA ED sin /sinA ED
+      /ax cosA def
+      /by sinA def
+      /cx sinA neg def
+      /dy cosA def
+      /ex xRot cosA mul neg xRot add yRot sinA mul add def
+      /fy xRot sinA mul neg yRot add yRot cosA mul sub def
+       { [ax by cx dy ex fy] concat } \tx@TMChange }%
+    \box\pst@hbox%
+  \pst@Verb{ \tx@TMRestore }}\endgroup}
+
+\pst@addfams{pst-cis}
+\define@key[psset]{pst-cis}{cisX}{% cisaillement suivant Ox
+\edef\psk@CisX{#1}}
+\define@key[psset]{pst-cis}{cisY}{% cisaillement suivant Ox
+\edef\psk@CisY{#1}}
+\psset[pst-cis]{cisY=0,cisX=45}
+
+\def\pscisaillement{\@ifnextchar[{\pst@cisaillement}{\pst@cisaillement[]}}
+\def\pst@cisaillement[#1]{\pst@killglue\pst@makebox{\pscisaillement@[#1]}}
+\def\pscisaillement@[#1]{{%
+\psset{#1}%
+\leavevmode
+\hbox{%
+\pst@Verb{
+    /AngleCisX \psk@CisX\space def
+    /AngleCisY \psk@CisY\space def
+    /tanCisX AngleCisX sin
+             AngleCisX cos
+             div
+             def
+    /tanCisY AngleCisY sin
+             AngleCisY cos
+             div
+             def
+    /ax 1 tanCisX tanCisY mul add def
+    /by tanCisY def
+    /cx tanCisX def
+    /dy 1 def
+    { [ax by cx dy 0 0] concat
+    } \tx@TMChange}%
+    \box\pst@hbox
+\pst@Verb{\tx@TMRestore}}%
+    }}
+
+%(#1) coordonnées d'une extrémité du miroir (X1,Y1)
+%(#2) coordonnées de l'autre extrémité du miroir (X2,Y2)
+% (A)(B) si A et B sont des noeuds définis avec \pnode(x1,y1){A}, \pnode(x2,y2){B}
+\def\SymPlan(#1)(#2){\pst@killglue\pst@makebox{\SymPlan@(#1)(#2)}}%
+\def\SymPlan@(#1)(#2){{%
+\pst@getcoor{#1}\pst@tempa%
+\pst@getcoor{#2}\pst@tempb%
+\leavevmode
+\hbox{%
+\pnode(!
+    \pst@tempa /Y1 exch def
+    /X1 exch def
+    \pst@tempb /Y2 exch def
+    /X2 exch def
+    /DX X2 X1 sub def
+    /DY Y2 Y1 sub def
+    /D12 DX dup mul DY dup mul add def
+    /ax 2 DX dup mul mul D12 div 1 sub def
+    /by 2 DX DY mul mul D12 div def
+    /cx by def
+    /dy 2 DY dup mul mul D12 div 1 sub def
+    /tx X1 DY dup mul mul
+    Y1 DX DY mul mul sub
+    2 mul
+    D12 div
+    def
+    /ty Y1 DX dup mul mul
+    X1 DX DY mul mul sub
+    2 mul
+    D12 div
+    def 0 0){factice}%
+\pst@Verb{%
+    { [ax by cx dy tx ty] concat
+    } \tx@TMChange}%
+    \box\pst@hbox
+\pst@Verb{\tx@TMRestore}}%
+    }}
+
+\catcode`\@=\PstAtCode\relax
+\endinput

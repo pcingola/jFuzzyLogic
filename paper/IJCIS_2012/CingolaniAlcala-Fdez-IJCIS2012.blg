@@ -1,0 +1,78 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.6)
+The top-level auxiliary file: CingolaniAlcala-Fdez-IJCIS2012.aux
+The style file: unsrt.bst
+Database file #1: CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "OctaveFLT2011" isn't style-file defined
+--line 69 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "nxtfuzzylogic2010" isn't style-file defined
+--line 99 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "libFuzzyEngine2010" isn't style-file defined
+--line 109 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "libai2010" isn't style-file defined
+--line 119 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "jFuzzyQt2011" isn't style-file defined
+--line 129 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "JFuzzinator2010" isn't style-file defined
+--line 139 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "JFCM2011" isn't style-file defined
+--line 149 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "javafuzzylogicctrltool2008" isn't style-file defined
+--line 159 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "FuzzyPLC2011" isn't style-file defined
+--line 169 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "FuzzyBlackBox2011" isn't style-file defined
+--line 179 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "Funzy2007" isn't style-file defined
+--line 189 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "flute2004" isn't style-file defined
+--line 209 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "awifuzz2006" isn't style-file defined
+--line 219 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "DotFuzzy2009" isn't style-file defined
+--line 229 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--entry type for "togai2004" isn't style-file defined
+--line 239 of file CingolaniAlcala-Fdez-IJCIS2012.bib
+Warning--empty author and editor in IEC
+Warning--empty publisher in parr2007definitive
+You've used 49 entries,
+            1791 wiz_defined-function locations,
+            754 strings with 11211 characters,
+and the built_in function-call counts, 10735 in all, are:
+= -- 1005
+> -- 371
+< -- 13
++ -- 148
+- -- 99
+* -- 644
+:= -- 1543
+add.period$ -- 147
+call.type$ -- 49
+change.case$ -- 44
+chr.to.int$ -- 0
+cite$ -- 51
+duplicate$ -- 493
+empty$ -- 1161
+format.name$ -- 99
+if$ -- 2521
+int.to.chr$ -- 0
+int.to.str$ -- 49
+missing$ -- 38
+newline$ -- 242
+num.names$ -- 36
+pop$ -- 200
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 260
+stack$ -- 0
+substring$ -- 714
+swap$ -- 129
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 90
+width$ -- 51
+write$ -- 522
+(There were 17 warnings)

@@ -1,0 +1,156 @@
+<header>
+	<title> jFuzzyLogic: Open Source Fuzzy Logic (Java) </title>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="all">
+		body { background: url(./images/bg_gradient.jpg) repeat-x; }
+	</style>    
+</header>
+
+<div align="center">
+	<div id="wrap">
+		<div id="header">
+			<div class="logo">
+					<a href="http://jfuzzylogic.sourceforge.net/">jFuzzyLogic</a>
+					<p style="font-size: 12pt" align=right><b>Open Source Fuzzy Logic library and FCL language implementation</b></p>
+			</div>
+		</div>
+		<div id="menu">
+			<ul>
+			<li><a href="http://jfuzzylogic.sourceforge.net/">Home</a></li>
+			<li class="page_item"><a href="example_java.html" title="Documentation">Examples</a></li>
+			<li class="page_item"><a href="classes.html" title="Documentation">Documentation</a></li>
+			<li class="page_item"><a href="faq.html" title="FAQ">FAQ</a></li>
+			<li class="page_item"><a href="http://sourceforge.net/projects/jfuzzylogic/files/jfuzzylogic/jFuzzyLogic_v3.0.jar/download" title="Download">Download</a></li>
+			<li class="page_item"><a href="about.html" title="About">About</a></li>
+			</ul>
+		</div>
+
+
+	<div id="content"> 
+		<div id="right">  
+			<div class="ltop"></div> 
+			<div class="lmid">
+				<b>
+				<center><h2>jFuzzyLogic</h2></center>
+				<a href="http://sourceforge.net/projects/jfuzzylogic">Download</a><br>
+				<a href="plugin.html">Eclipse plugin</a><br>
+				<center>Examples</center>
+				<a href=example_java.html>Java example</a><br>
+				<a href=java.html>Java detailed example</a><br>
+				<a href=example_fcl.html>FCL example</a><br>
+				<a href=fcl.html>FCL detailed example</a><br>
+				<a href=example_parametric_optimization.html>Optimization example</a><br>
+				<center> Documentation </center>
+				<a href=faq.html>Faq</a><br>
+				<a href=classes.html>Classes</a><br>
+				<a href=membership.html>Membership functions</a><br>
+				<a href="../doc/iec_1131_7_cd1.pdf">FCL (pdf)</a><br>
+				<a href="about.html">About</a><br>
+				</b>
+			</div> 
+			<div class="lbot"></div> 
+
+		</div>
+
+			<div class="entry">
+
+				<p style="font-size: 16pt"> <b> What is jFuzzyLogic?</b></p>
+				jFuzzyLogic is a <b>fuzzy logic</b> package written in java (as you might have guessed). It implements Fuzzy control language (FCL) specification (IEC 61131 part 7)<p>
+
+				<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+
+				<p style="font-size: 16pt"> <b> jFuzzyLogic Features </b></p>
+					&nbsp;&nbsp;&nbsp;&nbsp;- Implements Fuzzy control language (FCL) IEC-61131-7 specification.<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;- Parametric optimization algorithms.<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;- Membership functions: <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Continuous: GenBell, Sigmoidal, Trapetzoidal, Gaussian, PieceWiseLinear, Triangular, Cosing, Dsigm<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Discrete: Singleton, GenericSingleton  <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Custom membership functions can be defined<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;- Defuzzifiers: <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Continuous: CenterOfGravity, RightMostMax, CenterOfArea, LeftMostMax, MeanMax<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Discrete: CenterOfGravitySingletons<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Custom defuzzifiers can be easly created<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Function based deffuzifiers (e.g. "TERM drainage := FUNCTION (-2 * pressure * Ln(pressure)) + (temp * 4);");<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;- Rule aggregation (how rules are aggregated / accumulated): BoundedSum, Max, ProbOr, Sum, NormedSum<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;- Rule connection operators (AND, OR): Max / Min, ProbOr / Prod, BoundedDif //BoundedSum, etc.<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;- Rule implication methods (activation): Min , Product.
+
+				<p style="font-size: 16pt"> <b> Eclipse plugin (December 2012 release) </b></p>
+					<b>New</b> plugin available for Eclipse (Helios). See details <a class="body" href="plugin.html"> here </a><br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- To install: Eclipse menu <tt>Help -&gt; Install new software</tt> 
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Click on <tt>Add</tt><br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Name: <tt>jFuzzyLogic</tt> <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Location: <tt>http://jfuzzylogic.sourceforge.net/eclipse/</tt><br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Click OK an follow the instructions.<br><br>
+
+				<center> <p style="font-size: 16pt"> <b> jFuzzyLogic Paper </b> </center> </p>
+				If you use jFuzzyLogic in an academic project, please cite our papers:
+
+				<ul>
+					<li> <a class="body" href="Cingolani_Alcala-Fdez_jFuzzyLogic_2013_IJCIS.pdf"> "jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the Standard for Fuzzy Control Programming."</a>
+					<li> <a class="body" href="jFuzzyLogic.pdf"> "jFuzzyLogic: A Robust and Flexible Fuzzy-Logic Inference System Language Implementation" </a>.
+				</ul>
+
+				<br>
+				BibTex:
+<pre>
+@inproceedings{cingolani2013jfuzzylogic,
+  title={jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the Standard for Fuzzy Control Programming.}
+  author={Cingolani, Pablo and Alcala-Fdez, Jesus},
+  booktitle={International Journal of Computational Intelligence Systems}
+  pages={61-75},
+  year={2013},
+  organization={IEEE}
+}
+
+@inproceedings{cingolani2012jfuzzylogic,
+  title={jFuzzyLogic: a robust and flexible Fuzzy-Logic inference system language implementation},
+  author={Cingolani, Pablo and Alcala-Fdez, Jesus},
+  booktitle={Fuzzy Systems (FUZZ-IEEE), 2012 IEEE International Conference on},
+  pages={1-8},
+  year={2012},
+  organization={IEEE}
+}
+</pre><p>
+
+
+				<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+
+				<center> <p style="font-size: 16pt"> <b> Examples </b> </center> </p>
+ 				<p style="font-size: 12pt"> To run this demo, download jFuzzyLogic.jar and run "<b>java -jar jFuzzyLogic.jar demo</b>"<p>
+				<center> <img src="images/snapshot3.png"> </center>
+
+				<center> <b>Video capture</b> </center><p>
+				<center> <embed src="./videos/jFuzzy_Tipper_demo.swf" width=790 height=590> </center>
+
+
+
+				<p style="font-size: 8pt" align=center><font color=#777777> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </font></p>
+					<center><b>Author: <a class="body" href="http://www.mcb.mcgill.ca/~pcingola/">Pablo Cingolani</a> (pcingola@users.sourceforge.net</a>)</b></center>
+			</div>
+		</div>
+	</div>
+</div>
+
+<center>
+<font color=ffffff>
+Key words (for search engines): <br>
+	Fuzzy logic <br>
+	Fuzzy logic software <br>
+	Fuzzy logic package <br>
+	Fuzzy logic library <br>
+	Fuzzy logic sourceforge sf.net <br>
+	Open source <br>
+	GNU <br>
+	GPL LGPL <br>
+	java <br>
+	Windows Linux OSX <br>
+	FCL <br>
+	IEC 1131 <br>
+	IEC 61131 <br>
+	IEC 61131 part 7 <br>
+	IEC 61131-7 <br>
+	<a href="http://en.wikipedia.org/wiki/Fuzzy_logic">Fuzzy logic Wikipedia</a> <br>
+</font>
+</center>

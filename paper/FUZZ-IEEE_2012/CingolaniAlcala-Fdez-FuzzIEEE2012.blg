@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.6)
+The top-level auxiliary file: CingolaniAlcala-Fdez-FuzzIEEE2012.aux
+The style file: IEEEtran.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: IEEEabrv.bib
+Database file #2: CingolaniAlcala-Fdez-FuzzIEEE2012.bib
+-- IEEEtran.bst version 1.12 (2007/01/11) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty author and editor in IEC
+Warning--missing publisher in parr2007definitive
+
+Done.
+You've used 19 entries,
+            4024 wiz_defined-function locations,
+            1301 strings with 17641 characters,
+and the built_in function-call counts, 15210 in all, are:
+= -- 1228
+> -- 374
+< -- 148
++ -- 214
+- -- 62
+* -- 734
+:= -- 2234
+add.period$ -- 38
+call.type$ -- 19
+change.case$ -- 14
+chr.to.int$ -- 333
+cite$ -- 21
+duplicate$ -- 1056
+empty$ -- 1180
+format.name$ -- 76
+if$ -- 3529
+int.to.chr$ -- 0
+int.to.str$ -- 19
+missing$ -- 176
+newline$ -- 80
+num.names$ -- 18
+pop$ -- 389
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1202
+stack$ -- 0
+substring$ -- 791
+swap$ -- 918
+text.length$ -- 37
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 19
+warning$ -- 2
+while$ -- 65
+width$ -- 21
+write$ -- 205
+(There were 2 warnings)

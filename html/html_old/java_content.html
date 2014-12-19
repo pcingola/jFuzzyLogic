@@ -1,0 +1,58 @@
+
+<center><h3> Jave example explained </h3></center>
+
+This is a simple java code used to load a fuzzy inference system (FIS), this code available at net.sourceforge.jFuzzyLogic.TestTipper.java<p>
+
+<ul>
+	<li>First load an FCL file, using <code>FIS.load(fileName)</code> function.<br>
+		<table border=0 bgcolor=#ccfccc><tr><td>
+<pre>String fileName = "fcl/tipper.fcl";
+FIS fis = FIS.load(fileName,true);
+</pre></td></tr></table><p>
+
+	<li> When an error is detected during <code>FIS.load()</code>, a <code>null</code> object is returned.
+		<table border=0 bgcolor=#ccfccc><tr><td>
+<pre>if( fis == null ) { // Error while loading?
+	System.err.println("Can't load file: '" + fileName + "'");
+	return;
+}
+</pre></td></tr></table>
+		<p>
+
+	<li> Now we can plot the FIS. Actually, we plot each Variable in the FUNCTION_BLOCK (and each LinguisticTerm in each Variable). This might only be usefull when you are debugging your code.
+		<table border=0 bgcolor=#ccfccc><tr><td><pre> fis.chart(); </pre></td></tr></table>
+		<p>
+		And we get the following images:<p>
+		<center>
+		<img src=images/service.png><p>
+		<img src=images/food.png><p>
+		<img src=images/tip.png><p>
+		</center>
+
+	<li> Now we use the FIS. We start by setting FIS' inputs
+		<table border=0 bgcolor=#ccfccc><tr><td>
+<pre>fis.setVariable("service", 3);
+fis.setVariable("food", 7);
+</pre></td></tr></table>
+		<p>
+
+	<li> And we run the system
+		<table border=0 bgcolor=#ccfccc><tr><td><pre>fis.evaluate();</pre></td></tr></table>
+		<p>
+		
+	<li> If we want to know the system's output (in this case there's only one output variable 'tip')
+		<table border=0 bgcolor=#ccfccc><tr><td><pre>fis.getVariable("tip").getLatestDefuzzifiedValue();</pre></td></tr></table>
+		<p>
+
+	<li> We can also plot output's defuzzifier (probably only during debuging)
+		<table border=0 bgcolor=#ccfccc><tr><td><pre>fis.getVariable("tip").chartDefuzzifier(true);</pre></td></tr></table>
+		<p>
+		<center>
+		<img src=images/tip_out.png><p>
+		</center>
+
+	<li> And, of course, we can print the FIS 
+		<table border=0 bgcolor=#ccfccc><tr><td><pre>System.out.println(fis);</pre></td></tr></table>
+		<p>
+</ul>
+

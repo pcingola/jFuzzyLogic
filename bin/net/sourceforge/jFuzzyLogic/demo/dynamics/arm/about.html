@@ -1,0 +1,49 @@
+<H1> Fuzzy Control Demo </H1>
+
+
+
+<p> 
+
+This demo simulates a 2 link robot arm. 
+
+<p>
+<br>
+
+<img  align="CENTRE" alt="arm.png" src="arm.png"></p>
+
+<br>
+<p>  
+
+<h2> Control</h2>
+
+The user (that is you) can click on the screen to specify the desired location of the "hand".
+The controller works out the angles needed to achieve this "target" position and uses the 
+difference between the actual values and the target as inputs to the fuzzy control system. 
+The angular velocities are also used in the fuzzy control system to provide damping. 
+
+
+The inputs are:
+<ul>
+<li> phi1 and phi2 --
+the difference between the actual angle
+and the requested angle
+</li>
+<li>
+    dphi1dt and dphi2dt-- rate of change of the angles.
+</li>
+</ul>
+
+
+The ouput of the system is the torques for the joints torque1 and torque2
+
+
+<p> The rule set for this demo was created in a hurry 
+by the author in order to get the demo working. 
+The rules can be edited
+(and possibly saved but this feature is untested on windows) 
+using the Fuzzy Control Logic tab.
+If you manage to create a better system please let me have
+a copy :-)  
+ </p>
+
+<p> PJ.Leonard</p>

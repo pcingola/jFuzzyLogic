@@ -1,0 +1,41 @@
+FUNCTION_BLOCK junit3
+
+VAR_INPUT
+	temp : REAL;
+	pressure : REAL;
+END_VAR
+
+VAR_OUTPUT
+	valve : REAL;
+END_VAR
+
+FUZZIFY temp
+	TERM cold := (3, 1) (27, 0) ;
+	TERM hot := (3, 0) (27, 1);
+END_FUZZIFY
+
+FUZZIFY pressure
+	TERM low := (55, 1) (95, 0);
+	TERM high:= (55, 0) (95, 1);
+END_FUZZIFY
+
+DEFUZZIFY valve
+	TERM drainage := -100;
+	TERM closed := 0;
+	TERM inlet := 100;
+	METHOD : COGS;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACCU : MAX;
+	RULE 1 : IF temp IS cold AND pressure IS low THEN valve IS inlet;
+	RULE 2 : IF temp IS cold AND pressure IS high THEN valve IS closed WITH 0.8;
+	RULE 3 : IF temp IS hot AND pressure IS low THEN valve IS closed;
+	RULE 4 : IF temp IS hot AND pressure IS high THEN valve IS drainage;
+	RULE 5 : IF (temp IS hot AND pressure IS high) OR pressure IS low THEN valve IS drainage, valve IS closed WITH 0.8;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+

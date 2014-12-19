@@ -1,0 +1,59 @@
+
+FUNCTION_BLOCK LarsenTrustFewRules
+
+VAR_INPUT
+	WTV : 				REAL;
+	OW : 				REAL;
+	AC : 				REAL;
+END_VAR
+
+VAR_OUTPUT
+	trustworthiness : 	REAL;
+END_VAR
+
+
+FUZZIFY WTV
+	TERM nothing 		:= GAUSS 0 1;
+	TERM minimal 		:= GAUSS 1 1;
+	TERM partially 		:= GAUSS 2 1;
+	TERM satISfactory 	:= GAUSS 3 1;
+	TERM largely 		:= GAUSS 4 1;
+	TERM fully 			:= GAUSS 5 1;
+END_FUZZIFY
+
+FUZZIFY OW
+	TERM low 			:= GAUSS 0 1;
+	TERM medium 		:= GAUSS 2.5 1;
+	TERM high 			:= GAUSS 5 1;
+END_FUZZIFY
+
+FUZZIFY AC
+	TERM low 			:= GAUSS 0 1;
+	TERM medium 		:= GAUSS 2.5 1;
+	TERM high 			:= GAUSS 5 1;
+END_FUZZIFY
+
+DEFUZZIFY trustworthiness
+	METHOD : 			COG;
+	DEFAULT := 			0;
+	
+	TERM nothing 		:= GAUSS 0 1;
+	TERM minimal 		:= GAUSS 1 1;
+	TERM partially 		:= GAUSS 2 1;
+	TERM satISfactory 	:= GAUSS 3 1;
+	TERM largely 		:= GAUSS 4 1;
+	TERM fully 			:= GAUSS 5 1;
+END_DEFUZZIFY
+
+
+RULEBLOCK No1
+	ACCU : MAX;
+	AND :  PROD;
+	RULE 1 : IF WTV IS fully AND OW IS high AND AC IS high THEN trustworthiness IS fully;
+	RULE 2 : IF WTV IS satISfactory AND OW IS high 						THEN trustworthiness IS satISfactory;
+	RULE 3 : IF WTV IS nothing 						AND AC IS NOT low 	THEN trustworthiness IS nothing;
+END_RULEBLOCK
+
+
+END_FUNCTION_BLOCK
+

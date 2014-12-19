@@ -1,0 +1,40 @@
+/*
+	Example: Different membership functions
+
+									Pablo Cingolani 
+									pcingola@users.sourceforge.net
+*/
+
+FUNCTION_BLOCK testVariables
+
+VAR_INPUT				// Define input variables
+	inVar : REAL;
+END_VAR
+
+VAR_OUTPUT				// Define output variables
+	outVar : REAL;
+END_VAR
+
+// Pairwise linear
+FUZZIFY inVar
+	TERM poor := TRIAN 0 1 2;
+	TERM good := TRIAN 2 5 7;
+	TERM excellent := TRIAN 7 8 10;
+END_FUZZIFY
+
+DEFUZZIFY outVar
+    TERM low := FUNCTION (inVar * 1.0);
+    TERM mid := FUNCTION (inVar * 2.0) + 1;
+    TERM high := FUNCTION (inVar * 3.0) + 5 * SIN(inVar);
+	METHOD : COGS;
+END_DEFUZZIFY
+
+RULEBLOCK
+	ACT : MIN;
+	RULE 1 : IF inVar IS poor THEN outVar IS low;
+	RULE 2 : IF inVar IS good THEN outVar IS mid;
+	RULE 3 : IF inVar IS excellent THEN outVar IS high;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+

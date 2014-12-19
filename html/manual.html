@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>jFuzzyLogic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Styles -->
+	<link href="dist/css/bootstrap.css" rel="stylesheet">
+
+    <!-- hTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="ico/favicon.png">
+
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+<!-- NAVBAR
+================================================== -->
+   <div class="navbar-wrapper">
+     <div class="container">
+       <div class="navbar navbar-inverse navbar-static-top">
+         <div class="container">
+           <div class="navbar-header">
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+             </button>
+             <a class="navbar-brand" href="#">jFuzzyLogic</a>
+           </div>
+           <div class="navbar-collapse collapse">
+             <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="manual.html">Documentation</a></li>
+                <li><a href="about.html">About</a></li>
+             </ul>
+           </div>
+         </div>
+       </div>
+
+<!-- Subhead
+================================================== -->
+      <div class="jumbotron">
+        <h1>jFuzzyLogic</h1>
+        <p class="lead"> Documentation &amp; a brief introduction to jFuzzylogic.</p>
+        <p>
+			<a class="btn btn-lg btn-success" href="http://sourceforge.net/projects/jfuzzylogic/files/jfuzzylogic/jFuzzyLogic.jar">Download Full</a>
+			<a class="btn btn-lg btn-success" href="http://sourceforge.net/projects/jfuzzylogic/files/jfuzzylogic/jFuzzyLogic_core.jar">Download Core</a>
+		</p>
+      </div>
+
+
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="nav bs-sidenav">
+          <a class="list-group-item" href="#intro"> Introduction </a>
+          <a class="list-group-item" href="#commandline"> Command line</a>
+          <a class="list-group-item" href="#fcl"> Fuzzy control language</a>
+          <a class="list-group-item" href="#details"> FCL definitions</a>
+          <a class="list-group-item" href="#membership">Membership functions</a>
+          <a class="list-group-item" href="#runfcl"> Java API</a>
+          <a class="list-group-item" href="#using">Using jFuzzyLogic in projects</a>
+          <a class="list-group-item" href="#plugin">Eclipse plug-in</a>
+          <a class="list-group-item" href="#compiler">FCL compiler</a>
+          <a class="list-group-item" href="#optim">Parameter optimization</a>
+        </ul>
+      </div>
+      <div class="col-md-9" role="main">
+
+
+        <!-- Introduction
+        ================================================== -->
+        <section id="about">
+          <div class="page-header">
+            <h1>1. Introduction</h1>
+          </div>
+				<p class="lead">
+        jFuzzyLogic is an open source fuzzy logic library implementing industry standards to simplify fuzzy systems developments.
+				</p>
+        jFuzzyLogic is a fuzzy logic package. 
+        As you might have guessed, it is written in Java.
+        jFuzzyLogic implements Fuzzy control language (FCL) specification IEC 61131 part 7, as well as a complete library that will greatly simplify your fuzzy logic development or research work.
+        <br>
+        <br>
+        <b>Fuzzy control language:</b> For an introduction to FCL, you can read a pre-release specification <a href="pdf/iec_1131_7_cd1.pdf">here</a>.
+        <br>
+        <br>
+        <b>jFuzzyLogic:</b> For a thorough introduction to jFuzzyLogic, I highly recommend that you read our <a href="pdf/Cingolani_Alcala-Fdez_jFuzzyLogic_2013_IJCIS.pdf">paper</a>.
+				</p>
+        <br>
+        <p class="lead"> Downloading: Why two versions? </p>
+        <p>
+        For most applications, you should download the full version.
+        <br>
+        The <b>core</b> version is used mostly on mobile applications or applications where resources are limited and graphics capabilities are not required.
+        </p>
+        <br>
+        <p class="lead"> Getting the source code </p>
+        <p>
+        You can download the project from SourceForge using (CVS):
+<pre>
+cvs -z3 \
+    -d:pserver:anonymous@jfuzzylogic.cvs.sourceforge.net:/cvsroot/jfuzzylogic \
+    checkout \
+    -P jFuzzyLogic
+</pre>
+        <br>
+        To build, just run <code>ant</code> from the project's folder.
+        <br>
+        <br>
+        The source code is also available in the "full" JAR file:
+        <br>
+        <br>
+<pre>
+$ unzip -l jFuzzyLogic.jar | grep ".java"
+      152  11-29-2012 21:59   net/sourceforge/jFuzzyLogic/CompileCpp.java
+    11329  11-15-2013 08:17   net/sourceforge/jFuzzyLogic/FIS.java
+    31815  11-15-2013 08:17   net/sourceforge/jFuzzyLogic/FunctionBlock.java
+     5529  12-10-2012 21:07   net/sourceforge/jFuzzyLogic/Gpr.java
+     5812  11-15-2013 08:29   net/sourceforge/jFuzzyLogic/JFuzzyLogic.java
+      229  08-09-2013 11:06   net/sourceforge/jFuzzyLogic/Pcingola.java
+      437  10-15-2013 10:49   net/sourceforge/jFuzzyLogic/Zzz.java
+     1376  08-09-2013 11:54   net/sourceforge/jFuzzyLogic/defuzzifier/Defuzzifier.java
+     1034  02-04-2009 12:32   net/sourceforge/jFuzzyLogic/defuzzifier/DefuzzifierCenterOfArea.java
+     1630  11-29-2012 21:59   net/sourceforge/jFuzzyLogic/defuzzifier/DefuzzifierCenterOfGravity.java
+     ...
+</pre>
+        <br>
+        </p>
+        <br>
+        <p class="lead"> Publications & Citing </p>
+        <p>
+        If you are using jFuzzyLogic in academic environments, please cite our publications:
+        <br>
+        <br>
+				<ul>
+          <li> Cingolani, Pablo, and Jesús Alcalá-Fdez. <a href="pdf/Cingolani_Alcala-Fdez_jFuzzyLogic_2013_IJCIS.pdf"><i>"jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the Standard for Fuzzy Control Programming"</i> </a>
+<pre>
+@article{cingolanijfuzzylogic,
+  title={jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the Standard for Fuzzy Control Programming},
+  author={Cingolani, Pablo and Alcal{\'a}-Fdez, Jes{\'u}s}
+  booktitle={International Journal of Computational Intelligence Systems},
+  pages={61--75},
+  year={2013}
+}
+</pre>
+          <li> Cingolani, Pablo, and Jesus Alcala-Fdez. <a href="pdf/jFuzzyLogic.pdf"> <i>"jFuzzyLogic: a robust and flexible Fuzzy-Logic inference system language implementation."</i></a> Fuzzy Systems (FUZZ-IEEE), 2012 IEEE International Conference on. IEEE, 2012.
+<pre>
+@inproceedings{cingolani2012jfuzzylogic,
+  title={jFuzzyLogic: a robust and flexible Fuzzy-Logic inference system language implementation},
+  author={Cingolani, Pablo and Alcala-Fdez, Jesus},
+  booktitle={Fuzzy Systems (FUZZ-IEEE), 2012 IEEE International Conference on},
+  pages={1--8},
+  year={2012},
+  organization={IEEE}
+}
+</pre>
+				</ul>
+        </p>
+        </section>
+
+        <!-- Command line
+        ================================================== -->
+        <section id="commandline">
+          <div class="page-header">
+            <h1>2. Command line</h1>
+          </div>
+        <p class="lead">
+        Command line options.
+        </p>
+        <p>
+        jFuzzyLogic provides several command line options that are useful for development. 
+        Here we show some common usage examples.
+        <br>
+        <br>
+        Running jFuzzyLogic without any command line option will show a simple help.
+<pre>
+java -jar jFuzzyLogic.jar
+
+
+Usage: java -jar jFuzzyLogic.jar [options]
+Options:
+   file.fcl                      : Load FCL file and show memebership functions.
+  -c file.fcl                    : Compile. Generate C++ code from FCL file (to STDOUT)
+  -e file.fcl in_1 in_2 ... in_n : Load FCL file, assign inputs i_1, i_2, ..., i_n and evaluate.
+  demo                           : Run a demo exmaple (tipper.fcl)
+</pre>
+        <br>
+        A simple demo is available using the command line option <code>demo</code>. 
+        It will show an animation of the <code>tipper.fcl</code> example:
+<pre>
+java -jar jFuzzyLogic.jar demo
+</pre>
+        <br>
+        Using an FCL file, jFuzzyLogic will show all memebership functions for all input and output variables.
+<pre>
+java -jar jFuzzyLogic.jar myfile.fcl
+</pre>
+        <br>
+        You can also specify input variables using the command line option <code>-e</code>, jFuzzyLogic will calculate and show the defuzzified output variables as well as the degree of support for each rule.
+        The <code>-e</code> command line option must be followed by the input variables values.
+<pre>
+java -jar jFuzzyLogic.jar -e tipper.fcl 8.5 9
+
+FUNCITON_BLOCK tipper
+  VAR_INPUT         food = 8.500000
+  VAR_INPUT      service = 9.000000
+  VAR_OUTPUT         tip = 24.999984
+  RULE_BLOCK No1
+    Support   Rule name   Rule
+    0.000000  1           IF (service IS poor) OR (food IS rancid) THEN tip IS cheap;
+    0.000000  2           IF service IS good THEN tip IS average;
+    0.750000  3           IF (service IS excellent) AND (food IS delicious) THEN tip IS generous;
+
+</pre>
+
+        </p>
+        </section>
+
+        <!-- Fuzzy control language
+        ================================================== -->
+        <section id="fcl">
+          <div class="page-header">
+            <h1>3. Fuzzy control language</h1>
+          </div>
+				<p class="lead">
+				The obvious advantages of having a standard language for fuzzy systems.
+				</p>
+				<p>
+				Fuzzy control language (FCL) is a language defined in the IEC 61131 part 7 specification.
+        <br>
+        <br>
+				<b>Note:</b> Unfortunately the FCL specification is not freely available and you have to buy the document from IEC.
+        But you can access a free copy of the pre-release version of the spec. <a href="pdf/iec_1131_7_cd1.pdf">here</a>.
+				<br>
+				<br>
+				Obviously, having a standard language to program fuzzy systems has many benefits.
+				Before FCL, each fuzzy logic library implementation had different ways to define membership functions, rules, etc.
+				Most of the time you had to learn APIs which were incompatible from one system to another.
+				Furthermore, using APIs to create systems is cumbersome and error prone.
+				<br>
+        FCL simply removes all these problems.
+				Furthermore, FCL is quite simple to learn and most people learn the basics by taking a looks at a couple of examples.
+        <br>
+        <br>
+        <b>Fuzzy control language:</b> For an introduction to FCL, please read the pre-release specification <a href="pdf/iec_1131_7_cd1.pdf">here</a>.
+        <br>
+        <br>
+				The following example is FCL code for the classic "tipper" problem.
+				The problem is how to calculate the tip in a restaurant (obviously, this is a toy example of a trivial problem. equivalent to a "hello world!" example in other programming languages):
+				<br>
+				<br>
+        You can download this file <a href="fcl/tipper.fcl">here</a>.
+<pre>
+/*
+	Example: A tip calculation FIS (fuzzy inference system)
+	Calculates tip based on 'service' and 'food'
+
+									Pablo Cingolani 
+*/
+
+FUNCTION_BLOCK tipper	// Block definition (there may be more than one block per file)
+
+// Define input variables
+VAR_INPUT				
+	service : REAL;
+	food : REAL;
+END_VAR
+
+// Define output variable
+VAR_OUTPUT				
+	tip : REAL;
+END_VAR
+
+// Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+FUZZIFY service			
+	TERM poor := (0, 1) (4, 0) ; 
+	TERM good := (1, 0) (4,1) (6,1) (9,0);
+	TERM excellent := (6, 0) (9, 1);
+END_FUZZIFY
+
+// Fuzzify input variable 'food': { 'rancid', 'delicious' }
+FUZZIFY food			
+	TERM rancid := (0, 1) (1, 1) (3,0) ;
+	TERM delicious := (7,0) (9,1);
+END_FUZZIFY
+
+// Defzzzify output variable 'tip' : {'cheap', 'average', 'generous' }
+DEFUZZIFY tip			
+	TERM cheap := (0,0) (5,1) (10,0);
+	TERM average := (10,0) (15,1) (20,0);
+	TERM generous := (20,0) (25,1) (30,0);
+	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
+	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+
+// Inference rules
+RULEBLOCK No1
+	AND : MIN;	// Use 'min' for 'and'
+	ACT : MIN;	// Use 'min' activation method
+	ACCU : MAX;	// Use 'max' accumulation method
+
+	RULE 1 : IF service IS poor OR food IS rancid THEN tip IS cheap;
+	RULE 2 : IF service IS good THEN tip IS average; 
+	RULE 3 : IF service IS excellent AND food IS delicious THEN tip IS generous;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+</pre>
+				<br>
+				<br>
+        In order to run this example, you can download the FCL file <a href="fcl/tipper.fcl">tipper.fcl</a> and then run the following command:
+        <br>
+        <br>
+<pre>
+java -jar jFuzzyLogic.jar tipper.fcl
+</pre>
+        <br>
+        <br>
+        This command will parse and load the FCL code and show the membership functions (continue reading the next sub-section for more details).
+        <br>
+        <img src="images/tipper_MF.png">
+        <br>
+        <br>
+        <p class="lead">
+        Step by step explanation
+        </p>
+        Keep in mind that FCL is defined as a 'Control language', so the main concept is a 'control block' which has some input and output variables.
+        You cannot make programs in the usual way, for instance, there is no "print" statement in FCL.
+        Furthermore, there is no implicit execution order. 
+        In theory, the whole block is executed in parallel.
+        <br>
+        <br>
+				We now analyze the previously shown FCL code (<a href="fcl/tipper.fcl">tipper.fcl</a>):
+				<br>
+				<br>
+        <ul>
+          <li>First you define each <code>FUNCTION_BLOCK</code> (there may be more than one in each file)
+            <br>
+<pre> FUNCTION_BLOCK tipper </pre>
+            <br>
+
+          <li> Then input and output variables are defined. 
+            <br>
+            <b>Note:</b> Even though IEC-61131 defines several data types, the only variable type supported is <code>REAL</code>, which is the only one needed for fuzzy logic applications.
+            <br>
+<pre>
+VAR_INPUT
+    service : REAL;
+    food : REAL;
+END_VAR
+
+VAR_OUTPUT
+    tip : REAL;
+END_VAR
+</pre>
+            <br>
+
+          <li> Next we define how each input variable is fuzzified is defined in <code>FUZZIFY</code> block. In each block we define one or more <code>TERMs</code> (also called LinguisticTerms). Each term is composed by a name and a membership function. E.g.: 
+            <br>
+<pre>
+FUZZIFY service
+    TERM poor := (0, 1) (4, 0) ; 
+    TERM good := (1, 0) (4,1) (6,1) (9,0);
+    TERM excellent := (6, 0) (9, 1);
+END_FUZZIFY
+</pre>
+            <br>
+            In this lines we define how variable <code>service</code> will be fuzzified. Three terms are used, for instance term <code>poor</code> uses a piece-wise linear membership function defined by points (x0, y0) = (0, 1) and (x1, y1) = (4, 0)
+            <br>
+            <br>
+            <img src=images/service.png>
+            <br>
+            <br>
+            Similarly, we define <code>food</code> membership functions:
+            <br>
+<pre>
+FUZZIFY food
+    TERM rancid := (0, 1) (1, 1) (3,0) ;
+    TERM delicious := (7,0) (9,1);
+END_FUZZIFY
+</pre>
+            <img src=images/food.png>
+            <br>
+            <br>
+          <li> Output variables are defuzzified to get a 'real' output number.
+            Defuzzifiers are defined in <code>DEFUZZIFY</code> blocks. 
+            Linguistic terms (or simply terms) are defined just like in <code>FUZZIFY</code> blocks.
+<pre>
+DEFUZZIFY tip
+    TERM cheap := (0,0) (5,1) (10,0);
+    TERM average := (10,0) (15,1) (20,0);
+    TERM generous := (20,0) (25,1) (30,0);
+</pre>
+            <br>
+            <img src=images/tip.png>
+            <br>
+        <br>
+        <br>
+            Next, we state that 'Center of gravity' as defuzzifier method.
+<pre> METHOD : COG; </pre>
+
+            We also use '0' as default value, i.e. the value use when no rule activates this variable.
+
+<pre> DEFAULT := 0; </pre>
+
+
+        <li> At this point we are ready to define the rules. 
+          This is done using a <code>RULEBLOCK</code>. 
+          First we must define some parameters.
+          Use 'min' for 'and' (implicitly uses 'max' for 'or' to fulfill DeMorgan's Law).
+<pre>
+RULEBLOCK No1
+    AND : MIN;
+</pre>
+
+          Use 'min' activation method
+<pre> ACT : MIN; </pre>
+
+          Use 'maximum' as accumulation method.
+<pre> ACCU : MAX; </pre>
+
+
+           And now define some fuzzy rules
+<pre>
+    RULE 1 : IF service IS poor OR food IS rancid THEN tip IS cheap;
+    RULE 2 : IF service IS good THEN tip IS average; 
+    RULE 3 : IF service IS excellent AND food IS delicious THEN tip is generous;
+</pre>
+
+        Ok, that's it, you've got a fuzzy controller!
+        </section>
+
+        <!-- FCL definitions
+        ================================================== -->
+        <section id="details">
+          <div class="page-header">
+            <h1>4. FCL definitions</h1>
+          </div>
+        <p class="lead">
+        Here we show some details on jFuzzyLogic's structure as well as some basic FCL definitions.
+        </p>
+        <p>
+          How this package works and how classes are organized is briefly explained here.<p>
+
+            <ul>
+              <li> A fuzzy inference system (<code>FIS</code>) is composed by one or more <code>FuncionBlock</code> class, like in FCL. E.g.:
+<pre>
+FUNCTION_BLOCK functionBlock1
+...
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK functionBlock2
+...
+END_FUNCTION_BLOCK
+</pre> <p>
+
+              <li> Each <code>FuncionBlock</code> is composed by one or more <code>RuleBlock</code> class and some <code>Variables</code>, as well as <code>Fuzzyfiers</code> and <code>Defuzzifiers</code>. Again, like in FCL, e.g.:
+<pre>
+FUNCTION_BLOCK functionBlockName
+VAR_INPUT
+...
+END_VAR
+
+VAR_OUTPUT
+...
+END_VAR
+
+FUZZIFY inputVariable
+...
+END_FUZZIFY
+
+DEFUZZIFY outputVariable
+...
+END_DEFUZZIFY
+
+RULEBLOCK No1
+...
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+</pre> <p>
+
+              <li> Each <code>Rule</code> class is composed by an antecedent (<b>IF</b> part) and a consequent (<b>THEN</b> part), e.g.:<br>
+<pre>
+RULE 1 : IF service IS poor OR food IS rancid THEN tip IS cheap;
+</pre> 
+                  <ul>
+                    <li> Antecedent: <i>"service IS poor OR food IS rancid"</i>
+                    <li> Consequent: <i>"tip IS cheap"</i>. Note that there may be more than one consequent.
+                    <li> A rule implication (or activation) method can be defined (althought FCL does not allow different implication method for each rule, it can be defined at RULEBLOCK level).
+                  e.g.: ACT : MIN;            // Use 'min' activation method 
+                  </ul>
+                <p>
+              <li> Consequents are a 'collection' of <code>RuleTerms</code> classes (e.g. <i>"tip IS cheap"</i> is a RuleTerm)
+                <p>
+              <li> An Antecedent is represented by a <code>RuleExpression</code> class. A <code>RuleExpression</code> is just two terms connected by one <code>RuleConnectionMethod</code> (rule conectors are 'AND', 'OR' and 'NOT')<br>
+                  e.g.: service IS poor OR food IS rancid <br> 
+                  <ul>
+                    <li> First term: <i>"service IS poor"</i>
+                    <li> Second term: <i>"food IS rancid"</i>
+                    <li> RuleConnectionMethod is <i>'OR'</i>
+                  </ul>
+                  <br>
+                  <b>Note:</b> Each term can be either a <code>RuleTerm</code> or a <code>RuleExpression</code>, this definition is recursive, so arbitrarily complex expressions can be created.
+                <p>
+              <li> Each <code>RuleTerm</code> is defined by a <code>Variable</code> and a <code>LinguisticTermName</code>.
+                  e.g.: service IS poor 
+                  <ul>
+                    <li> <code>Variable</code>: service
+                    <li> <code>LinguisticTermName</code>: 'poor'
+                    <li> Connector: 'IS'
+                  </ul>
+                  It can also be 'negated' e.g.: service IS NOT excellent<br> 
+                <p>
+              <li> Each <code>Variable</code> has a <code>name</code> and some <code>LinguisticTerms</code>
+                  e.g.: For an input variable: 
+<pre>
+FUZZIFY service            // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+    TERM poor := (0, 1) (4, 0) ; 
+    TERM good := (1, 0) (4,1) (6,1) (9,0);
+    TERM excellent := (6, 0) (9, 1);
+END_FUZZIFY
+</pre><p>
+
+                  e.g.: For an output variable: 
+<pre>
+DEFUZZIFY tip            // Defzzzify output variable 'tip' : {'cheap', 'average', 'generous' }
+    TERM cheap := (0,0) (5,1) (10,0);
+    TERM average := (10,0) (15,1) (20,0);
+    TERM generous := (20,0) (25,1) (30,0);
+    METHOD : COG;        // Use 'Center Of Gravity' defuzzification method
+    DEFAULT := 0;        // Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+</pre>
+              As you can see, for an output variable you need to specify an accumulation (or <code>RuleAgrregationMethod</code>) and a <code>Defuzzifier</code>.
+                  e.g.: 
+<pre>
+ACCU : MAX;          // Use 'max' accumulation method
+METHOD : COG;        // Use 'Center Of Gravity' defuzzification method
+</pre>
+          </ul>
+        </p>
+        </section>
+
+        <!-- Membership functions
+        ================================================== -->
+        <section id="membership">
+          <div class="page-header">
+            <h1>5. Membership functions</h1>
+          </div>
+        <p class="lead">
+        jFuzzyLogic provides convenient extensions to easily define membership functions.
+        </p>        
+        <p>
+        Membership functions are broadly divided into two sub classes: continuous and discrete. 
+        One variable can only have either continuous or discrete membership functions.
+        <br>
+        <br>
+        <p class="lead">Membership functions</p>
+        <ul>
+          <li> Triangular: <code>trian min mid max</code>
+<pre>
+FUZZIFY inVar2
+  TERM poor := trian 0 2.5 5;
+  TERM good := trian 2.5 5 7.5;
+  TERM excellent := trian 5 7.5 10;
+END_FUZZIFY
+</pre>
+            <img src="images/inVar2.png">
+            <br>
+            <br>
+
+          <li> Trapetzoidal: <code>trape min midLow midHigh max </code>
+<pre>
+FUZZIFY inVar3
+  TERM poor := trape 0 2 3 4;
+  TERM good := trape 3 4 5 6;
+  TERM excellent := trape 5 6 7 8;
+END_FUZZIFY
+</pre>
+            <img src="images/inVar3.png">
+            <br>
+            <br>
+
+          <li> Gauss: <code>gauss mean stdev </code>
+<pre>
+FUZZIFY inVar5
+  TERM poor := gauss 2 2;
+  TERM good := gauss 5 2;
+  TERM excellent := gauss 8 2;
+END_FUZZIFY
+</pre>
+            <img src="images/inVar5.png">
+            <br>
+            <br>
+
+          <li> Generalized bell: <code>gbell a b mean </code>
+<pre>
+FUZZIFY inVar4
+  TERM poor := gbell 2 4 2;
+  TERM good := gbell 2 4 5;
+  TERM excellent := gbell 2 4 8;
+END_FUZZIFY
+</pre>
+            <img src="images/inVar4.png">
+            <br>
+            <br>
+
+          <li> Sigmoidal: <code>sigm gain center </code>  
+<pre>
+FUZZIFY inVar6
+  TERM poor := sigm -4 3;
+  TERM good := sigm 4 7;
+END_FUZZIFY
+</pre>
+            <img src="images/inVar6.png">
+            <br>
+            <br>
+
+          <li> Singleton: just one number (where singleton membership is 1)
+<pre>
+FUZZIFY inVar7
+  TERM poor := 2;
+  TERM good := 5;
+  TERM excellent := 8;
+END_FUZZIFY
+</pre>
+            <img src="images/inVar7.png">
+            <br>
+            <br>
+
+          <li> Piece-wise linear: <code> (x_1, y_1) (x_2, y_2) .... (x_n, y_n) </code>
+            
+<pre>
+FUZZIFY inVar1
+  TERM poor := (0,1) (2, 1) (4, 0) ; 
+  TERM good := (1, 0) (2, 0.5) (3, 0.7) (4,1) (4.5, 1) (5, 0.6) 
+                      (6, 0.3) (7, 0.3) (8, 0.8) (9, 0.8) (10,0);
+  TERM excellent := (6, 0) (9, 1) (10,1);
+END_FUZZIFY
+</pre>
+            <img src="images/inVar1.png">
+            <br>
+            <br>
+        </ul>
+        </p>
+        </section>
+
+
+        <!-- Java API
+        ================================================== -->
+        <section id="runfcl">
+          <div class="page-header">
+            <h1>6. Java API</h1>
+          </div>
+				<p class="lead">
+				Running FCL code from your Java code is very easy.
+				</p>
+				<p>
+          This is a simple Java code used to load a fuzzy inference system (FIS), this code available at <code>TestTipper.java</code><p>
+
+<pre>
+package net.sourceforge.jFuzzyLogic.test;
+
+import net.sourceforge.jFuzzyLogic.FIS;
+import net.sourceforge.jFuzzyLogic.rule.FuzzyRuleSet;
+
+/**
+ * Test parsing an FCL file
+ * @author pcingola@users.sourceforge.net
+ */
+public class TestTipper {
+    public static void main(String[] args) throws Exception {
+        // Load from 'FCL' file
+        String fileName = "fcl/tipper.fcl";
+        FIS fis = FIS.load(fileName,true);
+
+        // Error while loading?
+        if( fis == null ) { 
+            System.err.println("Can't load file: '" + fileName + "'");
+            return;
+        }
+
+        // Show 
+        JFuzzyChart.get().chart(functionBlock);
+
+        // Set inputs
+        fis.setVariable("service", 3);
+        fis.setVariable("food", 7);
+
+        // Evaluate
+        fis.evaluate();
+
+        // Show output variable's chart
+        Variable tip = functionBlock.getVariable("tip");
+        JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
+
+        // Print ruleSet
+        System.out.println(fis);
+    }
+}
+</pre>
+        <br>
+        <br>
+        The code is pretty straightforward, but let's go over the main points.
+        <br>
+        <br>
+        <ul>
+          <li>
+            <b>FIS</b> stands for Fuzzy Inference System and it is how the IEC norm refers to whatever you put in an FCL file.
+            So in order to load an FCL file, we use <code>FIS.load(fileName)</code> function.
+            <br>
+<pre>
+String fileName = "fcl/tipper.fcl";
+FIS fis = FIS.load(fileName,true);
+</pre>
+
+          <li> If an error is detected when loading or parsing the FCL file <code>FIS.load()</code> returns <code>null</code>.
+<pre>
+if( fis == null ) { // Error while loading?
+  System.err.println("Can't load file: '" + fileName + "'");
+  return;
+}
+</pre>
+
+          <li> Now we can plot all variables in the FIZ (each LinguisticTerm in each Variable in the FUNCTION_BLOCK). 
+            This might be useful when you are debugging your code.
+
+<pre>
+JFuzzyChart.get().chart(functionBlock);
+</pre>
+            And we get the following images:<p>
+            <center>
+            <img src=images/service.png><p>
+            <img src=images/food.png><p>
+            <img src=images/tip.png><p>
+            </center>
+
+          <li> In order to make actual calculations and run the FIS, we must setting the input variables
+<pre>
+fis.setVariable("service", 3);
+fis.setVariable("food", 7);
+</pre>
+
+          <li> Now we can run the system
+<pre>
+fis.evaluate();
+</pre>
+            
+          <li> If we want to know the system's output we can read the output variable's values (in this case there's only one output variable 'tip')
+<pre>
+Variable tip = functionBlock.getVariable("tip");
+JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
+</pre>
+
+          <li> We can also plot output's defuzzifier
+<pre>
+fis.getVariable("tip").chartDefuzzifier(true);
+</pre>
+            <center> <img src=images/tip_out.png><br> </center>
+
+          <li> And, of course, we can print the FIS 
+<pre>
+System.out.println(fis);
+</pre>
+        </ul>
+
+        <br>
+        <p class="lead"> Obtaining the system's output </p>
+        After Fis.evaluate() you can access the system's output variables using  <code>fis.getVariable("variableName")</code>. 
+        Here is a simple code snippet from <code>TestTipper.java</code> example (slightly modified):
+        <br>
+        <br>
+<pre>
+public class TestTipper {
+  public static void main(String[] args) throws Exception {
+    FIS fis = FIS.load("fcl/tipper.fcl", true); // Load from 'FCL' file
+    fis.setVariable("service", 3); // Set inputs
+    fis.setVariable("food", 7);
+    fis.evaluate(); // Evaluate
+
+    // Show output variable
+    System.out.println("Output value:" + fis.getVariable("tip").getValue()); 
+  }
+}
+</pre>
+
+        <br>
+        <p class="lead"> Rule usage </p>
+        In order to asses how rules are used, you just need to take a look at the rule's "degree of support" (by default is printed when you print the rule).
+        For instance here is a small example (it uses <code>tipper.fcl</code> file from the 'fcl' examples directory in the package):
+        <br>
+        <br>
+<pre>
+package net.sourceforge.jFuzzyLogic;
+import net.sourceforge.jFuzzyLogic.rule.Rule;
+public class Zzz {
+
+  public static void main(String[] args) throws Exception {
+    FIS fis = FIS.load("fcl/tipper.fcl", true); // Load from 'FCL' file
+    fis.setVariable("service", 3); // Set inputs
+    fis.setVariable("food", 7);
+    fis.evaluate(); // Evaluate
+    System.out.println("Output value:" + fis.getVariable("tip").getValue()); // Show output variable
+
+    // Show each rule (and degree of support)
+    for( Rule r : fis.getFunctionBlock("tipper").getFuzzyRuleBlock("No1").getRules() )
+      System.out.println(r);
+  }
+}
+</pre>
+        <br>
+        The output is:
+        <br>
+        <br>
+<pre>
+Output value:11.701603788948043
+1       (0.25)  if (service IS poor) OR (food IS rancid) then tip IS cheap [weight: 1.0]
+2       (0.6666666666666666)    if service IS good then tip IS average [weight: 1.0]
+3       (0.0)   if (service IS excellent) AND (food IS delicious) then tip IS generous [weight: 1.0]
+</pre>
+        <br>
+        which shows the degree of support for each rule (0.25, 0.666666 and 0)
+
+        <br>
+        <br>
+        <p class="lead"> Adding rules programatically </p>
+         First of all, I have to tell you that hard-coding the rules is highly discouraged (pretty much like hard-coding values). 
+         If you absolutely must do it for whatever reason, here is an example on how to do it:<p>
+
+<pre>
+//  RULE 3 : IF ((service IS good) OR (service IS excellent)) AND food IS delicious THEN tip is generous;
+Rule rule3 = new Rule("Rule3", ruleBlock);
+
+RuleTerm term1 = new RuleTerm(service, "good", false);
+RuleTerm term2 = new RuleTerm(service, "excellent", false);
+RuleTerm term3 = new RuleTerm(food, "delicious", false);
+
+RuleExpression antecedentOr = new RuleExpression(term1, term2, new RuleConnectionMethodOrMax());
+RuleExpression antecedentAnd = new RuleExpression(antecedentOr, term3, new RuleConnectionMethodAndMin());
+
+rule3.setAntecedents(antecedentAnd);
+rule3.addConsequent(tip, "generous", false);
+ruleBlock.add(rule3);
+</pre>
+
+        Remember that a rule antecedent is just a RuleExpression. 
+        A RuleExpression can be either a combination of RuleExpressions or RuleTerms. 
+        In this case, you'll have to use two RuleExpressions combined by a RuleConnectionMethodAndMin, i.e.:
+        <br>
+        <br>
+<pre>
+IF (var1 IS low) AND ( (var2 IS medium) AND (var3 IS high) ) THEN ....
+</pre>
+        <br>
+        This is because 'AND' accepts only 2 terms (all RuleExpressions accept one only or 2 terms).
+
+				</p>
+        </section>
+
+        <!-- Eclipse project
+        ================================================== -->
+        <section id="using">
+          <div class="page-header">
+            <h1>7. Using jFuzzyLogic in projects</h1>
+          </div>
+        <p class="lead">
+        This section shows how to add jFuzzyLogic as a library in your Java projects.
+        </p>
+        <p>
+          In order to use jFuzzyLogic in your projects, you must add <code>jFuzzyLogic.jar</code> as one of your JAR files (libraries).
+          This is done like you'd do it with any other JAR file.
+          Since this is a basic Java programming skill, so I won't get into many details.
+          <br>
+          <br>
+          <b>Full example project:</b> <a href="http://sourceforge.net/projects/jfuzzylogic/files/jfuzzylogic/jFuzzyLogicProjectExample.zip">Here</a>, you can download a ZIP file with a sample Eclipse project that uses jFuzzyLogic.
+          <br>
+          <br>
+          This video shows how to create a Java project that uses jFuzzyLogic using the Eclipse IDE.
+          <br>
+          <b>Note:</b> The Java code is copied from <code>TestTipper.java</code> and the FCL code is from <code>tipper.fcl</code> file.<p>
+          <br>
+          <br>
+          <embed src="./videos/jFuzzyProject_example.swf" width=1183 height=770>
+        </p>
+        </section>
+
+        <!-- Eclipse plugin
+        ================================================== -->
+        <section id="plugin">
+          <div class="page-header">
+            <h1>8. Eclipse plugin</h1>
+          </div>
+        <p class="lead">
+        We provide a convenient Eclipse plug-in to help developing FCL programs.
+        </p>
+        <p>
+        The Eclipse plug-in for FCL files provides some interesting features: syntax coloring, auto-completion, outline, quick outline, etc. 
+        Some features shown in this image (click to enlarge)<p>
+
+        Eclipse plug-in install instructions:
+        <ul>
+          <li> Open Eclipse 
+          <li> Click on the menu <code>Help -&gt; Install new software</code> you'll see the software update window
+          <li> Click on <code>Add</code><br>
+          <li> Name: <code>jFuzzyLogicUpdateSite</code> <br>
+          <li> Location: <code>http://jfuzzylogic.sourceforge.net/eclipse/</code><br>
+          <li> Click OK an follow the instructions.<br>
+        </ul>
+        <a href="images/plugin_install.png"> <img width="50%" src="images/plugin_install.png"> </a>
+        <br>
+        <br>
+        <b> Notes: </b>
+        <ul>
+          <li> Some required dependencies will also be intalled (Xtext)<br>
+          <li> You will have to restart eclipse after installing this plugin<br>
+        </ul>
+        <br>
+        <br>
+        <p class="lead">Eclipse plug-in feature examples</p>
+        Syntax coloring, outline (click to enlarge)
+        <br>
+        <br>
+        <a href="images/plugin_edit.png"> <img width="50%" src="images/plugin_edit.png"> </a>
+        <br>
+        <br>
+        You can also view the membership functions by "Running" the FCL file (see next image, click to enlarge)
+        <br>
+        <br>
+        <a href="images/plugin_run.png"> <img width="50%" src="images/plugin_run.png"> </a>
+        </p>
+        </section>
+
+        <!-- FCL compiler
+        ================================================== -->
+        <section id="compiler">
+          <div class="page-header">
+            <h1>9. FCL compiler</h1>
+          </div>
+        <p class="lead">
+        jFuzzyLogic can compile FCL into C++ code.
+        </p>
+        <p>
+        A built in compiler allows to compiler FCL code into C++.
+        For instance, by simply running the following command, we can create a C++ program that has the same functionality as the FCL program:
+<pre>
+java -jar jFuzzyLogic.jar -c tipper.fcl > tipper.cpp
+</pre>
+
+        The previous command creates <a href="fcl/tipper.cpp">this C++ code</a>.
+        <br>
+        <br>
+        <img src="images/cpp.png">
+        </p>
+        </section>
+
+        <!-- Parameter optimization
+        ================================================== -->
+        <section id="optim">
+          <div class="page-header">
+            <h1>10. Parameter optimization</h1>
+          </div>
+				<p class="lead">
+        jFuzzyLogic provides a parameter optimization framework, allowing to learn or refine fuzzy parameters using machine learning algorithms.
+				</p>
+        The parameter optimization framework requires to define a learning method which can be applied to a dataset in order to refine fuzzy membership parameters.
+        <br>
+        <br>
+        In this Java code example, we optimize fuzzy sets' parameters and fuzzy rule's weights:
+<pre>
+//---
+// Load FIS (Fuzzy Inference System)
+//---
+FIS fis = FIS.load("fcl/qualify.fcl");
+RuleBlock ruleBlock = fis.getFunctionBlock().getRuleBlock();
+
+//---
+// Create a list of parameter to optimize
+//---
+ArrayList<Parameter> parameterList = new ArrayList<Parameter>();
+
+// Add variables. 
+// Note: Fuzzy sets' parameters for these 
+// variables will be optimized
+Parameter.parameterListAddVariable(parameterList
+                                    , fis.getVariable("scoring"));
+Parameter.parameterListAddVariable(parameterList
+                                    , fis.getVariable("credLimMul"));
+
+// Add every rule's weight
+for( Rule rule = ruleBlock ) 
+    Parameter.parameterListAddRule(parameterList, rule);
+
+//---
+// Create an error function to be 
+// optimzed (i.e. minimized)
+//---
+ErrorFunctionQualify errorFunction = new ErrorFunctionQualify();
+
+//---
+// Optimize (using 'Delta jump optimization')
+//---
+OptimizationDeltaJump optimizationDeltaJump = 
+        new OptimizationDeltaJump(ruleBlock
+                , errorFunction, parameterList);
+
+// Number optimization of iterations
+optimizationDeltaJump.setMaxIterations(20);
+
+optimizationDeltaJump.optimize(true);
+</pre>
+      <br>
+      <br>
+      The error function (<code>ErrorFunctionQualify</code>) can be just any error function, the structure for the code should be like this:
+<pre>
+public class ErrorFunctionQualify extends ErrorFunction {
+    public double evaluate(RuleBlock ruleBlock) {
+        double error;
+        // Calculate your desired error here...
+        return error;
+    }
+}    
+</pre>
+				</p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+
+
+    <!-- Footer
+    ================================================== -->
+    <footer>
+      <p class="text-center">&copy; <a class="body" href="http://www.linkedin.com/in/pablocingolani">Pablo Cingolani 2013</a></p>
+    </footer>
+  </body>
+</html>

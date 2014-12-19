@@ -1,0 +1,83 @@
+FUNCTION_BLOCK LarsenTrustManyRules
+
+VAR_INPUT
+	WTV : 				REAL;
+	OW : 				REAL;
+	AC : 				REAL;
+END_VAR
+
+VAR_OUTPUT
+	trustworthiness : 	REAL;
+END_VAR
+
+FUZZIFY WTV
+	TERM nothing 		:= GAUSS 0 1;
+	TERM minimal 		:= GAUSS 1 1;
+	TERM partially 		:= GAUSS 2 1;
+	TERM satISfactory 	:= GAUSS 3 1;
+	TERM largely 		:= GAUSS 4 1;
+	TERM fully 			:= GAUSS 5 1;
+END_FUZZIFY
+
+FUZZIFY OW
+	TERM low 			:= GAUSS 0 1;
+	TERM medium 		:= GAUSS 2.5 1;
+	TERM high 			:= GAUSS 5 1;
+END_FUZZIFY
+
+FUZZIFY AC
+	TERM low 			:= GAUSS 0 1;
+	TERM medium 		:= GAUSS 2.5 1;
+	TERM high 			:= GAUSS 5 1;
+END_FUZZIFY
+
+DEFUZZIFY trustworthiness
+	TERM nothing 		:= GAUSS 0 1;
+	TERM minimal 		:= GAUSS 1 1;
+	TERM partially 		:= GAUSS 2 1;
+	TERM satISfactory 	:= GAUSS 3 1;
+	TERM largely 		:= GAUSS 4 1;
+	TERM fully 			:= GAUSS 5 1;
+	METHOD : 			COG;
+	DEFAULT := 			0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	ACCU : 				MAX;
+	AND : 				PROD;
+	
+	RULE 1 : 	IF WTV IS fully 		AND AC IS high 							THEN trustworthiness IS fully;
+	RULE 2 : 	IF WTV IS fully 		AND AC IS medium 						THEN trustworthiness IS fully 			WITH 0.8;
+	RULE 3 : 	IF WTV IS fully 		AND AC IS low 							THEN trustworthiness IS fully 			WITH 0.6;
+	RULE 4 : 	IF WTV IS largely 		AND AC IS high 		AND OW IS NOT high 	THEN trustworthiness IS fully;
+	RULE 5 : 	IF WTV IS largely 		AND AC IS medium 	AND OW IS NOT high 	THEN trustworthiness IS fully 			WITH 0.66;
+	RULE 6 : 	IF WTV IS largely 		AND AC IS low 		AND OW IS NOT high 	THEN trustworthiness IS largely 		WITH 0.33;
+	RULE 7 : 	IF WTV IS largely 		AND AC IS high 		AND OW IS high 		THEN trustworthiness IS largely 		WITH 0.66;
+	RULE 8 : 	IF WTV IS largely 		AND AC IS medium 	AND OW IS high 		THEN trustworthiness IS largely 		WITH 0.33;
+	RULE 9 : 	IF WTV IS largely 		AND AC IS low 		AND OW IS high 		THEN trustworthiness IS largely 		WITH 0.1;
+	RULE 10 : 	IF WTV IS satISfactory 	AND AC IS high 							THEN trustworthiness IS largely;
+	RULE 11 : 	IF WTV IS satISfactory 	AND AC IS medium 						THEN trustworthiness IS largely 		WITH 0.66;
+	RULE 12 : 	IF WTV IS satISfactory 	AND AC IS low 							THEN trustworthiness IS satISfactory 	WITH 0.33;
+	RULE 13 : 	IF WTV IS satISfactory 	AND AC IS high 		AND OW IS high 		THEN trustworthiness IS satISfactory;
+	RULE 14 : 	IF WTV IS satISfactory 	AND AC IS medium 	AND OW IS high 		THEN trustworthiness IS satISfactory 	WITH 0.66;
+	RULE 15 : 	IF WTV IS satISfactory 	AND AC IS low 		AND OW IS high 		THEN trustworthiness IS satISfactory 	WITH 0.33;
+	RULE 16 : 	IF WTV IS satISfactory 	AND AC IS high 		AND OW IS NOT high 	THEN trustworthiness IS satISfactory 	WITH 0.5;
+	RULE 17 : 	IF WTV IS satISfactory 	AND AC IS medium 	AND OW IS NOT high	THEN trustworthiness IS satISfactory 	WITH 0.7;
+	RULE 18 : 	IF WTV IS satISfactory 	AND AC IS low 		AND OW IS NOT high 	THEN trustworthiness IS satISfactory 	WITH 0.9;
+	RULE 19 : 	IF WTV IS partially 	AND AC IS high 		AND OW IS high		THEN trustworthiness IS satISfactory;
+	RULE 20 : 	IF WTV IS partially 	AND AC IS medium	AND OW IS high		THEN trustworthiness IS satISfactory	WITH 0.33;
+	RULE 21 : 	IF WTV IS partially 	AND AC IS low		AND OW IS high		THEN trustworthiness IS partially 		WITH 0.66;
+	RULE 22 : 	IF WTV IS partially 	AND AC IS high		AND OW IS NOT high	THEN trustworthiness IS partially 		WITH 0.6;
+	RULE 23 : 	IF WTV IS partially 	AND AC IS medium	AND OW IS NOT high	THEN trustworthiness IS partially 		WITH 0.75;
+	RULE 24 : 	IF WTV IS partially 	AND AC IS low		AND OW IS NOT high	THEN trustworthiness IS partially 		WITH 0.9;
+	RULE 25 : 	IF WTV IS minimal 		AND AC IS high 		AND OW IS high		THEN trustworthiness IS minimal 		WITH 0.5;
+	RULE 26 : 	IF WTV IS minimal 		AND AC IS medium	AND OW IS high		THEN trustworthiness IS minimal 		WITH 0.3;
+	RULE 27 : 	IF WTV IS minimal 		AND AC IS low		AND OW IS high		THEN trustworthiness IS minimal 		WITH 0.1;
+	RULE 28 : 	IF WTV IS minimal 		AND AC IS high		AND OW IS NOT high	THEN trustworthiness IS minimal 		WITH 0.4;
+	RULE 29 : 	IF WTV IS minimal 		AND AC IS medium	AND OW IS NOT high	THEN trustworthiness IS nothing 		WITH 0.8;
+	RULE 30 : 	IF WTV IS minimal 		AND AC IS low		AND OW IS NOT high	THEN trustworthiness IS nothing 		WITH 0.95;
+	RULE 31 : 	IF WTV IS nothing 												THEN trustworthiness IS nothing;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+
