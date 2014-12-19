@@ -5,5 +5,5 @@ The most complete fuzzy logic library in Java. The de-facto standard for researc
 
 See description, manual and examples here:
 
-		http://jfuzzylogic.sourceforge.net/html/index.html
+		http://jfuzzylogic.sourceforge.net
 
