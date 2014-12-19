@@ -71,9 +71,6 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 
 	/**
 	 * Create a defuzzifier based on defuziffier's name and a variable 
-	 * @param defuzzificationMethodType
-	 * @param variable
-	 * @return
 	 */
 	protected Defuzzifier createDefuzzifier(String defuzzificationMethodType, Variable variable) {
 		Defuzzifier defuzzifier;

@@ -43,8 +43,7 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 	}
 
 	/**
-	 * Default constructor 
-	 * @param name : Variable's name
+	 * Constructor 
 	 */
 	public Variable(String name, double universeMin, double universeMax) {
 		if (name == null) throw new RuntimeException("Variable's name can't be null");
