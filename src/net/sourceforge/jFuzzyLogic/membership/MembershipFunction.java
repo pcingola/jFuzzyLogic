@@ -40,7 +40,7 @@ public abstract class MembershipFunction extends FclObject {
 	 * Find variables used by this function
 	 */
 	public Set<Variable> findVariables() {
-		HashSet<Variable> vars = new HashSet<>();
+		HashSet<Variable> vars = new HashSet<Variable>();
 
 		if (parameters != null) {
 			for (Value val : parameters)

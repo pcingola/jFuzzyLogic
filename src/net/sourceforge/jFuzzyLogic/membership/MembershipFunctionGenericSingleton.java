@@ -72,7 +72,7 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 	 */
 	@Override
 	public Set<Variable> findVariables() {
-		HashSet<Variable> vars = new HashSet<>();
+		HashSet<Variable> vars = new HashSet<Variable>();
 
 		if (x != null) {
 			for (Value val : x)

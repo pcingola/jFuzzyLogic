@@ -64,7 +64,7 @@ public abstract class MffFunction extends FclObject {
 		// Evaluate each term
 		for (int i = 0; i < terms.length; i++) {
 			if (terms[i] == null) // Null function => Nothing to do
-				values[i] = Double.NaN;
+			values[i] = Double.NaN;
 			else if (terms[i] instanceof Variable) {
 				// Variable's value
 				Variable var = ((Variable) terms[i]);
@@ -85,7 +85,7 @@ public abstract class MffFunction extends FclObject {
 	}
 
 	public Set<Variable> findVariables() {
-		HashSet<Variable> vars = new HashSet<>();
+		HashSet<Variable> vars = new HashSet<Variable>();
 
 		if (terms != null) {
 			for (FclObject fco : terms) {
