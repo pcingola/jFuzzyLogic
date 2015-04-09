@@ -1,5 +1,8 @@
 package net.sourceforge.jFuzzyLogic.membership.functions;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.Gpr;
 import net.sourceforge.jFuzzyLogic.fcl.FclObject;
@@ -9,10 +12,10 @@ import net.sourceforge.jFuzzyLogic.rule.Variable;
 /**
  * Membership function that is a (simple) mathematical function
  * (Mff stands for 'Membership Function type Function').
- * 
- * Implements a mathematical function that depends on variables (should 
- * be input variables only, to avoid some sort of 'race conditions'). 
- * 
+ *
+ * Implements a mathematical function that depends on variables (should
+ * be input variables only, to avoid some sort of 'race conditions').
+ *
  * @author pcingola@users.sourceforge.net
  */
 public abstract class MffFunction extends FclObject {
@@ -49,7 +52,7 @@ public abstract class MffFunction extends FclObject {
 	}
 
 	/**
-	 * Evaluate this function 
+	 * Evaluate this function
 	 * @return double
 	 */
 	protected abstract double evaluateFunction();
@@ -61,7 +64,7 @@ public abstract class MffFunction extends FclObject {
 		// Evaluate each term
 		for (int i = 0; i < terms.length; i++) {
 			if (terms[i] == null) // Null function => Nothing to do
-			values[i] = Double.NaN;
+				values[i] = Double.NaN;
 			else if (terms[i] instanceof Variable) {
 				// Variable's value
 				Variable var = ((Variable) terms[i]);
@@ -74,11 +77,31 @@ public abstract class MffFunction extends FclObject {
 				// Function's value
 				MffFunction mff = (MffFunction) terms[i]; // Get function
 				mff.evaluateTerms(); // Evaluate function's terms (recurse into tree)
-				values[i] = mff.evaluateFunction(); // Evaluate function 
+				values[i] = mff.evaluateFunction(); // Evaluate function
 				if (debug) Gpr.debug("Evaluated: " + mff + " = " + values[i]);
 			}
 			if (debug) Gpr.debug("Term[" + i + "]: " + terms[i] + "\tClass:" + terms[i].getClass().getSimpleName() + "\tValue: " + values[i]);
 		}
+	}
+
+	public Set<Variable> findVariables() {
+		HashSet<Variable> vars = new HashSet<>();
+
+		if (terms != null) {
+			for (FclObject fco : terms) {
+				if (fco instanceof Variable) {
+					vars.add((Variable) fco);
+				} else if (fco instanceof Value) {
+					Value val = (Value) fco;
+					if (val.getType() == Value.Type.VAR_REFERENCE && val.getVarRef() != null) vars.add(val.getVarRef());
+				} else if (fco instanceof MffFunction) {
+					vars.addAll(((MffFunction) fco).findVariables());
+				}
+			}
+		}
+
+		return vars;
+
 	}
 
 	@Override

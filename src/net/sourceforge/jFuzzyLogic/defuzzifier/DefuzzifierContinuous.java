@@ -11,19 +11,21 @@ public abstract class DefuzzifierContinuous extends Defuzzifier {
 	/** Default number of points for 'values[]' */
 	public static int DEFAULT_NUMBER_OF_POINTS = 1000;
 
-	protected double max; // Where function ends 
+	protected double max; // Where function ends
 	protected double min; // Where function begins
-	/** 
+
+	/**
 	 * Step size between each element in 'values[]'
-	 * 			stepSize = (max - min) / values.length 
+	 * 			stepSize = (max - min) / values.length
 	 */
 	protected double stepSize;
-	/** 
+
+	/**
 	 * Funcion values: A generic continuous function
 	 * 			y = f(x)
-	 * where x : [min, max] 
+	 * where x : [min, max]
 	 * Values are stored in 'values[]' array.
-	 * Array's index is calculated as: 
+	 * Array's index is calculated as:
 	 * 			index = (x - min) / (max - min) * (values.length)
 	 */
 	protected double values[];
@@ -31,8 +33,7 @@ public abstract class DefuzzifierContinuous extends Defuzzifier {
 	public DefuzzifierContinuous(Variable variable) {
 		super(variable);
 		discrete = false;
-		variable.estimateUniverse();
-		init(variable.getUniverseMin(), variable.getUniverseMax(), DEFAULT_NUMBER_OF_POINTS);
+		init();
 	}
 
 	public void addValue(int index, double value) {
@@ -89,22 +90,28 @@ public abstract class DefuzzifierContinuous extends Defuzzifier {
 
 	/**
 	 * Initialize
-	 * @param min : Minimum
-	 * @param max : Maximum
-	 * @param numberOfPoints
 	 */
-	private void init(double min, double max, int numberOfPoints) {
-		values = new double[numberOfPoints];
+	@Override
+	protected void init() {
+		variable.estimateUniverse();
+		double umin = variable.getUniverseMin();
+		double umax = variable.getUniverseMax();
+		int numberOfPoints = DEFAULT_NUMBER_OF_POINTS;
+
+		if (values == null || values.length != numberOfPoints) values = new double[numberOfPoints];
 
 		// Go on only if min & max are set
-		if (Double.isNaN(min) || Double.isNaN(max)) return;
+		if (Double.isNaN(umin) || Double.isNaN(umax)) {
+			min = max = Double.NaN;
+			return;
+		}
 
 		// Check parameters
-		if (min > max) throw new RuntimeException("Parameter max is out of range (should satisfy: min < max). min: " + min + "\tmax: " + max);
+		if (umin > umax) throw new RuntimeException("Parameter max is out of range (should satisfy: min < max). min: " + umin + "\tmax: " + umax);
 
 		// Initialize
-		this.min = min;
-		this.max = max;
+		min = umin;
+		max = umax;
 		stepSize = (max - min) / numberOfPoints;
 		reset();
 	}
@@ -114,9 +121,19 @@ public abstract class DefuzzifierContinuous extends Defuzzifier {
 		return discrete;
 	}
 
+	/**
+	 * Do we need to re-initialize?
+	 */
+	@Override
+	public boolean needsInit() {
+		return Double.isNaN(max) || Double.isNaN(min);
+	}
+
 	/** Reset values (in 'values[] array) */
 	@Override
 	public void reset() {
+		super.reset();
+
 		if (values != null) {
 			for (int i = 0; i < values.length; i++)
 				values[i] = 0;

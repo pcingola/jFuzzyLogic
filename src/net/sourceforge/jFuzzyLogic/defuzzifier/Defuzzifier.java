@@ -18,9 +18,9 @@ public abstract class Defuzzifier extends FclObject {
 		this.variable = variable;
 	}
 
-	/** 
-	 * Deffuzification function 
-	 * Note: Has to return Double.NaN if no rule inferred this variable 
+	/**
+	 * Deffuzification function
+	 * Note: Has to return Double.NaN if no rule inferred this variable
 	 */
 	public abstract double defuzzify();
 
@@ -36,12 +36,24 @@ public abstract class Defuzzifier extends FclObject {
 		return str;
 	}
 
+	protected abstract void init();
+
 	public boolean isDiscrete() {
 		return discrete;
 	}
 
-	/** Reset defuzzifier values, this method is invoked on every RuleSet.evaluate() */
-	public abstract void reset();
+	/**
+	 * Do we need to re-initialize?
+	 * E.g. Defuzzified depends on an input variable that changed value
+	 */
+	public abstract boolean needsInit();
+
+	/**
+	 * Reset defuzzifier values, this method is invoked on every RuleSet.evaluate()
+	 */
+	public void reset() {
+		if (needsInit()) init();
+	}
 
 	public void setDiscrete(boolean discrete) {
 		this.discrete = discrete;

@@ -19,9 +19,9 @@ public class JFuzzyLogic {
 
 	// Version info
 	public static final String SOFTWARE_NAME = "JFuzzyLogic";
-	public static final String REVISION = "j";
-	public static final String BUILD = "2013-12-13";
-	public static final String VERSION_MAJOR = "3.2";
+	public static final String REVISION = "";
+	public static final String BUILD = "2015-04-09";
+	public static final String VERSION_MAJOR = "3.3";
 	public static final String VERSION_SHORT = VERSION_MAJOR + REVISION;
 	public static final String VERSION_NO_NAME = VERSION_SHORT + " (build " + BUILD + "), by " + Pcingola.BY;
 	public static final String VERSION = SOFTWARE_NAME + " " + VERSION_NO_NAME;
@@ -130,8 +130,6 @@ public class JFuzzyLogic {
 
 	/**
 	 * Load FIS form an FCL file
-	 * @param fclFileName
-	 * @return
 	 */
 	FIS load(String fclFileName) {
 		try {

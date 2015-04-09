@@ -64,7 +64,8 @@ public class ParameterOptimizationDemo {
 		Gpr.toFile("fcl/qualify_optimized.fcl", functionBlock.toString());
 
 		// Show 
-		functionBlock.reset(false);
+		//		functionBlock.reset(false);
+		functionBlock.reset();
 		JFuzzyChart.get().chart(functionBlock);
 
 		System.out.println("ParameterOptimizationDemo: End");

@@ -1,0 +1,25 @@
+
+FUNCTION_BLOCK MembershipWithVariables
+
+VAR_INPUT
+	mid : REAL;
+	high : REAL;
+	low : REAL;
+END_VAR
+
+VAR_OUTPUT
+    out : REAL;
+END_VAR
+
+DEFUZZIFY out
+	METHOD : COG;
+	DEFAULT := 4;
+
+	TERM low := (0, 0) (low, 1) (mid, 0) ;
+	TERM middle := (low, 0) (mid, 1) (high, 0);
+	TERM high := (mid, 0) (high, 1) ;
+
+END_DEFUZZIFY
+
+END_FUNCTION_BLOCK
+

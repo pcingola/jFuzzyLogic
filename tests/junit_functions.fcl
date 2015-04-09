@@ -23,6 +23,7 @@ FUZZIFY inVar
 END_FUZZIFY
 
 DEFUZZIFY outVar
+	DEFAULT = 0
     TERM low := FUNCTION (inVar * 1.0);
     TERM mid := FUNCTION (inVar * 2.0) + 1;
     TERM high := FUNCTION (inVar * 3.0) + 5 * SIN(inVar);

@@ -3,8 +3,11 @@ package net.sourceforge.jFuzzyLogic.rule;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import net.sourceforge.jFuzzyLogic.CompileCpp;
 import net.sourceforge.jFuzzyLogic.Gpr;
@@ -18,17 +21,20 @@ import net.sourceforge.jFuzzyLogic.membership.MembershipFunction;
  */
 public class Variable extends FclObject implements Comparable<Variable>, Iterable<LinguisticTerm>, CompileCpp {
 
-	double defaultValue; // Default value, when no change 
-	double latestDefuzzifiedValue; // Latest defuzzified value 
-	double universeMax; // Universe max (range max) 
-	double universeMin; // Universe minimum (range minimum) 
-	double value; // Variable's value 
-	String name; // Variable name 
-	HashMap<String, LinguisticTerm> linguisticTerms; // Terms for this variable 
-	Defuzzifier defuzzifier; // Defuzzifier class 
+	public static final double EPSILON = 1e-6;
+
+	double defaultValue; // Default value, when no change
+	double latestDefuzzifiedValue; // Latest defuzzified value
+	double universeMax; // Universe max (range max)
+	double universeMin; // Universe minimum (range minimum)
+	double value; // Variable's value
+	String name; // Variable name
+	HashMap<String, LinguisticTerm> linguisticTerms; // Terms for this variable
+	Defuzzifier defuzzifier; // Defuzzifier class
+	HashMap<Variable, Double> variableValues; // Terms may use variables, we need to keep track of values to know when universe needs to be updated
 
 	/**
-	 * Default constructor 
+	 * Default constructor
 	 * @param name : Variable's name
 	 */
 	public Variable(String name) {
@@ -39,41 +45,21 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 		universeMin = Double.NaN;
 		universeMax = Double.NaN;
 		value = Double.NaN;
-		reset(true); // Reset values
-	}
 
-	/**
-	 * Constructor 
-	 */
-	public Variable(String name, double universeMin, double universeMax) {
-		if (name == null) throw new RuntimeException("Variable's name can't be null");
-		if (universeMax < universeMin) throw new RuntimeException("Parameter error in variable \'" + name + "\' universeMax < universeMin");
-		this.name = name;
-		linguisticTerms = new HashMap<String, LinguisticTerm>();
-		this.universeMin = universeMin;
-		this.universeMax = universeMax;
-		value = Double.NaN;
-		reset(true); // Reset values
+		variableValues = null;
+
+		// reset(true); // Reset values
+		reset(); // Reset values
 	}
 
 	/**
 	 * Adds a termName to this variable
-	 * @param linguisticTerm : Linguistic term to add 
+	 * @param linguisticTerm : Linguistic term to add
 	 * @return this variable
 	 */
 	public Variable add(LinguisticTerm linguisticTerm) {
 		linguisticTerms.put(linguisticTerm.getTermName(), linguisticTerm);
-		return this;
-	}
-
-	/**
-	 * Adds a termName to this variable
-	 * @param termName : RuleTerm name 
-	 * @param membershipFunction : membershipFunction for this termName 
-	 * @return this variable
-	 */
-	public Variable add(String termName, MembershipFunction membershipFunction) {
-		this.add(new LinguisticTerm(termName, membershipFunction));
+		variableValues = null; // Reset cache
 		return this;
 	}
 
@@ -84,7 +70,7 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 		return name.compareTo(var.getName());
 	}
 
-	/** 
+	/**
 	 * Defuzzify this (output) variable
 	 * Set defuzzufied values to 'value' and 'latestDefuzzifiedValue'
 	 */
@@ -109,7 +95,7 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 		if (linguisticTerms.size() > 0) {
 			for (LinguisticTerm lt : this) {
 				MembershipFunction membershipFunction = lt.getMembershipFunction();
-				membershipFunction.estimateUniverse();
+				membershipFunction.estimateUniverseForce();
 
 				umin = Math.min(membershipFunction.getUniverseMin(), umin);
 				umax = Math.max(membershipFunction.getUniverseMax(), umax);
@@ -120,9 +106,21 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 			else umin = umax = 0;
 		}
 
-		// Set parameters (if not set)
-		if (Double.isNaN(universeMin)) universeMin = umin;
-		if (Double.isNaN(universeMax)) universeMax = umax;
+		// Set parameters
+		universeMin = umin;
+		universeMax = umax;
+	}
+
+	/**
+	 * Find all variables used in linguistic terms
+	 */
+	protected Set<Variable> findVariables() {
+		Set<Variable> vars = new HashSet<Variable>();
+
+		for (LinguisticTerm lt : this)
+			vars.addAll(lt.getMembershipFunction().findVariables());
+
+		return vars;
 	}
 
 	public double getDefaultValue() {
@@ -193,6 +191,21 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 		return linguisticTerms.values().iterator();
 	}
 
+	//	/** Reset defuzzifier (if any) */
+	//	public void reset(boolean onlyDefuzzifier) {
+	//		if (onlyDefuzzifier) {
+	//			// Only reset variables that have a defuzzifier
+	//			if (defuzzifier != null) {
+	//				defuzzifier.reset();
+	//				// Set default value for output variables (if any default value was defined)
+	//				if (!Double.isNaN(defaultValue)) value = defaultValue;
+	//				latestDefuzzifiedValue = defaultValue;
+	//			}
+	//		} else {
+	//			latestDefuzzifiedValue = value = defaultValue;
+	//		}
+	//	}
+
 	/** Get a 'linguisticTerms sorted by name */
 	public List<LinguisticTerm> linguisticTermsSorted() {
 		ArrayList<LinguisticTerm> al = new ArrayList<LinguisticTerm>(linguisticTerms.values());
@@ -200,17 +213,58 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 		return al;
 	}
 
-	/** Reset defuzzifier (if any) */
-	public void reset(boolean onlyDefuzzifier) {
-		if (onlyDefuzzifier) {
-			// Only reset variables that have a defuzzifier
-			if (defuzzifier != null) {
-				defuzzifier.reset();
-				// Set default value for output variables (if any default value was defined)
-				if (!Double.isNaN(defaultValue)) value = defaultValue;
-				latestDefuzzifiedValue = defaultValue;
+	/**
+	 * Do we need to estimate universe?
+	 * (e.g. when a variable referred by a linguistic term changed)
+	 */
+	protected boolean needEstimateUniverse() {
+		//---
+		// Find all dependent variables
+		//---
+		if (variableValues == null) {
+			Set<Variable> vars = findVariables();
+
+			// Add all variables
+			variableValues = new HashMap<Variable, Double>();
+			for (Variable var : vars)
+				variableValues.put(var, var.getValue());
+		}
+
+		//---
+		// Any dependent variables changed?
+		//---
+		LinkedList<Variable> change = null;
+		for (Variable var : variableValues.keySet()) {
+			double value = variableValues.get(var);
+			if (Math.abs(value - var.getValue()) > EPSILON) {
+				if (change == null) change = new LinkedList<Variable>();
+				change.add(var);
 			}
-		} else value = Double.NaN;
+		}
+
+		//---
+		// Do we need to update any value?
+		//---
+		if (change != null) {
+			for (Variable var : change)
+				variableValues.put(var, var.getValue());
+		}
+
+		return change != null;
+	}
+
+	/** Reset defuzzifier (if any) */
+	public void reset() {
+		if (needEstimateUniverse()) {
+			universeMin = universeMax = Double.NaN; // Force
+			estimateUniverse();
+		}
+
+		// Only reset variables that have a defuzzifier
+		if (defuzzifier != null) defuzzifier.reset();
+
+		// Set default value for output variables (if any default value was defined)
+		if (!Double.isNaN(defaultValue)) latestDefuzzifiedValue = value = defaultValue;
 	}
 
 	public void setDefaultValue(double defualtValue) {
@@ -246,10 +300,6 @@ public class Variable extends FclObject implements Comparable<Variable>, Iterabl
 		this.value = value;
 	}
 
-	/**
-	 * Printable string
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		String str = name + " : \n";

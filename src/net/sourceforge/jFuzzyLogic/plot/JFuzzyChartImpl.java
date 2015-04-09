@@ -116,7 +116,7 @@ public class JFuzzyChartImpl extends JFuzzyChart {
 		boolean plotDefuzz = false;
 
 		// Sanity check
-		if (Double.isNaN(var.getUniverseMin()) || Double.isInfinite(var.getUniverseMax())) var.estimateUniverse();
+		var.estimateUniverse();
 		int numberOfPoints = PlotWindow.DEFAULT_CHART_NUMBER_OF_POINTS;
 		double step = (var.getUniverseMax() - var.getUniverseMin()) / (numberOfPoints);
 
@@ -143,12 +143,18 @@ public class JFuzzyChartImpl extends JFuzzyChart {
 		Defuzzifier defuzzifier = var.getDefuzzifier();
 		if ((defuzzifier != null) && (defuzzifier instanceof DefuzzifierContinuous)) {
 			DefuzzifierContinuous def = (DefuzzifierContinuous) defuzzifier;
+
+			// Title
 			String title = String.format("%s:%2.2f (%s)", var.getName(), var.getLatestDefuzzifiedValue(), defuzzifier.getName());
+
+			// Data points
 			XYSeries series = new XYSeries(title);
 			double values[] = def.getValues();
 			numberOfPoints = values.length;
 			double xx = def.getMin();
 			step = (def.getMax() - def.getMin()) / (numberOfPoints);
+
+			// Calculate values
 			for (int i = 0; i < numberOfPoints; i++, xx += step)
 				series.add(xx, values[i]);
 

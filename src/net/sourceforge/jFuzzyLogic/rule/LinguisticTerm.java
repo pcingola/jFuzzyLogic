@@ -12,6 +12,7 @@ public class LinguisticTerm extends FclObject implements Comparable<LinguisticTe
 
 	/** Membership function */
 	MembershipFunction membershipFunction;
+
 	/** Terms's name */
 	String termName;
 

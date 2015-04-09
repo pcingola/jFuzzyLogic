@@ -1,6 +1,7 @@
 package net.sourceforge.jFuzzyLogic.membership;
 
 import java.util.Iterator;
+import java.util.Set;
 
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.Gpr;
@@ -20,12 +21,13 @@ import net.sourceforge.jFuzzyLogic.membership.functions.MffSubstract;
 import net.sourceforge.jFuzzyLogic.membership.functions.MffSum;
 import net.sourceforge.jFuzzyLogic.membership.functions.MffTan;
 import net.sourceforge.jFuzzyLogic.membership.functions.MffTimes;
+import net.sourceforge.jFuzzyLogic.rule.Variable;
 
 import org.antlr.runtime.tree.Tree;
 
 /**
  * Membership function that is a (simple) mathematical funcion (the result is a singleton)
- * 
+ *
  * @author pcingola@users.sourceforge.net
  */
 public class MembershipFunctionFuncion extends MembershipFunctionDiscrete {
@@ -128,6 +130,11 @@ public class MembershipFunctionFuncion extends MembershipFunctionDiscrete {
 		universeMin = universeMax = val;
 	}
 
+	@Override
+	public Set<Variable> findVariables() {
+		return function.findVariables();
+	}
+
 	/**
 	 * @see net.sourceforge.jFuzzyLogic.membership.MembershipFunctionDiscrete#iterator()
 	 */
@@ -173,8 +180,8 @@ public class MembershipFunctionFuncion extends MembershipFunctionDiscrete {
 	}
 
 	/**
-	 * Parse each term (from tree) creating appropriate functions. 
-	 * 
+	 * Parse each term (from tree) creating appropriate functions.
+	 *
 	 * @param ruleBlock Fuzzy Set for this function
 	 * @param tree : AST (tree) to parse
 	 * @return An array of objects (terms[])

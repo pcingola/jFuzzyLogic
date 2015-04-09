@@ -1,5 +1,10 @@
 package net.sourceforge.jFuzzyLogic.membership;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import net.sourceforge.jFuzzyLogic.rule.Variable;
+
 /**
  * Piece-wise linear membership function
  * @author pcingola@users.sourceforge.net
@@ -12,7 +17,7 @@ public class MembershipFunctionPieceWiseLinear extends MembershipFunctionContinu
 	Value y[];
 
 	/**
-	 * Default constructor 
+	 * Default constructor
 	 * @param x [] : x points array
 	 * @param y [] : y points array
 	 * A piecewise linear function is defined by 'n' points:
@@ -65,6 +70,26 @@ public class MembershipFunctionPieceWiseLinear extends MembershipFunctionContinu
 		universeMax = x[x.length - 1].getValue();
 	}
 
+	/**
+	 * Find variables used by this function
+	 */
+	@Override
+	public Set<Variable> findVariables() {
+		HashSet<Variable> vars = new HashSet<>();
+
+		if (x != null) {
+			for (Value val : x)
+				if (val.getType() == Value.Type.VAR_REFERENCE && val.getVarRef() != null) vars.add(val.getVarRef());
+		}
+
+		if (y != null) {
+			for (Value val : y)
+				if (val.getType() == Value.Type.VAR_REFERENCE && val.getVarRef() != null) vars.add(val.getVarRef());
+		}
+
+		return vars;
+	}
+
 	/** Need to override this method (we store parameters differently in this function) */
 	@Override
 	public double getParameter(int i) {
@@ -85,7 +110,7 @@ public class MembershipFunctionPieceWiseLinear extends MembershipFunctionContinu
 	 * 		membership(x) = y[0]											if x <= x[0]
 	 * 		membership(x) = y[n]											if x >= x[n]  (where n = x.length)
 	 * 		membership(x) = y[i - 1] + (y[i] - y[i - 1]) / (in - x[i])		if x[i-1] < x <= x[i]
-	 * 	
+	 *
 	 * @see net.sourceforge.jFuzzyLogic.membership.MembershipFunction#membership(double)
 	 */
 	@Override

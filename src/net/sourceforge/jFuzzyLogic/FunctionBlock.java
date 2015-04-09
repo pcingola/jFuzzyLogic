@@ -42,10 +42,10 @@ import org.antlr.runtime.tree.Tree;
  * A complete inference system contains:
  * 		- input / output variables
  * 		- rule blocks
- * 
+ *
  * Reference: See IEC 1131 - Part 7 - Fuzzy Control Programming
- * 
- * 
+ *
+ *
  * @author pcingola@users.sourceforge.net
  *
  */
@@ -53,10 +53,10 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 
 	public static boolean debug = FIS.debug;
 
-	FIS fis; // Which FIS does this FunctionBlock belong to? 
-	String name; // Function block name 
-	HashMap<String, RuleBlock> ruleBlocks; // Several RuleBlocks indexed by name 
-	HashMap<String, Variable> variablesByName; // Every variable is here (key: VariableName) 
+	FIS fis; // Which FIS does this FunctionBlock belong to?
+	String name; // Function block name
+	HashMap<String, RuleBlock> ruleBlocks; // Several RuleBlocks indexed by name
+	HashMap<String, Variable> variablesByName; // Every variable is here (key: VariableName)
 
 	public FunctionBlock(FIS fis) {
 		this.fis = fis;
@@ -70,7 +70,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Create a defuzzifier based on defuziffier's name and a variable 
+	 * Create a defuzzifier based on defuziffier's name and a variable
 	 */
 	protected Defuzzifier createDefuzzifier(String defuzzificationMethodType, Variable variable) {
 		Defuzzifier defuzzifier;
@@ -86,9 +86,12 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Evaluate fuzzy rules in this function block  
+	 * Evaluate fuzzy rules in this function block
 	 */
 	public void evaluate() {
+		// reset(true); // Reset variables
+		reset(); // Reset variables
+
 		// First: Reset defuzzifiers, variables, etc.
 		for (RuleBlock ruleBlock : this)
 			ruleBlock.reset();
@@ -103,7 +106,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Builds rule set based on FCL tree (parsed from an FCL file) 
+	 * Builds rule set based on FCL tree (parsed from an FCL file)
 	 * @param tree : Tree to use
 	 * @return : RuleSet's name (or "" if no name)
 	 */
@@ -145,7 +148,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for "Defuzzify" item 
+	 * Parse a tree for "Defuzzify" item
 	 * @param tree : Tree to parse
 	 * @return Variable (old or created)
 	 */
@@ -178,10 +181,10 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 				LinguisticTerm linguisticTerm = fclTreeFuzzifyTerm(child, variable);
 				variable.add(linguisticTerm);
 			} else if (leaveName.equalsIgnoreCase("ACCU")) // Accumulation method
-			throw new RuntimeException("Accumulation method (ACCU) must be defined at RULE_BLOCK");
+				throw new RuntimeException("Accumulation method (ACCU) must be defined at RULE_BLOCK");
 			// ruleAccumulationMethodType = child.getChild(0).getText();
 			else if (leaveName.equalsIgnoreCase("METHOD")) // Defuzzification method
-			defuzzificationMethodType = child.getChild(0).getText();
+				defuzzificationMethodType = child.getChild(0).getText();
 			else if (leaveName.equalsIgnoreCase("DEFAULT")) {
 				// Default value
 				String defaultValueStr = child.getChild(0).getText();
@@ -205,7 +208,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for "Fuzzify" item 
+	 * Parse a tree for "Fuzzify" item
 	 * @param tree : Tree to parse
 	 * @return Variable (old or created)
 	 */
@@ -239,7 +242,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for "Term" item 
+	 * Parse a tree for "Term" item
 	 * @param tree : Tree to parse
 	 * @return A new LinguisticTerm
 	 */
@@ -301,7 +304,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for trapetzoidal membership function  
+	 * Parse a tree for trapetzoidal membership function
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -311,7 +314,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for gaussian membership function  
+	 * Parse a tree for gaussian membership function
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -325,7 +328,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for gaussian2 membership function  
+	 * Parse a tree for gaussian2 membership function
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -341,7 +344,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for generilized bell membership function  
+	 * Parse a tree for generilized bell membership function
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -356,7 +359,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for piece-wice linear membership function  
+	 * Parse a tree for piece-wice linear membership function
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -384,7 +387,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for sigmoidal membership function  
+	 * Parse a tree for sigmoidal membership function
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -397,7 +400,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for piece-wice linear membership function item 
+	 * Parse a tree for piece-wice linear membership function item
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -409,7 +412,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for singletons membership function  
+	 * Parse a tree for singletons membership function
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -431,7 +434,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for singletons membership function series of points 
+	 * Parse a tree for singletons membership function series of points
 	 * @param tree : Tree to parse
 	 * @param numberOfPoints : Number of points in this function
 	 * @return A new membership function
@@ -460,7 +463,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for trapetzoidal membership function  
+	 * Parse a tree for trapetzoidal membership function
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -475,7 +478,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for triangular membership function  
+	 * Parse a tree for triangular membership function
 	 * @param tree : Tree to parse
 	 * @return A new membership function
 	 */
@@ -489,7 +492,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Parse a tree for "Variable" item (either input or output variables) 
+	 * Parse a tree for "Variable" item (either input or output variables)
 	 * @param tree
 	 */
 	private void fclTreeVariables(Tree tree) {
@@ -520,7 +523,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 	}
 
 	/**
-	 * Get a RuleBlock 
+	 * Get a RuleBlock
 	 * @param ruleBlockName : Rule block's name (can be null to retrieve first available one)
 	 * @return Fuzzy rule block (or null if not found)
 	 */
@@ -550,12 +553,20 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 		return ruleBlocks.values().iterator();
 	}
 
+	//	/**
+	//	 * Reset all variables
+	//	 */
+	//	public void reset(boolean useDefault) {
+	//		for (Variable var : variables())
+	//			var.reset(useDefault);
+	//	}
+
 	/**
-	 * Reset all variables 
+	 * Reset all variables
 	 */
-	public void reset(boolean useDefault) {
+	public void reset() {
 		for (Variable var : variables())
-			var.reset(useDefault);
+			var.reset();
 	}
 
 	public List<RuleBlock> ruleBlocksSorted() {
@@ -619,13 +630,13 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 		membershipMethods.append("// Membership functions \n");
 		methodsDecl.append( //
 				"\tpublic:\n" //
-						+ "\t" + className + "();\n" //
-						+ "\tvoid calc();\n" //
-						+ "\tvoid print();\n" //
-						+ "\n\tprivate:\n" //
-						+ "\tvoid defuzzify();\n" //
-						+ "\tvoid fuzzify();\n" //
-						+ "\tvoid reset();\n" //
+				+ "\t" + className + "();\n" //
+				+ "\tvoid calc();\n" //
+				+ "\tvoid print();\n" //
+				+ "\n\tprivate:\n" //
+				+ "\tvoid defuzzify();\n" //
+				+ "\tvoid fuzzify();\n" //
+				+ "\tvoid reset();\n" //
 				);
 		printMethod.append("// Print \nvoid " + className + "::print() {\n\tprintf(\"Function block " + name + ":\\n\");\n");
 		resetMethod.append("// Reset output\nvoid " + className + "::reset() {\n");
@@ -726,7 +737,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 				+ membershipMethods + "\n" //
 				+ printMethod + "\n" //
 				+ resetMethod + "\n" //
-		; //
+				; //
 	}
 
 	@Override

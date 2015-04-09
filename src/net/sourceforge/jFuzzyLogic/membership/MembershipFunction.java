@@ -1,7 +1,11 @@
 package net.sourceforge.jFuzzyLogic.membership;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.fcl.FclObject;
+import net.sourceforge.jFuzzyLogic.rule.Variable;
 
 /**
  * Base membership function
@@ -13,12 +17,9 @@ public abstract class MembershipFunction extends FclObject {
 	public static boolean debug = FIS.debug;
 
 	boolean discrete;
-	/** Function's parameters */
-	Value parameters[];
-	/** Universe max (range max) */
-	double universeMax;
-	/** Universe min (range min) */
-	double universeMin;
+	Value parameters[]; // Function's parameters
+	double universeMax; // Universe max (range max)
+	double universeMin; // Universe min (range min)
 
 	/** Default Constructor */
 	MembershipFunction() {
@@ -29,6 +30,25 @@ public abstract class MembershipFunction extends FclObject {
 
 	/** Try to guess the universe (if not set) */
 	public abstract void estimateUniverse();
+
+	public void estimateUniverseForce() {
+		universeMin = universeMax = Double.NaN;
+		estimateUniverse();
+	}
+
+	/**
+	 * Find variables used by this function
+	 */
+	public Set<Variable> findVariables() {
+		HashSet<Variable> vars = new HashSet<>();
+
+		if (parameters != null) {
+			for (Value val : parameters)
+				if (val.getType() == Value.Type.VAR_REFERENCE && val.getVarRef() != null) vars.add(val.getVarRef());
+		}
+
+		return vars;
+	}
 
 	/** Short name */
 	public String getName() {
@@ -62,10 +82,10 @@ public abstract class MembershipFunction extends FclObject {
 		return discrete;
 	}
 
-	/** 
+	/**
 	 * Get membership function's value.
 	 * @param in : Variable's 'x' value
-	 * Note: Output mu be in range [0,1] 
+	 * Note: Output mu be in range [0,1]
 	 */
 	public abstract double membership(double in);
 

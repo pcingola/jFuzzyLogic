@@ -38,10 +38,10 @@ import org.antlr.runtime.tree.Tree;
 
 /**
  * A set of fuzzy rules
- * 
- * 
+ *
+ *
  * Reference: See IEC 1131 - Part 7 - Fuzzy Control Programming
- * 
+ *
  * @author pcingola@users.sourceforge.net
  */
 public class RuleBlock extends FclObject implements Iterable<Rule>, Comparable<RuleBlock>, CompileCpp {
@@ -49,11 +49,11 @@ public class RuleBlock extends FclObject implements Iterable<Rule>, Comparable<R
 	/** Debug mode? */
 	public static boolean debug = FIS.debug;
 
-	FunctionBlock functionBlock; // Which FunctionBlock does this RuleBlock belong to 
+	FunctionBlock functionBlock; // Which FunctionBlock does this RuleBlock belong to
 	String name;
-	RuleAccumulationMethod ruleAccumulationMethod; // Rule accumulation method: How results of the rules are combined to obtain an overall result (e.g. MAX: maximum, BSUM: bounded sum, etc.) 
-	RuleActivationMethod ruleActivationMethod; // Rule activation (implication) method: How the 'if' activates the 'then' (e.g. MIN: minimum, PROD: product) 
-	ArrayList<Rule> rules; // All the rules 
+	RuleAccumulationMethod ruleAccumulationMethod; // Rule accumulation method: How results of the rules are combined to obtain an overall result (e.g. MAX: maximum, BSUM: bounded sum, etc.)
+	RuleActivationMethod ruleActivationMethod; // Rule activation (implication) method: How the 'if' activates the 'then' (e.g. MIN: minimum, PROD: product)
+	ArrayList<Rule> rules; // All the rules
 
 	public static boolean isDebug() {
 		return debug;
@@ -87,7 +87,7 @@ public class RuleBlock extends FclObject implements Iterable<Rule>, Comparable<R
 
 	/**
 	 * Create a rule accumulation method based on name
-	 * 
+	 *
 	 * @param ruleAccumulationMethodType
 	 * @return
 	 */
@@ -103,7 +103,7 @@ public class RuleBlock extends FclObject implements Iterable<Rule>, Comparable<R
 	}
 
 	/**
-	 * Evaluate fuzzy rule set 
+	 * Evaluate fuzzy rule set
 	 */
 	public void evaluate() {
 		// Apply each rule
@@ -364,7 +364,8 @@ public class RuleBlock extends FclObject implements Iterable<Rule>, Comparable<R
 				if (resetted.get(var) == null) {
 					// Sanity check
 					if (var.getDefuzzifier() == null) throw new RuntimeException("Defuzzifier not set for output variable '" + var.getName() + "'");
-					var.reset(true); // Reset variable
+					// var.reset(true); // Reset variable
+					var.reset(); // Reset variable
 					resetted.put(var, var); // Mark it as 'resetted' so we don't reset it again
 				}
 			}
@@ -375,7 +376,8 @@ public class RuleBlock extends FclObject implements Iterable<Rule>, Comparable<R
 			for (Variable var : fr.getAntecedents())
 				// Not already resetted?
 				if (resetted.get(var) == null) {
-					var.reset(true); // Reset variable
+					// var.reset(true); // Reset variable
+					var.reset(); // Reset variable
 					resetted.put(var, var); // Mark it as 'resetted' so we don't reset it again
 				}
 		}

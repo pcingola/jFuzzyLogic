@@ -1,6 +1,10 @@
 package net.sourceforge.jFuzzyLogic.membership;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
+
+import net.sourceforge.jFuzzyLogic.rule.Variable;
 
 /**
  * Generic singleton membership function: Allows 'n' singletons (generic discrete membership function)
@@ -14,7 +18,7 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 	Value y[];
 
 	/**
-	 * Constructor for generin (N-values) 
+	 * Constructor for generin (N-values)
 	 * @param x : x[] values array
 	 * @param y : y[] values array
 	 */
@@ -22,10 +26,10 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 		discrete = true;
 
 		// Check parameters
-		if( x == null ) throw new RuntimeException("Parameter x[] can't be null");
-		if( y == null ) throw new RuntimeException("Parameter x[] can't be null");
-		if( x.length > y.length ) throw new RuntimeException("Array size differ");
-		if( x.length < 1 ) throw new RuntimeException("Array size is 0");
+		if (x == null) throw new RuntimeException("Parameter x[] can't be null");
+		if (y == null) throw new RuntimeException("Parameter x[] can't be null");
+		if (x.length > y.length) throw new RuntimeException("Array size differ");
+		if (x.length < 1) throw new RuntimeException("Array size is 0");
 
 		// Initialize
 		this.x = x;
@@ -33,22 +37,22 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 
 		// Check parameters
 		StringBuffer errors = new StringBuffer();
-		if( !checkParamters(errors) ) throw new RuntimeException(errors.toString());
+		if (!checkParamters(errors)) throw new RuntimeException(errors.toString());
 	}
 
 	@Override
 	public boolean checkParamters(StringBuffer errors) {
 		boolean ok = true;
 
-		if( x.length > 1 ) for( int i = 0; i < x.length; i++ ) {
-			if( (i > 0) && (x[i - 1].getValue() > x[i].getValue()) ) {
+		if (x.length > 1) for (int i = 0; i < x.length; i++) {
+			if ((i > 0) && (x[i - 1].getValue() > x[i].getValue())) {
 				ok = false;
-				if( errors != null ) errors.append("Array not sorted: x[" + (i - 1) + "] = " + x[i - 1] + " , x[" + i + "] = " + x[i] + "\n");
+				if (errors != null) errors.append("Array not sorted: x[" + (i - 1) + "] = " + x[i - 1] + " , x[" + i + "] = " + x[i] + "\n");
 			}
 
-			if( (y[i].getValue() < 0) || (y[i].getValue() > 1) ) {
+			if ((y[i].getValue() < 0) || (y[i].getValue() > 1)) {
 				ok = false;
-				if( errors != null ) errors.append("Membership funcion out of range: y[" + i + "] = " + y[i] + " (should be in range [0,1]\n");
+				if (errors != null) errors.append("Membership funcion out of range: y[" + i + "] = " + y[i] + " (should be in range [0,1]\n");
 			}
 		}
 
@@ -58,16 +62,36 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 	@Override
 	public void estimateUniverse() {
 		// Are universeMin and universeMax already set? => nothing to do
-		if( (!Double.isNaN(universeMin)) && (!Double.isNaN(universeMax)) ) return;
+		if ((!Double.isNaN(universeMin)) && (!Double.isNaN(universeMax))) return;
 		universeMin = x[0].getValue();
 		universeMax = x[x.length - 1].getValue();
+	}
+
+	/**
+	 * Find variables used by this function
+	 */
+	@Override
+	public Set<Variable> findVariables() {
+		HashSet<Variable> vars = new HashSet<>();
+
+		if (x != null) {
+			for (Value val : x)
+				if (val.getType() == Value.Type.VAR_REFERENCE && val.getVarRef() != null) vars.add(val.getVarRef());
+		}
+
+		if (y != null) {
+			for (Value val : y)
+				if (val.getType() == Value.Type.VAR_REFERENCE && val.getVarRef() != null) vars.add(val.getVarRef());
+		}
+
+		return vars;
 	}
 
 	/** Need to override this method (we store parameters differently in this function) */
 	@Override
 	public double getParameter(int i) {
 		int j = i / 2;
-		if( (i % 2) == 0 ) return x[j].getValue();
+		if ((i % 2) == 0) return x[j].getValue();
 		return y[j].getValue();
 
 	}
@@ -87,15 +111,19 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 
 			int i = 0;
 
+			@Override
 			public boolean hasNext() {
 				return (i < x.length);
 			}
 
+			@Override
 			public Double next() {
 				return x[i].getValue();
 			}
 
-			public void remove() {}
+			@Override
+			public void remove() {
+			}
 		};
 	}
 
@@ -105,10 +133,10 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 	@Override
 	public double membership(double in) {
 		int i, len = x.length;
-		if( in <= x[0].getValue() ) return y[0].getValue();
-		if( in > x[len - 1].getValue() ) return y[len - 1].getValue();
-		for( i = 1; i < len; i++ )
-			if( in == x[i].getValue() ) return y[i].getValue();
+		if (in <= x[0].getValue()) return y[0].getValue();
+		if (in > x[len - 1].getValue()) return y[len - 1].getValue();
+		for (i = 1; i < len; i++)
+			if (in == x[i].getValue()) return y[i].getValue();
 		return 0;
 	}
 
@@ -117,7 +145,7 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 	 */
 	@Override
 	public double membership(int index) {
-		if( (index < 0) || (index > x.length) ) return 0;
+		if ((index < 0) || (index > x.length)) return 0;
 		return y[index].getValue();
 	}
 
@@ -125,7 +153,7 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 	@Override
 	public void setParameter(int i, double value) {
 		int j = i / 2;
-		if( (i % 2) == 0 ) x[j].setValue(value);
+		if ((i % 2) == 0) x[j].setValue(value);
 		else y[j].setValue(value);
 	}
 
@@ -143,9 +171,9 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 	@Override
 	public String toString() {
 		StringBuffer str = new StringBuffer(getName() + " : ");
-		for( int i = 0; i < x.length; i++ ) {
+		for (int i = 0; i < x.length; i++) {
 			str.append("[" + x[i] + ", " + y[i] + "] ");
-			if( i < (x.length - 1) ) str.append(", ");
+			if (i < (x.length - 1)) str.append(", ");
 		}
 		str.append(";");
 		return str.toString();
@@ -155,7 +183,7 @@ public class MembershipFunctionGenericSingleton extends MembershipFunctionDiscre
 	@Override
 	public String toStringFcl() {
 		String str = "SINGLETONS ";
-		for( int i = 0; i < x.length; i++ )
+		for (int i = 0; i < x.length; i++)
 			str += "(" + x[i] + ", " + y[i] + ") ";
 		return str;
 	}

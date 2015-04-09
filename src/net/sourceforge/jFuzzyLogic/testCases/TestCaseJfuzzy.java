@@ -15,7 +15,9 @@ import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.Gpr;
 import net.sourceforge.jFuzzyLogic.rule.Rule;
 import net.sourceforge.jFuzzyLogic.rule.RuleBlock;
+import net.sourceforge.jFuzzyLogic.rule.Variable;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -77,7 +79,7 @@ public class TestCaseJfuzzy extends TestCase {
 		FunctionBlock fb = fis.getFunctionBlock(null);
 
 		for (int ind = 1; ind < mem.length; ind++) {
-			double value = int100ToDOuble(mem[ind][0]);
+			double value = int100ToDouble(mem[ind][0]);
 
 			fb.setVariable("inVar", value);
 
@@ -85,9 +87,9 @@ public class TestCaseJfuzzy extends TestCase {
 			int good = doubleToInt100(fb.getVariable("inVar").getMembership("good"));
 			int excellent = doubleToInt100(fb.getVariable("inVar").getMembership("excellent"));
 
-			if (poor != mem[ind][1]) fail("Membership function " + title + ", poor(" + value + ") should be " + int100ToDOuble(mem[ind][1]) + ", but it is " + int100ToDOuble(poor));
-			if (good != mem[ind][2]) fail("Membership function " + title + ", good(" + value + ") should be " + int100ToDOuble(mem[ind][2]) + ", but it is " + int100ToDOuble(good));
-			if (excellent != mem[ind][3]) fail("Membership function " + title + ", excellent(" + value + ") should be " + int100ToDOuble(mem[ind][3]) + ", but it is " + int100ToDOuble(excellent));
+			if (poor != mem[ind][1]) fail("Membership function " + title + ", poor(" + value + ") should be " + int100ToDouble(mem[ind][1]) + ", but it is " + int100ToDouble(poor));
+			if (good != mem[ind][2]) fail("Membership function " + title + ", good(" + value + ") should be " + int100ToDouble(mem[ind][2]) + ", but it is " + int100ToDouble(good));
+			if (excellent != mem[ind][3]) fail("Membership function " + title + ", excellent(" + value + ") should be " + int100ToDouble(mem[ind][3]) + ", but it is " + int100ToDouble(excellent));
 		}
 	}
 
@@ -102,7 +104,7 @@ public class TestCaseJfuzzy extends TestCase {
 		FunctionBlock fb = fis.getFunctionBlock(null);
 
 		for (int ind = 1; ind < mem.length; ind++) {
-			double value = int100ToDOuble(mem[ind][0]);
+			double value = int100ToDouble(mem[ind][0]);
 
 			fb.setVariable("inVar", value);
 
@@ -110,9 +112,9 @@ public class TestCaseJfuzzy extends TestCase {
 			int good = doubleToInt100(fb.getVariable("inVar").getMembership("good"));
 			int excellent = doubleToInt100(fb.getVariable("inVar").getMembership("excellent"));
 
-			if (poor != mem[ind][1]) fail("Membership function " + title + ", poor(" + value + ") should be " + int100ToDOuble(mem[ind][1]) + ", but it is " + int100ToDOuble(poor));
-			if (good != mem[ind][2]) fail("Membership function " + title + ", good(" + value + ") should be " + int100ToDOuble(mem[ind][2]) + ", but it is " + int100ToDOuble(good));
-			if (excellent != mem[ind][3]) fail("Membership function " + title + ", excellent(" + value + ") should be " + int100ToDOuble(mem[ind][3]) + ", but it is " + int100ToDOuble(excellent));
+			if (poor != mem[ind][1]) fail("Membership function " + title + ", poor(" + value + ") should be " + int100ToDouble(mem[ind][1]) + ", but it is " + int100ToDouble(poor));
+			if (good != mem[ind][2]) fail("Membership function " + title + ", good(" + value + ") should be " + int100ToDouble(mem[ind][2]) + ", but it is " + int100ToDouble(good));
+			if (excellent != mem[ind][3]) fail("Membership function " + title + ", excellent(" + value + ") should be " + int100ToDouble(mem[ind][3]) + ", but it is " + int100ToDouble(excellent));
 		}
 	}
 
@@ -123,7 +125,7 @@ public class TestCaseJfuzzy extends TestCase {
 		return ((int) Math.round(d * 100));
 	}
 
-	double int100ToDOuble(int i) {
+	double int100ToDouble(int i) {
 		return (i) / 100.0;
 	}
 
@@ -258,7 +260,7 @@ public class TestCaseJfuzzy extends TestCase {
 		// Compare running the system vs. stored results
 		for (int ind = 0; ind < mem.length; ind++) {
 			// Get input variables from stores results
-			double inVar = int100ToDOuble(mem[ind][0]);
+			double inVar = int100ToDouble(mem[ind][0]);
 
 			// Set variables and run the system
 			fb.setVariable("inVar", inVar);
@@ -268,7 +270,7 @@ public class TestCaseJfuzzy extends TestCase {
 			double outVar = fb.getVariable("outVar").getLatestDefuzzifiedValue();
 
 			// Compare output variable to stored result
-			if (doubleToInt100(outVar) != mem[ind][4]) fail("Tipper output outVar(inVar=" + inVar + ") should be " + int100ToDOuble(mem[ind][4]) + ", but it is " + outVar);
+			if (doubleToInt100(outVar) != mem[ind][4]) fail("Output outVar(inVar=" + inVar + ") should be " + int100ToDouble(mem[ind][4]) + ", but it is " + outVar);
 		}
 	}
 
@@ -413,6 +415,54 @@ public class TestCaseJfuzzy extends TestCase {
 		checkMembershipFunction("Triangular", "./tests/junit_triang.fcl", "./tests/junit_triang.txt");
 	}
 
+	@Test
+	public void testMembershipWithVariables() {
+		Gpr.debug("Test");
+
+		// FCL.debug = true;
+		FIS fis = FIS.load("./tests/membershipWithVariables.fcl", true);
+
+		Variable var = fis.getVariable("out");
+		if (verbose) {
+			System.out.println(var);
+			System.out.println("Universe:\t[" + var.getUniverseMin() + " , " + var.getUniverseMax() + "]: " + var.getValue());
+		}
+
+		//---
+		// Part 1
+		//---
+		double low = 1, mid = 2, high = 3;
+		fis.setVariable("low", low);
+		fis.setVariable("mid", mid);
+		fis.setVariable("high", high);
+		fis.evaluate();
+
+		if (verbose) {
+			System.out.println(var);
+			System.out.println("Universe:\t[" + var.getUniverseMin() + " , " + var.getUniverseMax() + "]: " + var.getValue());
+		}
+		Assert.assertTrue(Math.abs(0.0 - var.getUniverseMin()) < EPSILON);
+		Assert.assertTrue(Math.abs(3.0 - var.getUniverseMax()) < EPSILON);
+
+		//---
+		// Part 2:Re-assign variables and make sure that the 'universe' is properly recalculated
+		//---
+		low = 2;
+		mid = 4;
+		high = 6;
+		fis.setVariable("low", low);
+		fis.setVariable("mid", mid);
+		fis.setVariable("high", high);
+		fis.evaluate();
+
+		if (verbose) {
+			System.out.println(var);
+			System.out.println("Universe:\t[" + var.getUniverseMin() + " , " + var.getUniverseMax() + "]: " + var.getValue());
+		}
+		Assert.assertTrue(Math.abs(0.0 - var.getUniverseMin()) < EPSILON);
+		Assert.assertTrue(Math.abs(6.0 - var.getUniverseMax()) < EPSILON);
+	}
+
 	/**
 	 * Test method a fuzzy system that showed NA values due to 'Triangle' membership function bug
 	 * Bug report and FCL code by Shashankrao Wankhede
@@ -445,4 +495,5 @@ public class TestCaseJfuzzy extends TestCase {
 		FIS fis = FIS.load("tests/noRules.fcl", true);
 		if (verbose) System.out.println(fis);
 	}
+
 }

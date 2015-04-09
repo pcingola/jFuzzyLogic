@@ -11,8 +11,8 @@ import net.sourceforge.jFuzzyLogic.rule.Variable;
  */
 public abstract class DefuzzifierDiscrete extends Defuzzifier implements Iterable<Double> {
 
-	/** 
-	 * Funcion values: A generic discrete function 
+	/**
+	 * Funcion values: A generic discrete function
 	 * 			x = [x_1, x_2, .... , x_n]
 	 * 			y = [y_1, y_2, .... , y_n]
 	 * 			y_i = f[x_i]
@@ -23,7 +23,7 @@ public abstract class DefuzzifierDiscrete extends Defuzzifier implements Iterabl
 	public DefuzzifierDiscrete(Variable variable) {
 		super(variable);
 		discrete = true;
-		discreteValues = new HashMap<Double, Double>();
+		init();
 	}
 
 	/** Deffuzification function */
@@ -37,16 +37,32 @@ public abstract class DefuzzifierDiscrete extends Defuzzifier implements Iterabl
 		return y;
 	}
 
+	@Override
+	protected void init() {
+		discreteValues = new HashMap<Double, Double>();
+	}
+
 	/** Get an iterator (on discreteValues' keys) */
 	@Override
 	public Iterator<Double> iterator() {
 		return discreteValues.keySet().iterator();
 	}
 
+	/**
+	 * Do we need to re-initialize?
+	 */
+	@Override
+	public boolean needsInit() {
+		return false;
+	}
+
 	/** Reset values */
 	@Override
 	public void reset() {
-		if (discreteValues != null) { // Set all values to 0
+		super.reset();
+
+		if (discreteValues != null) {
+			// Set all values to 0
 			for (Double key : this)
 				discreteValues.put(key, 0.0);
 		}
