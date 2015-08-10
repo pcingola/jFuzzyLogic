@@ -2,7 +2,7 @@ package net.sourceforge.jFuzzyLogic.test.performance;
 
 public class PerformanceTester {
 
-	public static String path = "fcl/";
+	public static String path = "src/test/ressources/fcl/";
 
 	public static void main(String[] args) throws Exception {
 		PerformanceTester test = new PerformanceTester();

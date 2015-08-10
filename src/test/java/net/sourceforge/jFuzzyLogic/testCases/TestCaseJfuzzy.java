@@ -30,6 +30,8 @@ public class TestCaseJfuzzy extends TestCase {
 
 	static double EPSILON = 0.000001; // A small number
 	static boolean verbose = false; // Verbose?
+	public static String path = "src/test/ressources";
+
 
 	/**
 	 * Verify that De Morgan's laws are OK
@@ -165,32 +167,32 @@ public class TestCaseJfuzzy extends TestCase {
 		Gpr.debug("Test");
 
 		if (verbose) System.out.println("Testing De Morgan's law: AND=MIN / OR=MAX");
-		FIS fis = FIS.load("fcl/testDeMorgan_1.fcl");
+		FIS fis = FIS.load(path+"/fcl/testDeMorgan_1.fcl");
 		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
 		if (verbose) System.out.println("Testing De Morgan's law: AND=PROD / OR=ASUM (a.k.a. PROB_OR)");
-		fis = FIS.load("fcl/testDeMorgan_2.fcl");
+		fis = FIS.load(path + "/fcl/testDeMorgan_2.fcl");
 		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
 		if (verbose) System.out.println("Testing De Morgan's law: AND=BDIF / OR=BSUM");
-		fis = FIS.load("fcl/testDeMorgan_3.fcl");
+		fis = FIS.load(path + "/fcl/testDeMorgan_3.fcl");
 		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
 		if (verbose) System.out.println("Testing De Morgan's law: AND=DMIN / OR=DMAX");
-		fis = FIS.load("fcl/testDeMorgan_4.fcl");
+		fis = FIS.load(path + "/fcl/testDeMorgan_4.fcl");
 		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
 		if (verbose) System.out.println("Testing De Morgan's law: AND=NIPMIN / OR=NIPMAX");
-		fis = FIS.load("fcl/testDeMorgan_5.fcl");
+		fis = FIS.load(path + "/fcl/testDeMorgan_5.fcl");
 		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 
 		if (verbose) System.out.println("Testing De Morgan's law: AND=HAMACHER / OR=EINSTEIN");
-		fis = FIS.load("fcl/testDeMorgan_6.fcl");
+		fis = FIS.load(path + "/fcl/testDeMorgan_6.fcl");
 		if (verbose) System.out.println(fis);
 		checkDeMorgan(fis);
 	}
@@ -202,7 +204,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testFileParsing1() {
 		Gpr.debug("Test");
 
-		FIS fis = FIS.load("./tests/junit1.fcl", true);
+		FIS fis = FIS.load(path + "/junit1.fcl", true);
 		if (verbose) System.out.println(fis);
 		separator();
 	}
@@ -214,7 +216,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testFileParsing2() {
 		Gpr.debug("Test");
 
-		FIS fis = FIS.load("./tests/junit2.fcl", true);
+		FIS fis = FIS.load(path + "/junit2.fcl", true);
 		if (verbose) System.out.println(fis);
 		separator();
 	}
@@ -226,7 +228,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testFileParsing3() {
 		Gpr.debug("Test");
 
-		FIS fis = FIS.load("./tests/junit3.fcl", true);
+		FIS fis = FIS.load(path + "/junit3.fcl", true);
 		if (verbose) System.out.println(fis);
 		separator();
 	}
@@ -238,7 +240,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testFileParsing4() {
 		Gpr.debug("Test");
 
-		FIS fis = FIS.load("./tests/junit4.fcl", true);
+		FIS fis = FIS.load(path + "/junit4.fcl", true);
 		if (verbose) System.out.println(fis);
 		separator();
 	}
@@ -251,11 +253,11 @@ public class TestCaseJfuzzy extends TestCase {
 		Gpr.debug("Test");
 
 		// Load tipper fuzzy system
-		FIS fis = FIS.load("./tests/junit_functions.fcl", true);
+		FIS fis = FIS.load(path + "/junit_functions.fcl", true);
 		FunctionBlock fb = fis.getFunctionBlock(null);
 
 		// Load stored results
-		int mem[][] = loadMembershipFile("./tests/junit_functions.txt");
+		int mem[][] = loadMembershipFile(path + "/junit_functions.txt");
 
 		// Compare running the system vs. stored results
 		for (int ind = 0; ind < mem.length; ind++) {
@@ -281,7 +283,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionCosine() {
 		Gpr.debug("Test");
 
-		checkMembershipFunction("Cosine", "./tests/junit_cosine.fcl", "./tests/junit_cosine.txt");
+		checkMembershipFunction("Cosine", path + "/junit_cosine.fcl", path + "/junit_cosine.txt");
 	}
 
 	/**
@@ -291,7 +293,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionDsigm() {
 		Gpr.debug("Test");
 
-		checkMembershipFunction("Dsigm", "./tests/junit_dsigm.fcl", "./tests/junit_dsigm.txt");
+		checkMembershipFunction("Dsigm", path + "/junit_dsigm.fcl", path + "/junit_dsigm.txt");
 	}
 
 	/**
@@ -301,7 +303,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionGauss() {
 		Gpr.debug("Test");
 
-		checkMembershipFunction("Gauss", "./tests/junit_gauss.fcl", "./tests/junit_gauss.txt");
+		checkMembershipFunction("Gauss", path + "/junit_gauss.fcl", path + "/junit_gauss.txt");
 	}
 
 	/**
@@ -311,7 +313,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionGbell() {
 		Gpr.debug("Test");
 
-		checkMembershipFunction("Gbell", "./tests/junit_gbell.fcl", "./tests/junit_gbell.txt");
+		checkMembershipFunction("Gbell", path + "/junit_gbell.fcl", path + "/junit_gbell.txt");
 	}
 
 	/**
@@ -321,14 +323,14 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionOnLine4() {
 		Gpr.debug("Test");
 
-		FIS fis = FIS.load("./tests/on_line_variable.fcl");
+		FIS fis = FIS.load(path + "/on_line_variable.fcl");
 
 		double i = 4.0;
 		fis.setVariable("inputZeroMin", i - 1.0);
 		fis.setVariable("inputZeroMed", i);
 		fis.setVariable("inputZeroMax", i + 1.0);
 
-		checkMembershipFunction("Online", fis, "./tests/on_line_variable_4.txt");
+		checkMembershipFunction("Online", fis, path + "/on_line_variable_4.txt");
 	}
 
 	/**
@@ -338,14 +340,14 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionOnLine5() {
 		Gpr.debug("Test");
 
-		FIS fis = FIS.load("./tests/on_line_variable.fcl");
+		FIS fis = FIS.load(path + "/on_line_variable.fcl");
 
 		double i = 5.0;
 		fis.setVariable("inputZeroMin", i - 1.0);
 		fis.setVariable("inputZeroMed", i);
 		fis.setVariable("inputZeroMax", i + 1.0);
 
-		checkMembershipFunction("Online", fis, "./tests/on_line_variable_5.txt");
+		checkMembershipFunction("Online", fis, path + "/on_line_variable_5.txt");
 	}
 
 	/**
@@ -355,14 +357,14 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionOnLine6() {
 		Gpr.debug("Test");
 
-		FIS fis = FIS.load("./tests/on_line_variable.fcl");
+		FIS fis = FIS.load(path + "/on_line_variable.fcl");
 
 		double i = 6.0;
 		fis.setVariable("inputZeroMin", i - 1.0);
 		fis.setVariable("inputZeroMed", i);
 		fis.setVariable("inputZeroMax", i + 1.0);
 
-		checkMembershipFunction("Online", fis, "./tests/on_line_variable_6.txt");
+		checkMembershipFunction("Online", fis, path + "/on_line_variable_6.txt");
 	}
 
 	/**
@@ -372,7 +374,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionPiecewiseLinear() {
 		Gpr.debug("Test");
 
-		checkMembershipFunction("Piecewise_linear", "./tests/junit_piecewise_linear.fcl", "./tests/junit_piecewise_linear.txt");
+		checkMembershipFunction("Piecewise_linear", path + "/junit_piecewise_linear.fcl", path + "/junit_piecewise_linear.txt");
 	}
 
 	/**
@@ -382,7 +384,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionSigmoid() {
 		Gpr.debug("Test");
 
-		checkMembershipFunction("Sigmoid", "./tests/junit_sigmoid.fcl", "./tests/junit_sigmoid.txt");
+		checkMembershipFunction("Sigmoid", path + "/junit_sigmoid.fcl", path + "/junit_sigmoid.txt");
 	}
 
 	/**
@@ -392,7 +394,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionSingletons() {
 		Gpr.debug("Test");
 
-		checkMembershipFunction("Singleton", "./tests/junit_singletons.fcl", "./tests/junit_singletons.txt");
+		checkMembershipFunction("Singleton", path + "/junit_singletons.fcl", path + "/junit_singletons.txt");
 	}
 
 	/**
@@ -402,7 +404,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionTrapezoid() {
 		Gpr.debug("Test");
 
-		checkMembershipFunction("Trapezoid", "./tests/junit_trape.fcl", "./tests/junit_trape.txt");
+		checkMembershipFunction("Trapezoid", path + "/junit_trape.fcl", path + "/junit_trape.txt");
 	}
 
 	/**
@@ -412,7 +414,7 @@ public class TestCaseJfuzzy extends TestCase {
 	public void testMembershipFunctionTriangular() {
 		Gpr.debug("Test");
 
-		checkMembershipFunction("Triangular", "./tests/junit_triang.fcl", "./tests/junit_triang.txt");
+		checkMembershipFunction("Triangular", path + "/junit_triang.fcl", path + "/junit_triang.txt");
 	}
 
 	@Test
@@ -420,7 +422,7 @@ public class TestCaseJfuzzy extends TestCase {
 		Gpr.debug("Test");
 
 		// FCL.debug = true;
-		FIS fis = FIS.load("./tests/membershipWithVariables.fcl", true);
+		FIS fis = FIS.load(path + "/membershipWithVariables.fcl", true);
 
 		Variable var = fis.getVariable("out");
 		if (verbose) {
@@ -472,7 +474,7 @@ public class TestCaseJfuzzy extends TestCase {
 		Gpr.debug("Test");
 
 		// FCL.debug = true;
-		FIS fis = FIS.load("./tests/junit_shashankrao.fcl", true);
+		FIS fis = FIS.load(path + "/junit_shashankrao.fcl", true);
 		if (verbose) System.out.println(fis);
 
 		// This set of values used to produce a 'NaN' output
@@ -492,7 +494,7 @@ public class TestCaseJfuzzy extends TestCase {
 		Gpr.debug("Test");
 
 		// FCL.debug = true;
-		FIS fis = FIS.load("tests/noRules.fcl", true);
+		FIS fis = FIS.load(path + "/noRules.fcl", true);
 		if (verbose) System.out.println(fis);
 	}
 

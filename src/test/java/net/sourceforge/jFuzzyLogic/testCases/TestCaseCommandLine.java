@@ -12,12 +12,14 @@ public class TestCaseCommandLine extends TestCase {
 
 	public static final double EPSILON = 1e-6;
 
+	public static String path = "src/test/ressources";
+
 	@Test
 	public void test() {
 		Gpr.debug("Test");
 
 		// Prepare command line
-		String fileName = "tests/tipper.fcl";
+		String fileName = path + "/tipper.fcl";
 		String args[] = { "-noCharts", "-e", fileName, "8.5", "9" };
 
 		// Run

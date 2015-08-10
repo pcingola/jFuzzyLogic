@@ -25,6 +25,7 @@ public class TestCaseZzz extends TestCase {
 
 	static double EPSILON = 0.000001; // A small number
 	static boolean verbose = true; // Verbose?
+	public static String path = "src/test/ressources";
 
 	/**
 	 * Read a table of numbers as an array of integers
@@ -63,7 +64,7 @@ public class TestCaseZzz extends TestCase {
 		Gpr.debug("Test");
 
 		// FCL.debug = true;
-		FIS fis = FIS.load("./tests/membershipWithVariables.fcl", true);
+		FIS fis = FIS.load(path + "/membershipWithVariables.fcl", true);
 
 		System.out.println(fis);
 		Variable var = fis.getVariable("out");

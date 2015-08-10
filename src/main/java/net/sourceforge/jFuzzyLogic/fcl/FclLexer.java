@@ -4653,7 +4653,7 @@ public class FclLexer extends Lexer {
             // Fcl.g:118:6: ( '..' )
             // Fcl.g:118:9: '..'
             {
-            match(".."); 
+            match("src/main");
 
 
             }
