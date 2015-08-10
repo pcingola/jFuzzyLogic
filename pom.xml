@@ -68,6 +68,28 @@
                 </archive>
             </configuration>
         </plugin>-->
+
+        <!-- Appel du plugin ANTLR -->
+        <plugin>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr3-maven-plugin</artifactId>
+            <version>3.1.1.2</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>antlr</goal>
+                    </goals>
+                    <configuration>
+                        <!--
+                        To be compliant with old system. Should be changed by extracting code generation as a maven module
+			with default outputDirectory (target/generated-sources)
+                        -->
+                        <outputDirectory>src/main/java/net/sourceforge/jFuzzyLogic/fcl/</outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
     </plugins>
 </build>
 
