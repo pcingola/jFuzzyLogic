@@ -57,18 +57,6 @@
             </executions>
         </plugin>
 
-<!--        <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.4</version>
-            <configuration>
-                <archive>
-                    <manifest>
-                        <mainClass>net.sourceforge.jFuzzyLogic.JFuzzyLogic</mainClass>
-                    </manifest>
-                </archive>
-            </configuration>
-        </plugin>-->
-
         <!-- Appel du plugin ANTLR -->
         <plugin>
             <groupId>org.antlr</groupId>
@@ -101,43 +89,11 @@
         <version>3.1.1</version>
     </dependency>
 
-    <!--
-    <dependency>
-        <groupId>org.antlr</groupId>
-        <artifactId>antlrworks</artifactId>
-        <version>1.2</version>
-    </dependency>
--->
-
-    <!--
-    <dependency>
-        <groupId>jfree</groupId>
-        <artifactId>jcommon</artifactId>
-        <version>1.0.14</version>
-    </dependency>
--->
-
-    <!-- old one changed to 1.0.14
-    <dependency>
-        <groupId>jfree</groupId>
-        <artifactId>jfreechart</artifactId>
-        <version>1.0.11</version>
-    </dependency>
--->
-
     <dependency>
         <groupId>org.jfree</groupId>
         <artifactId>jfreechart</artifactId>
         <version>1.0.14</version>
     </dependency>
-
-    <!--
-        <dependency>
-            <groupId>org.jfree</groupId>
-            <artifactId>jfreechart</artifactId>
-            <version>1.0.11</version>
-        </dependency>
-    -->
 
     <dependency>
         <groupId>junit</groupId>
@@ -147,13 +103,5 @@
     </dependency>
 
 </dependencies>
-
-    <repositories>
-        <repository>
-            <id>repo.pentaho.org</id>
-            <name>repo.pentaho.org-snapshots</name>
-            <url>repository.pentaho.org/artifactory/repo</url>
-        </repository>
-    </repositories>
 
 </project>
