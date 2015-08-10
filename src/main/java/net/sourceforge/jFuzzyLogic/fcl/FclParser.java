@@ -1,4 +1,4 @@
-// $ANTLR 3.1 Fcl.g 2014-02-13 11:23:10
+// $ANTLR 3.1.1 Fcl.g 2015-08-11 00:18:21
 
 package net.sourceforge.jFuzzyLogic.fcl;
 
@@ -4976,7 +4976,7 @@ public class FclParser extends Parser {
     public static final BitSet FOLLOW_VAR_INPUT_in_var_input2660 = new BitSet(new long[]{0x0000000080000000L,0x0000004000000000L});
     public static final BitSet FOLLOW_var_def_in_var_input2664 = new BitSet(new long[]{0x0000000080000000L,0x0000004000000000L});
     public static final BitSet FOLLOW_END_VAR_in_var_input2668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_VAR_OUTPUT_in_var_output2676 = new BitSet(new long[]{0x0000000080000000L,0x0000004000000000L});
+    public static final BitSet FOLLOW_VAR_OUTPUT_in_var_output2676 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
     public static final BitSet FOLLOW_var_def_in_var_output2680 = new BitSet(new long[]{0x0000000080000000L,0x0000004000000000L});
     public static final BitSet FOLLOW_END_VAR_in_var_output2684 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ID_in_var_def2692 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
@@ -5076,8 +5076,8 @@ public class FclParser extends Parser {
     public static final BitSet FOLLOW_fun_pm_in_fun_atom3140 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
     public static final BitSet FOLLOW_RIGHT_PARENTHESIS_in_fun_atom3142 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_DEFUZZIFY_in_defuzzify_block3153 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
-    public static final BitSet FOLLOW_ID_in_defuzzify_block3156 = new BitSet(new long[]{0x0200400028200000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_defuzzify_item_in_defuzzify_block3159 = new BitSet(new long[]{0x0200400028200000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_defuzzify_block3156 = new BitSet(new long[]{0x0200400008200000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_defuzzify_item_in_defuzzify_block3159 = new BitSet(new long[]{0x0200400008200000L,0x0000000000000004L});
     public static final BitSet FOLLOW_END_DEFUZZIFY_in_defuzzify_block3163 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_defuzzification_method_in_defuzzify_item3171 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_default_value_in_defuzzify_item3175 = new BitSet(new long[]{0x0000000000000002L});

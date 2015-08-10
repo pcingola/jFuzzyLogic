@@ -1,4 +1,4 @@
-// $ANTLR 3.1 Fcl.g 2014-02-13 11:23:11
+// $ANTLR 3.1.1 Fcl.g 2015-08-11 00:18:22
 
 package net.sourceforge.jFuzzyLogic.fcl;
 
@@ -4653,7 +4653,7 @@ public class FclLexer extends Lexer {
             // Fcl.g:118:6: ( '..' )
             // Fcl.g:118:9: '..'
             {
-            match("src/main");
+            match(".."); 
 
 
             }
@@ -5167,13 +5167,13 @@ public class FclLexer extends Lexer {
                     if ( (LA9_1==')') ) {
                         alt9=2;
                     }
-                    else if ( ((LA9_1>='\u0000' && LA9_1<='(')||(LA9_1>='*' && LA9_1<='\uFFFE')) ) {
+                    else if ( ((LA9_1>='\u0000' && LA9_1<='(')||(LA9_1>='*' && LA9_1<='\uFFFF')) ) {
                         alt9=1;
                     }
 
 
                 }
-                else if ( ((LA9_0>='\u0000' && LA9_0<=')')||(LA9_0>='+' && LA9_0<='\uFFFE')) ) {
+                else if ( ((LA9_0>='\u0000' && LA9_0<=')')||(LA9_0>='+' && LA9_0<='\uFFFF')) ) {
                     alt9=1;
                 }
 
@@ -5246,13 +5246,13 @@ public class FclLexer extends Lexer {
                     if ( (LA11_1=='/') ) {
                         alt11=2;
                     }
-                    else if ( ((LA11_1>='\u0000' && LA11_1<='.')||(LA11_1>='0' && LA11_1<='\uFFFE')) ) {
+                    else if ( ((LA11_1>='\u0000' && LA11_1<='.')||(LA11_1>='0' && LA11_1<='\uFFFF')) ) {
                         alt11=1;
                     }
 
 
                 }
-                else if ( ((LA11_0>='\u0000' && LA11_0<=')')||(LA11_0>='+' && LA11_0<='\uFFFE')) ) {
+                else if ( ((LA11_0>='\u0000' && LA11_0<=')')||(LA11_0>='+' && LA11_0<='\uFFFF')) ) {
                     alt11=1;
                 }
 
@@ -5319,7 +5319,7 @@ public class FclLexer extends Lexer {
                 int alt13=2;
                 int LA13_0 = input.LA(1);
 
-                if ( ((LA13_0>='\u0000' && LA13_0<='\t')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\uFFFE')) ) {
+                if ( ((LA13_0>='\u0000' && LA13_0<='\t')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\uFFFF')) ) {
                     alt13=1;
                 }
 
@@ -5328,7 +5328,7 @@ public class FclLexer extends Lexer {
             	case 1 :
             	    // Fcl.g:157:19: ~ ( '\\r' | '\\n' )
             	    {
-            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
+            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
 
             	    }
