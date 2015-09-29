@@ -165,7 +165,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 		if (variable == null) {
 			variable = new Variable(varName);
 			setVariable(varName, variable);
-			Gpr.debug("Variable '" + varName + "' does not exist => Creating it");
+			if (debug) Gpr.debug("Variable '" + varName + "' does not exist => Creating it");
 		}
 
 		//---
@@ -223,7 +223,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 		if (variable == null) {
 			variable = new Variable(varName);
 			setVariable(varName, variable);
-			Gpr.debug("Variable '" + varName + "' does not exist => Creating it");
+			if (debug) Gpr.debug("Variable '" + varName + "' does not exist => Creating it");
 		}
 
 		// Explore each sibling in this level
@@ -426,7 +426,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 
 			String leaveName = child.getText();
 			if (leaveName.equalsIgnoreCase("(")) numPoints++;
-			Gpr.debug("leaveName : " + leaveName + "\tnumPoints: " + numPoints);
+			if (debug) Gpr.debug("leaveName : " + leaveName + "\tnumPoints: " + numPoints);
 		}
 
 		// Parse multiple points (for piece-wise linear)
@@ -517,7 +517,7 @@ public class FunctionBlock extends FclObject implements Iterable<RuleBlock>, Com
 				variable.setUniverseMax(max);
 			}
 
-			if (varibleExists(variable.getName())) Gpr.debug("Warning: Variable '" + variable.getName() + "' duplicated");
+			if (varibleExists(variable.getName())) if (debug) Gpr.debug("Warning: Variable '" + variable.getName() + "' duplicated");
 			else setVariable(varName, variable); // OK? => Add variable
 		}
 	}
