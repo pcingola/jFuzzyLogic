@@ -1,12 +1,12 @@
 package net.sourceforge.jFuzzyLogic;
 
+import org.antlr.runtime.RecognitionException;
+
 import net.sourceforge.jFuzzyLogic.demo.tipper.TipperAnimation;
 import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
 import net.sourceforge.jFuzzyLogic.rule.Rule;
 import net.sourceforge.jFuzzyLogic.rule.RuleBlock;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
-
-import org.antlr.runtime.RecognitionException;
 
 /**
  * Main jFuzzyLogic class
@@ -203,7 +203,7 @@ public class JFuzzyLogic {
 		System.err.println("Options:");
 		System.err.println("\t file.fcl                      : Load FCL file and show memebership functions (default, when no option is provided).");
 		System.err.println("\t-c file.fcl                    : Compile. Generate C++ code from FCL file (to STDOUT)");
-		System.err.println("\t-e file.fcl in_1 in_2 ... in_N : Evaluate. Load FCL file, assign inputs i_1, i_2, ..., i_n and evaluate.");
+		System.err.println("\t-e file.fcl in_1 in_2 ... in_N : Evaluate. Load FCL file, assign inputs i_1, i_2, ..., i_n and evaluate (variables sorted alphabetically).");
 		System.err.println("\t-noCharts                      : Use a mock class for charts. This is used when not compiled using JFreeCharts.");
 		System.err.println("\tdemo                           : Run a demo exmaple (tipper.fcl)");
 		System.exit(1);
