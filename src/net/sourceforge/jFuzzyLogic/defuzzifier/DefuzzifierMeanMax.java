@@ -29,7 +29,7 @@ public class DefuzzifierMeanMax extends DefuzzifierContinuous {
 		// Calculate mean of max
 		for( int i = 0; i < values.length; i++ ) {
 			if( values[i] == max ) {
-				maxX = min + stepSize * i;
+				maxX += min + stepSize * i;
 				count++;
 			}
 		}
