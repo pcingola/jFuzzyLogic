@@ -5,7 +5,7 @@
 	</target>
 	
     <target name="create_jar" depends="compile">
-        <jar destfile="${user.home}/jFuzzyLogic.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="${user.home}/Java Libs/jFuzzyLogic.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="net.sourceforge.jFuzzyLogic.JFuzzyLogic"/>
                 <attribute name="Class-Path" value="."/>
@@ -20,7 +20,7 @@
     </target>
 
     <target name="create_core_jar" depends="compile">
-        <jar destfile="${user.home}/jFuzzyLogic_core.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="${user.home}/Java Libs/jFuzzyLogic_core.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="net.sourceforge.jFuzzyLogic.JFuzzyLogic"/>
                 <attribute name="Class-Path" value="."/>

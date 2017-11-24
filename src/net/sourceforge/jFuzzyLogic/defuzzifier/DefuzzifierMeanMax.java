@@ -20,23 +20,38 @@ public class DefuzzifierMeanMax extends DefuzzifierContinuous {
 
 		// Calculate max
 		for( int i = 0; i < values.length; i++ ) {
-			if( values[i] >= max ) max = values[i];
+			if( values[i] >= max ) 
+				max = values[i];
 		}
 
 		// No max? => this variable has no active antecedent
 		if( max <= 0 ) return Double.NaN;
 
 		// Calculate mean of max
+		boolean isFirstMax = false;
+		int startOfMax= 0;
 		for( int i = 0; i < values.length; i++ ) {
 			if( values[i] == max ) {
-				maxX += min + stepSize * i;
+				if(isFirstMax == false){
+					isFirstMax= true;
+//					minOfMax = values[i];
+					startOfMax = i;
+//					System.out.println("Start: "+startOfMax);
+				}
+//				maxX = min + stepSize * i; 
+				maxX = i;
+//				maxX += i;
 				count++;
 			}
 		}
 
-		// Return mean of max
-		return maxX / count;
+//		System.out.println("Finish: "+maxX);
 
+		// Return mean of max
+		int middleI = (int) ((maxX + startOfMax) / 2);
+//		System.out.println("Middle I: "+middleI);
+	
+		return min + stepSize * middleI;
 	}
 
 	@Override
