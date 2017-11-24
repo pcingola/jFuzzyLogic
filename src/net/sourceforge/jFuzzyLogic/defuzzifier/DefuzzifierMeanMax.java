@@ -36,7 +36,7 @@ public class DefuzzifierMeanMax extends DefuzzifierContinuous {
 					isFirstMax= true;
 //					minOfMax = values[i];
 					startOfMax = i;
-					System.out.println("Start: "+startOfMax);
+//					System.out.println("Start: "+startOfMax);
 				}
 //				maxX = min + stepSize * i; 
 				maxX = i;
@@ -45,11 +45,11 @@ public class DefuzzifierMeanMax extends DefuzzifierContinuous {
 			}
 		}
 
-		System.out.println("Finish: "+maxX);
+//		System.out.println("Finish: "+maxX);
 
 		// Return mean of max
 		int middleI = (int) ((maxX + startOfMax) / 2);
-		System.out.println("Middle I: "+middleI);
+//		System.out.println("Middle I: "+middleI);
 	
 		return min + stepSize * middleI;
 	}
