@@ -20,16 +20,24 @@ public class DefuzzifierMeanMax extends DefuzzifierContinuous {
 
 		// Calculate max
 		for( int i = 0; i < values.length; i++ ) {
-			if( values[i] >= max ) max = values[i];
+			if( values[i] >= max ) 
+				max = values[i];
 		}
 
 		// No max? => this variable has no active antecedent
 		if( max <= 0 ) return Double.NaN;
 
 		// Calculate mean of max
+		boolean firstMax = false;
+		double minOfMax = 0;
 		for( int i = 0; i < values.length; i++ ) {
 			if( values[i] == max ) {
-				maxX += min + stepSize * i;
+				if(firstMax == false){
+					firstMax = true;
+					minOfMax = values[i];
+				}
+//				maxX += minOfMax + stepSize * i; 
+				maxX += values[i];
 				count++;
 			}
 		}
