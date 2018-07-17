@@ -64,12 +64,12 @@ public class MembershipFunctionGenBell extends MembershipFunctionContinuous {
 	 */
 	@Override
 	public String toString() {
-		return getName() + " : " + " , " + parameters[0] + parameters[1] + " , " + parameters[2];
+		return getName() + " : "  + parameters[1] + " , " + parameters[2] + " , " + parameters[0];
 	}
 
 	/** FCL representation */
 	@Override
 	public String toStringFcl() {
-		return "GBELL " + parameters[0] + " " + parameters[1] + " " + parameters[2];
+		return "GBELL " + parameters[1] + " " + parameters[2] + " " + parameters[0];
 	}
 }
